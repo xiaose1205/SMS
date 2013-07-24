@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CDF6945E-E268-4DDE-A97B-2A47DD82C580}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SMSServer.Wcf</RootNamespace>
+    <AssemblyName>SMSServer.Wcf</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ISMSService.cs" />
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\MessageData.cs" />
+    <Compile Include="Models\MoModel.cs" />
+    <Compile Include="Models\ReportModel.cs" />
+    <Compile Include="Models\ResponseCodeEnum.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\GetReportRequest.cs" />
+    <Compile Include="Request\GetResponseRequest.cs" />
+    <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\ChargeResponse.cs" />
+    <Compile Include="Response\GetAccountInfoResponse.cs" />
+    <Compile Include="Response\GetMoResponse.cs" />
+    <Compile Include="Response\GetReportReponse.cs" />
+    <Compile Include="Response\GetResponseResponse.cs" />
+    <Compile Include="Response\ModifyResponse.cs" />
+    <Compile Include="Response\PostMsgResponse.cs" />
+    <Compile Include="SMSServiceWcf.cs" />
+    <Compile Include="Util\CheckUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">
+      <Project>{5EBB695E-D6E4-4E48-B4E5-B6A674679019}</Project>
+      <Name>HelloData.FrameWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMSServer.Entity\SMSServer.Entity.csproj">
+      <Project>{C30F05CD-C48D-4895-A8AB-06D40950FDF9}</Project>
+      <Name>SMSServer.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMSServer.Logic\SMSServer.Logic.csproj">
+      <Project>{1CA41699-9BB8-4AED-B7D6-9A402F99E081}</Project>
+      <Name>SMSServer.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

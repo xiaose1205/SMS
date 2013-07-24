@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AAF74A75-8E22-4471-AC54-7DB9697F2377}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SMSServer.Web</RootNamespace>
+    <AssemblyName>SMSServer.Web</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="Images\1_090915220603_1.jpg" />
+    <Content Include="Images\accept.png" />
+    <Content Include="Images\AdminUI.png" />
+    <Content Include="Images\body_bg.gif" />
+    <Content Include="Images\btn_bg.png" />
+    <Content Include="Images\default\addpicture.jpg" />
+    <Content Include="Images\default\apptrigger_button.png" />
+    <Content Include="Images\default\app_hover.png" />
+    <Content Include="Images\default\arrow_inCell.gif" />
+    <Content Include="Images\default\bianjiico.gif" />
+    <Content Include="Images\default\btnDsb_bg_left.gif" />
+    <Content Include="Images\default\btnDsb_bg_right.gif" />
+    <Content Include="Images\default\btnout_bg_left.gif" />
+    <Content Include="Images\default\btnout_bg_right.gif" />
+    <Content Include="Images\default\btnover_bg_left.gif" />
+    <Content Include="Images\default\btnover_bg_right.gif" />
+    <Content Include="Images\default\btn_hover.gif" />
+    <Content Include="Images\default\btn_nomal.gif" />
+    <Content Include="Images\default\buttonBg.gif" />
+    <Content Include="Images\default\button_3.png" />
+    <Content Include="Images\default\close.gif" />
+    <Content Include="Images\default\hover2_1.jpg" />
+    <Content Include="Images\default\index_arrow.gif" />
+    <Content Include="Images\default\line2_1.jpg" />
+    <Content Include="Images\default\link2_1.jpg" />
+    <Content Include="Images\default\Loading.gif" />
+    <Content Include="Images\default\loginbodybg.gif" />
+    <Content Include="Images\default\loginbtn.gif" />
+    <Content Include="Images\default\loginimgbg.jpg" />
+    <Content Include="Images\default\loginInputWrapbg.gif" />
+    <Content Include="Images\default\loginSelectWrapbg.gif" />
+    <Content Include="Images\default\menubg2_1.jpg" />
+    <Content Include="Images\default\navline.gif" />
+    <Content Include="Images\default\open.gif" />
+    <Content Include="Images\default\plugin.png" />
+    <Content Include="Images\default\textarea_bg.gif" />
+    <Content Include="Images\default\text_bg.gif" />
+    <Content Include="Images\default\th.gif" />
+    <Content Include="Images\default\thbg.gif" />
+    <Content Include="Images\default\thbg_over.gif" />
+    <Content Include="Images\default\toolbar_menu_bg.png" />
+    <Content Include="Images\default\toolbar_menu_bg副本.png" />
+    <Content Include="Images\default\zButtonBg.gif" />
+    <Content Include="Images\eparse.png" />
+    <Content Include="Images\error.png" />
+    <Content Include="Images\flexigrid\bg.gif" />
+    <Content Include="Images\flexigrid\btn-sprite.gif" />
+    <Content Include="Images\flexigrid\ddn.png" />
+    <Content Include="Images\flexigrid\dn.png" />
+    <Content Include="Images\flexigrid\fhbg.gif" />
+    <Content Include="Images\flexigrid\first.gif" />
+    <Content Include="Images\flexigrid\hl.png" />
+    <Content Include="Images\flexigrid\last.gif" />
+    <Content Include="Images\flexigrid\line.gif" />
+    <Content Include="Images\flexigrid\load.gif" />
+    <Content Include="Images\flexigrid\load.png" />
+    <Content Include="Images\flexigrid\magnifier.png" />
+    <Content Include="Images\flexigrid\next.gif" />
+    <Content Include="Images\flexigrid\prev.gif" />
+    <Content Include="Images\flexigrid\up.png" />
+    <Content Include="Images\flexigrid\uup.png" />
+    <Content Include="Images\flexigrid\wbg.gif" />
+    <Content Include="Images\form_title_bg.gif" />
+    <Content Include="Images\head_bg.png" />
+    <Content Include="Images\head_bg1.png" />
+    <Content Include="Images\head_bg22.png" />
+    <Content Include="Images\head_top_bg.png" />
+    <Content Include="Images\icon_form.png" />
+    <Content Include="Images\icon_hideMeun.png" />
+    <Content Include="Images\icon_home.gif" />
+    <Content Include="Images\icon_menu_hide.png" />
+    <Content Include="Images\icon_menu_selected.gif" />
+    <Content Include="Images\icon_menu_show.png" />
+    <Content Include="Images\icon_settings.png" />
+    <Content Include="Images\icon_sms.png" />
+    <Content Include="Images\icon_table.png" />
+    <Content Include="Images\information.png" />
+    <Content Include="Images\menu_item_bg.gif" />
+    <Content Include="Images\menu_item_selected_bg.gif" />
+    <Content Include="Images\menu_selected_bg.gif" />
+    <Content Include="Images\menu_title.gif" />
+    <Content Include="Images\navigate_bg.png" />
+    <Content Include="Images\title_bg.gif" />
+    <Content Include="Images\title_bg.png" />
+    <Content Include="Images\title_bg00.png" />
+    <Content Include="Images\title_bg1000.png" />
+    <Content Include="Images\warning.png" />
+    <Content Include="Images\未命名-2.png" />
+    <Content Include="Index.html" />
+    <Content Include="Login.aspx" />
+    <Content Include="Scripts\lib\artDialog.extend.js" />
+    <Content Include="Scripts\lib\artDialog.js" />
+    <Content Include="Scripts\lib\artDialog.source.js" />
+    <Content Include="Scripts\lib\DD_belatedPNG.js" />
+    <Content Include="Scripts\lib\flexigrid-1.1A.js" />
+    <Content Include="Scripts\lib\flexigrid.js" />
+    <Content Include="Scripts\lib\flexigrid.pack.js" />
+    <Content Include="Scripts\lib\jquery-1.7.1.js" />
+    <Content Include="Scripts\lib\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\Script.js" />
+    <Content Include="Styles\flexigrid.css" />
+    <Content Include="Styles\login.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50297/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
