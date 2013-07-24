@@ -1,4 +1,4 @@
 SMS
 ===
 
-do someSth to send sms
+do something to send sms
