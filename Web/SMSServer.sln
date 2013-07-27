@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloData.Web", "HelloData.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSServer.Web", "SMSServer.Web\SMSServer.Web.csproj", "{AAF74A75-8E22-4471-AC54-7DB9697F2377}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMSServer.Service", "SMSServer.Service\SMSServer.Service.csproj", "{D59AB992-2BC3-414D-997C-51A687BD1983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,16 @@ Global
 		{AAF74A75-8E22-4471-AC54-7DB9697F2377}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AAF74A75-8E22-4471-AC54-7DB9697F2377}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AAF74A75-8E22-4471-AC54-7DB9697F2377}.Release|x86.ActiveCfg = Release|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D59AB992-2BC3-414D-997C-51A687BD1983}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

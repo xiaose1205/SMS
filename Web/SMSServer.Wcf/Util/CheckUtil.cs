@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HelloData.FWCommon.Cache;
 using SMSServer.Wcf.Response;
 using SMSServer.Models;
 using SMSServer.Logic;
 using HelloData.FrameWork.Data;
-using HelloData.FrameWork.Cache;
+ 
 
 namespace SMSServer.Util
 {
@@ -88,7 +89,7 @@ namespace SMSServer.Util
                CacheHelper.Get<PageList<Sms_teleseg>>(TelesegCachePre);
             if (telesegs == null)
             {
-                telesegs = Sms_telesegManage.Instance.GetList(-1, 0); 
+                telesegs = Sms_telesegManage.Instance.FindList(-1, 0); 
                 if (telesegs != null && telesegs.Count > 0)
                     CacheHelper.Insert(TelesegCachePre, telesegs);
             }

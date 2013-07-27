@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HelloData.FWCommon.Cache;
 using SMSServer.Logic;
 using SMSServer.Wcf.Models;
 using SMSServer.Util;
@@ -64,7 +65,7 @@ namespace SMSServer.Wcf
                                               {
                                                   Content = mo.Content,
                                                   Mobile = mo.Phone,
-                                                  MsgID = mo.id,
+                                                  MsgID = mo.ID,
                                                   RecTime = mo.ReceiveTime.HasValue ? mo.ReceiveTime.Value : DateTime.Now
                                               });
                 }
@@ -95,7 +96,7 @@ namespace SMSServer.Wcf
                     return (ModifyResponse)CheckUtil.CreateResponse(ResponseCodeEnum.MODIFY_ERROR);
                 modifyResponse.IsSuccess = Sms_AccountManage.Instance.UpdatePwd(username, password, newpassword);
                 if (modifyResponse.IsSuccess)
-                    HelloData.FrameWork.Cache.CacheHelper.Remove(CheckUtil.AcctountCachePre + username);
+                   CacheHelper.Remove(CheckUtil.AcctountCachePre + username);
             }
             catch (Exception exception)
             {

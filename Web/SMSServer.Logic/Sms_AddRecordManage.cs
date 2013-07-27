@@ -22,8 +22,8 @@ namespace SMSServer.Logic
                 action.SqlClomns = "_Sms_AddRecord.*";
                 {
                     //添加视图的关联关系
-                    List<WhereField> field = new List<WhereField>();
-                    field.Add(new WhereField()
+                    List<QueryField> field = new List<QueryField>();
+                    field.Add(new QueryField()
                     {
                         FiledName = Sms_AddRecord.Columns.AccountID,
                         Condition = ConditionEnum.And,

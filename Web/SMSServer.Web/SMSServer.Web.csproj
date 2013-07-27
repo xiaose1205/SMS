@@ -53,7 +53,6 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
     <Content Include="Images\1_090915220603_1.jpg" />
     <Content Include="Images\accept.png" />
     <Content Include="Images\AdminUI.png" />
@@ -131,6 +130,7 @@
     <Content Include="Images\icon_sms.png" />
     <Content Include="Images\icon_table.png" />
     <Content Include="Images\information.png" />
+    <Content Include="Images\legend_bg.png" />
     <Content Include="Images\menu_item_bg.gif" />
     <Content Include="Images\menu_item_selected_bg.gif" />
     <Content Include="Images\menu_selected_bg.gif" />
@@ -144,35 +144,46 @@
     <Content Include="Images\未命名-2.png" />
     <Content Include="Index.html" />
     <Content Include="Login.aspx" />
+    <Content Include="Master\Upload.aspx" />
     <Content Include="Scripts\lib\artDialog.extend.js" />
     <Content Include="Scripts\lib\artDialog.js" />
     <Content Include="Scripts\lib\artDialog.source.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
     <Content Include="Scripts\lib\DD_belatedPNG.js" />
     <Content Include="Scripts\lib\flexigrid-1.1A.js" />
     <Content Include="Scripts\lib\flexigrid.js" />
     <Content Include="Scripts\lib\flexigrid.pack.js" />
     <Content Include="Scripts\lib\jquery-1.7.1.js" />
     <Content Include="Scripts\lib\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\lib\jquery.actions.js" />
+    <Content Include="Scripts\lib\jquery.blockUI.js" />
+    <Content Include="Scripts\lib\jquery.common.js" />
+    <Content Include="Scripts\lib\jquery.form.js" />
+    <Content Include="Scripts\lib\jquery.eparse-common.js" />
     <Content Include="Scripts\Script.js" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\common.css" />
     <Content Include="Styles\flexigrid.css" />
     <Content Include="Styles\login.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Upload.aspx.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Upload.aspx.designer.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

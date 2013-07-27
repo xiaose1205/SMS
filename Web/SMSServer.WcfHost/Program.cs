@@ -2,9 +2,10 @@
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceProcess;
+using HelloData.FWCommon.Cache;
+using HelloData.FWCommon.Logging;
 using HelloData.FrameWork;
 using HelloData.FrameWork.Data;
-using HelloData.FrameWork.Logging;
 using System.Configuration;
 using SMSServer.Wcf;
 
@@ -39,7 +40,7 @@ namespace SMSServer.WcfHost
             AppCons.IsParmes = bool.Parse(ConfigurationManager.AppSettings["SqlParms"].ToString());
             Logger.CurrentLog.Info("Service_STARTING");
             AppCons.IsOpenCache = bool.Parse(ConfigurationManager.AppSettings["OpenCache"].ToString());
-            AppCons.CurrentCache = new HelloData.FrameWork.Cache.WebCache();
+            AppCons.CurrentCache = new  WebCache();
 
 
 

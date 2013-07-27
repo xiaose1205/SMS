@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
 using System.ServiceProcess;
 using System.ServiceModel.Channels;
-using HelloData.FrameWork.Logging;
+using HelloData.FWCommon.Logging;
 using SMSServer.Wcf;
 
 namespace SMSServer.WcfHost

@@ -78,6 +78,10 @@
       <Project>{5EBB695E-D6E4-4E48-B4E5-B6A674679019}</Project>
       <Name>HelloData.FrameWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HelloData.FWCommon\HelloData.FWCommon.csproj">
+      <Project>{f5ec683a-cb1a-4f7f-b779-e3d4f2a9843f}</Project>
+      <Name>HelloData.FWCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SMSServer.Wcf\SMSServer.Wcf.csproj">
       <Project>{CDF6945E-E268-4DDE-A97B-2A47DD82C580}</Project>
       <Name>SMSServer.Wcf</Name>
