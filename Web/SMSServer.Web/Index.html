@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>后台框架</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -11,7 +11,8 @@
     <script language="javascript" type="text/javascript" src="Scripts/Script.js"></script>
     <link href="Styles/Site.css" rel="stylesheet" type="text/css" />
     <link href="Styles/flexigrid.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
+    <script src="Scripts/menu.js"></script>
+    <!--[if IE 6]>
     <script type="text/javascript" src="Scripts/lib/DD_belatedPNG.js" ></script>
     <script type="text/javascript">DD_belatedPNG.fix('div,img');</script>
 <![endif]-->
@@ -21,19 +22,21 @@
                 title: 'Countries',
                 usepager: true,
                 singleSelect: true,
-                resizable : false,
-                height : '100%'
+                resizable: false,
+                height: '100%'
             });
+          
         });
     </script>
 </head>
 <body>
     <div id="header">
         <div id="top">
-            <div class="logo"><img src="Images/logo.png" />版本号：V1.0</div>
+            <div class="logo">
+                <img src="Images/logo.png" />版本号：V1.0
+            </div>
             <ul class="quicklink">
-                <li>
-                    用户：<a href="#">admin</a>
+                <li>用户：<a href="#">admin</a>
                 </li>
                 <li>
                     <a href="#">修改密码</a>
@@ -43,40 +46,46 @@
                 </li>
             </ul>
         </div>
-        <div id="navigate">
-            <div class="left">
+        <div id="navigate" class="navigate">
+
+            <div class="navigatehead" id="navigatehead">
+
                 <h3>
-                    <a href="javascript:void(0)">
-                        <img src="Images/icon_hideMeun.png" alt="收缩菜单列表" title="收缩菜单列表" />
+                    <a href="javascript:void(0)" onclick="OpenShutManager()" class="navbtn"  title="收缩菜单列表">
+   
                     </a>
                     <img src="Images/icon_settings.png" />功能菜单列表
                 </h3>
             </div>
-            <label >
+
+            <label>
                 <img src="Images/icon_home.gif" />
                 当前位置：短信运营系统 > 彩信管理 > 发送彩信 
             </label>
         </div>
     </div>
 
-    <div id="outContainer">
-        <div id="container">
-            <div id="sidebar">
+    <div id="outContainer" class="outContainer">
+        <div id="container" class="container">
+            <div id="sidebar" class="sidebar">
                 <!-- 菜单列表 -->
-                <h3 class="selected"><a href="javascript:void(0)"><img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icon_sms.png" />短信管理</a></h3>
+                <h3 class="selected"><a href="javascript:void(0)">
+                    <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icon_sms.png" />短信管理</a></h3>
                 <ul>
                     <li>
-                        <a href="#">发送短信</a>
+                        <a href="#" page="login.aspx">
+                            <img src="Images/icons/album_option.gif" />发送短信</a>
                     </li>
                     <li>
                         <a href="#">接收短信</a>
                     </li>
                     <li class="selected">
-                        <img src="Images/icon_menu_selected.gif" style="position:absolute; margin:6px auto auto 8px;" />
-                        <a href="#">已发短信</a>
+                       
+                        <a href="#"  page="pageTest.html"><img src="Images/icons/album_option.gif" />已发短信</a>
                     </li>
                 </ul>
-                <h3><a href="javascript:void(0)"><img class="meunStatus" src="Images/icon_menu_hide.png" /><img src="Images/icon_sms.png" />彩信管理</a></h3>
+                <h3><a href="javascript:void(0)">
+                    <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icon_sms.png" />彩信管理</a></h3>
                 <ul>
                     <li>
                         <a href="#">彩信短信</a>
@@ -89,178 +98,178 @@
                     </li>
                 </ul>
             </div>
-        
+
             <div id="content">
                 <div class="contentbody">
-                
-    <table class="flexme2">
-		<thead>
-			<tr>
-				<th width="100">名称 1</th>
-				<th width="100">名称 2</th>
-				<th width="100">名称 3 is a long header name</th>
-				<th width="300">名称 4</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>This is data 1 with overflowing content</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-			<tr>
-				<td>This is data 1</td>
-				<td>This is data 2</td>
-				<td>This is data 3</td>
-				<td>This is data 4</td>
-			</tr>
-		</tbody>
-	</table>
 
-    <br />
+                    <table class="flexme2">
+                        <thead>
+                            <tr>
+                                <th width="100">名称 1</th>
+                                <th width="100">名称 2</th>
+                                <th width="100">名称 3 is a long header name</th>
+                                <th width="300">名称 4</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>This is data 1 with overflowing content</td>
+                                <td>This is data 2</td>
+                                <td>This is data 3</td>
+                                <td>This is data 4</td>
+                            </tr>
+                            <tr>
+                                <td>This is data 1</td>
+                                <td>This is data 2</td>
+                                <td>This is data 3</td>
+                                <td>This is data 4</td>
+                            </tr>
+                            <tr>
+                                <td>This is data 1</td>
+                                <td>This is data 2</td>
+                                <td>This is data 3</td>
+                                <td>This is data 4</td>
+                            </tr>
+                            <tr>
+                                <td>This is data 1</td>
+                                <td>This is data 2</td>
+                                <td>This is data 3</td>
+                                <td>This is data 4</td>
+                            </tr>
+                            <tr>
+                                <td>This is data 1</td>
+                                <td>This is data 2</td>
+                                <td>This is data 3</td>
+                                <td>This is data 4</td>
+                            </tr>
+                            <tr>
+                                <td>This is data 1</td>
+                                <td>This is data 2</td>
+                                <td>This is data 3</td>
+                                <td>This is data 4</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-    <div class="warning">
-        <p>
-            <strong>WARNING: </strong>
-            This is a warning message. You can use this to warn users on any events
-        </p>
-    </div>
+                    <br />
 
-    <div class="information">
-        <p>
-            <strong>INFORMATION: </strong>
-            This is a warning message. You can use this to warn users on any events
-        </p>
-    </div>
+                    <div class="warning">
+                        <p>
+                            <strong>WARNING: </strong>
+                            This is a warning message. You can use this to warn users on any events
+                        </p>
+                    </div>
 
-    <div class="success">
-        <p>
-            <strong>SUCCESS: </strong>
-            This is a warning message. You can use this to warn users on any events
-        </p>
-    </div>
+                    <div class="information">
+                        <p>
+                            <strong>INFORMATION: </strong>
+                            This is a warning message. You can use this to warn users on any events
+                        </p>
+                    </div>
 
-    <div class="error">
-        <p>
-            <strong>ERROR: </strong>
-            This is a warning message. You can use this to warn users on any events
-        </p>
-    </div>
+                    <div class="success">
+                        <p>
+                            <strong>SUCCESS: </strong>
+                            This is a warning message. You can use this to warn users on any events
+                        </p>
+                    </div>
 
-    <div class="form">
-        <div class="title">
-            <h3>表单</h3>
-        </div>
-        <div class="body">
-<div class="formPanel">
-        
-        <h4>基本资料</h4>
-        <ul class="form">
-            <li>
-                <label>文章标题：</label>
-                <input type="text" class="text" />
-            </li>
-            <li>
-                <label>文章标题：</label>
-                <input type="text" class="text" />
-            </li>
-            <li>
-                <label>文章标题：</label>
-                <input type="checkbox" class="checkbox" />
-            </li>
-            <li>
-                <div>
-                    <label>所属类别：</label>
-                    <select id="article_CategoryId" name="article.CategoryId" >
-<option value="">== 请选择所属类别 ==</option>
-<option value="49">牛仔裤种类</option>
-<option value="11">服装海报</option>
-<option value="10">电子时尚杂志</option>
-<option value="7">牛仔裤美女</option>
-<option value="72">│　├─清纯美女</option>
-<option value="43">│　├─美女明星</option>
-<option value="16">│　├─性感美女</option>
-<option value="8">│　└─时尚美女</option>
-</select>
-                </div>
-                <div>
-                    <label>发布状态：</label>
-                                                            <select id="article_Published" name="article.Published" >
-<option selected="selected" value="0">未发布</option>
-<option value="1">已发布</option>
-</select>
-                </div>
-            </li>
+                    <div class="error">
+                        <p>
+                            <strong>ERROR: </strong>
+                            This is a warning message. You can use this to warn users on any events
+                        </p>
+                    </div>
 
-            <li>
-                <div>
-                    <label>
-                        推荐：
-                    </label>
-                    <input type="checkbox" id="article_Recommend" name="article.Recommend" value="true" class="checkbox" /><input type="hidden" id="article_RecommendH" name="article.Recommend" value="false" />
-                </div>
-                <div>
-                    <label>
-                        头条：
-                    </label>
-                    <input type="checkbox" id="article_IsTop" name="article.IsTop" value="true" class="checkbox" /><input type="hidden" id="article_IsTopH" name="article.IsTop" value="false" />
-                </div>
-                <div>
-                    <label>排序数：</label>
-                    <input type="text" id="article_DisplayOrder" name="article.DisplayOrder" value="0" style="width:60px;" />
-                </div>
-            </li>
+                    <div class="form">
+                        <div class="title">
+                            <h3>表单</h3>
+                        </div>
+                        <div class="body">
+                            <div class="formPanel">
 
-            <li>
-                <label>文章标题：</label>
-                <input type="text" class="text" />
-            </li>
-            <li>
-                <label>文章摘要：</label>
-                <textarea id="article_Description" name="article.Description" style="width:60%;height:80px;" ></textarea>
-            </li>
-            <li>
-                <label>文章标题：</label>
-                <input type="text" class="text" />
-            </li>
-            <li>
-                <label>文章标题：</label>
-                <input type="text" class="text" />
-            </li>
-        </ul>
-        <div class="button">
-            <input type="submit" value="提 交" class="button" /><input type="reset" class="button" name="重 置" value="重 置" />
-        </div>
+                                <h4>基本资料</h4>
+                                <ul class="form">
+                                    <li>
+                                        <label>文章标题：</label>
+                                        <input type="text" class="text" />
+                                    </li>
+                                    <li>
+                                        <label>文章标题：</label>
+                                        <input type="text" class="text" />
+                                    </li>
+                                    <li>
+                                        <label>文章标题：</label>
+                                        <input type="checkbox" class="checkbox" />
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <label>所属类别：</label>
+                                            <select id="article_CategoryId" name="article.CategoryId">
+                                                <option value="">== 请选择所属类别 ==</option>
+                                                <option value="49">牛仔裤种类</option>
+                                                <option value="11">服装海报</option>
+                                                <option value="10">电子时尚杂志</option>
+                                                <option value="7">牛仔裤美女</option>
+                                                <option value="72">│　├─清纯美女</option>
+                                                <option value="43">│　├─美女明星</option>
+                                                <option value="16">│　├─性感美女</option>
+                                                <option value="8">│　└─时尚美女</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label>发布状态：</label>
+                                            <select id="article_Published" name="article.Published">
+                                                <option selected="selected" value="0">未发布</option>
+                                                <option value="1">已发布</option>
+                                            </select>
+                                        </div>
+                                    </li>
 
-</div>
+                                    <li>
+                                        <div>
+                                            <label>
+                                                推荐：
+                                            </label>
+                                            <input type="checkbox" id="article_Recommend" name="article.Recommend" value="true" class="checkbox" /><input type="hidden" id="article_RecommendH" name="article.Recommend" value="false" />
+                                        </div>
+                                        <div>
+                                            <label>
+                                                头条：
+                                            </label>
+                                            <input type="checkbox" id="article_IsTop" name="article.IsTop" value="true" class="checkbox" /><input type="hidden" id="article_IsTopH" name="article.IsTop" value="false" />
+                                        </div>
+                                        <div>
+                                            <label>排序数：</label>
+                                            <input type="text" id="article_DisplayOrder" name="article.DisplayOrder" value="0" style="width: 60px;" />
+                                        </div>
+                                    </li>
 
-        </div>
-    </div>
+                                    <li>
+                                        <label>文章标题：</label>
+                                        <input type="text" class="text" />
+                                    </li>
+                                    <li>
+                                        <label>文章摘要：</label>
+                                        <textarea id="article_Description" name="article.Description" style="width: 60%; height: 80px;"></textarea>
+                                    </li>
+                                    <li>
+                                        <label>文章标题：</label>
+                                        <input type="text" class="text" />
+                                    </li>
+                                    <li>
+                                        <label>文章标题：</label>
+                                        <input type="text" class="text" />
+                                    </li>
+                                </ul>
+                                <div class="button">
+                                    <input type="submit" value="提 交" class="button" /><input type="reset" class="button" name="重 置" value="重 置" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
