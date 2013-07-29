@@ -1,0 +1,9 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainSite.master.cs" Inherits="SMSServer.Web.Master.MainSite" %>
+
+
+<asp:contentplaceholder id="ScriptHolder" runat="server">
+    </asp:contentplaceholder>
+
+<asp:contentplaceholder id="ContentPlaceHolder" runat="server">
+        </asp:contentplaceholder>
+

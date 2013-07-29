@@ -165,18 +165,25 @@ $.popupWindow = function (width, height, name, url) {
         });
 };
 
-$.showError = function (message, func) {
-    art.dialog({
-        icon: 'error',
-        lock: true,
-        fixed: true,
-        content: message,
-        ok: function () {
-            if (typeof (func) != "undefined")
-                func();
-        }
+$.showError = function (message, func,element) {
+    var api = art.dialog.open.api;
+    api.info(message, "error");
+    if (typeof (func) != "undefined")
+        func();
+    if (element != undefined) {
 
-    });
+    }
+    //art.dialog({
+    //    icon: 'error',
+    //    lock: true,
+    //    fixed: true,
+    //    content: message,
+    //    ok: function () {
+    //        if (typeof (func) != "undefined")
+    //            func();
+    //    }
+
+    //});
 };
 
 $.showSuccess = function (message, func) {

@@ -25,6 +25,7 @@ $(document).ready(function () {
         $(this).parent().addClass("selected");
         $(this).parent().parent().prev().addClass("selected");
         loadPage($(this).attr("page"));
+        return false;
     });
 });
 function exit() {
@@ -155,9 +156,24 @@ function OpenShutManager() {
 
 function loadPage(url) {
     $(".contentbody").html("loading");
+    var date = new Date();
+    var urlnew = url;
+    if (url.indexOf("?") > -1)
+        urlnew = url + "&t=" + date.getMilliseconds();
+    else {
+        urlnew = url + "?t=" + date.getMilliseconds();
+    }
     $.ajax({
-        url: url,  success: function (data) {
+        url: urlnew, success: function (data) {
             $(".contentbody").html(data);
         }
     });
+}
+
+function alertWarn(msg) {
+
+}
+
+function closeAlert() {
+
 }

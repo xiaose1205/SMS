@@ -1,4 +1,16 @@
-﻿<table class="flexme2">
+﻿ <script type="text/javascript">
+     $(function () {
+         $('.flexme2').flexigrid({
+             title: 'Countries',
+             usepager: true,
+             singleSelect: true,
+             resizable: false,
+             height: '100%'
+         });
+         alert("asd")
+     });
+    </script>
+<table class="flexme2">
     <thead>
         <tr>
             <th width="100">名adsssssssss称 1</th>
@@ -49,7 +61,7 @@
 
 <br />
 
-<div class="warning">
+<div class="warning" style="top:5px;right:5px;position:fixed;">
     <p>
         <strong>WARNING: </strong>
         This is a warning message. You can use this to warn users on any events
@@ -65,7 +77,7 @@
 
 <div class="success">
     <p>
-        <strong>SUCCESS: </strong>
+       
         This is a warning message. You can use this to warn users on any events
     </p>
 </div>

@@ -53,6 +53,9 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aspxTest.aspx" />
+    <Content Include="demo\add.aspx" />
+    <Content Include="demo\Index.aspx" />
     <Content Include="Images\1_090915220603_1.jpg" />
     <Content Include="Images\accept.png" />
     <Content Include="Images\AdminUI.png" />
@@ -514,6 +517,7 @@
     <Content Include="Scripts\lib\flexigrid-1.1A.js" />
     <Content Include="Scripts\lib\flexigrid.js" />
     <Content Include="Scripts\lib\flexigrid.pack.js" />
+    <Content Include="Scripts\lib\iframeTools.source.js" />
     <Content Include="Scripts\lib\jquery-1.7.1.js" />
     <Content Include="Scripts\lib\jquery-1.7.1.min.js" />
     <Content Include="Scripts\lib\jquery.actions.js" />
@@ -521,10 +525,111 @@
     <Content Include="Scripts\lib\jquery.common.js" />
     <Content Include="Scripts\lib\jquery.form.js" />
     <Content Include="Scripts\lib\jquery.eparse-common.js" />
+    <Content Include="Scripts\lib\skins\aero.css" />
+    <Content Include="Scripts\lib\skins\aero\aero_s.png" />
+    <Content Include="Scripts\lib\skins\aero\aero_s2.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_close.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_e.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_n.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_ne.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_nw.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_s.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_se.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_sw.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_title_icon.png" />
+    <Content Include="Scripts\lib\skins\aero\ie6\aui_w.png" />
+    <Content Include="Scripts\lib\skins\black.css" />
+    <Content Include="Scripts\lib\skins\black\bg.png" />
+    <Content Include="Scripts\lib\skins\black\bg2.png" />
+    <Content Include="Scripts\lib\skins\black\bg_css3.png" />
+    <Content Include="Scripts\lib\skins\black\bg_css3_2.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\close.hover.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\close.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\e.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\n.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\ne.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\nw.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\s.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\se.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\sw.png" />
+    <Content Include="Scripts\lib\skins\black\ie6\w.png" />
+    <Content Include="Scripts\lib\skins\blue.css" />
+    <Content Include="Scripts\lib\skins\blue\bg.png" />
+    <Content Include="Scripts\lib\skins\blue\bg2.png" />
+    <Content Include="Scripts\lib\skins\blue\bg_css3.png" />
+    <Content Include="Scripts\lib\skins\blue\bg_css3_2.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\close.hover.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\close.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\e.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\n.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\ne.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\nw.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\s.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\se.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\sw.png" />
+    <Content Include="Scripts\lib\skins\blue\ie6\w.png" />
+    <Content Include="Scripts\lib\skins\chrome.css" />
+    <Content Include="Scripts\lib\skins\chrome\border.png" />
+    <Content Include="Scripts\lib\skins\chrome\chrome_s.png" />
+    <Content Include="Scripts\lib\skins\default.css" />
+    <Content Include="Scripts\lib\skins\green.css" />
+    <Content Include="Scripts\lib\skins\green\bg.png" />
+    <Content Include="Scripts\lib\skins\green\bg2.png" />
+    <Content Include="Scripts\lib\skins\green\bg_css3.png" />
+    <Content Include="Scripts\lib\skins\green\bg_css3_2.png" />
+    <Content Include="Scripts\lib\skins\green\color_bg.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\close.hover.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\close.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\e.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\n.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\ne.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\nw.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\s.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\se.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\sw.png" />
+    <Content Include="Scripts\lib\skins\green\ie6\w.png" />
+    <Content Include="Scripts\lib\skins\icons\error.png" />
+    <Content Include="Scripts\lib\skins\icons\face-sad.png" />
+    <Content Include="Scripts\lib\skins\icons\face-smile.png" />
+    <Content Include="Scripts\lib\skins\icons\loading.gif" />
+    <Content Include="Scripts\lib\skins\icons\question.png" />
+    <Content Include="Scripts\lib\skins\icons\succeed.png" />
+    <Content Include="Scripts\lib\skins\icons\warning.png" />
+    <Content Include="Scripts\lib\skins\idialog.css" />
+    <Content Include="Scripts\lib\skins\idialog\idialog_s.png" />
+    <Content Include="Scripts\lib\skins\idialog\idialog_s2.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_close.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_e.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_n.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_ne.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_nw.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_s.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_se.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_sw.png" />
+    <Content Include="Scripts\lib\skins\idialog\ie6\aui_w.png" />
+    <Content Include="Scripts\lib\skins\opera.css" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_close.hover.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_close.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_e.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_n.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_ne.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_nw.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_s.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_se.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_sw.png" />
+    <Content Include="Scripts\lib\skins\opera\ie6\aui_w.png" />
+    <Content Include="Scripts\lib\skins\opera\s1.png" />
+    <Content Include="Scripts\lib\skins\opera\s2.png" />
+    <Content Include="Scripts\lib\skins\simple.css" />
+    <Content Include="Scripts\lib\skins\twitter.css" />
     <Content Include="Scripts\menu.js" />
     <Content Include="Scripts\Script.js" />
+    <Content Include="Scripts\site\demo.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\child.css" />
     <Content Include="Styles\common.css" />
     <Content Include="Styles\flexigrid.css" />
     <Content Include="Styles\login.css" />
@@ -532,6 +637,27 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aspxTest.aspx.cs">
+      <DependentUpon>aspxTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aspxTest.aspx.designer.cs">
+      <DependentUpon>aspxTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="demo\add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="demo\add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="demo\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="demo\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -539,12 +665,26 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Master\ChildSite.Master.cs">
+      <DependentUpon>ChildSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\ChildSite.Master.designer.cs">
+      <DependentUpon>ChildSite.Master</DependentUpon>
+    </Compile>
     <Compile Include="Master\main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Master\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\MainSite.Master.cs">
+      <DependentUpon>MainSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\MainSite.Master.designer.cs">
+      <DependentUpon>MainSite.Master</DependentUpon>
     </Compile>
     <Compile Include="Master\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>
@@ -559,6 +699,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Master\MainSite.Master" />
+    <Content Include="Master\ChildSite.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

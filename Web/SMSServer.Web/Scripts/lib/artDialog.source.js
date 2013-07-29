@@ -1041,7 +1041,27 @@ artDialog.fn = artDialog.prototype = {
 		
 		return this;
 	},
-	
+    /**
+	 * 设置提示信息
+	 * @param	{String, Boolean}	标题内容. 为false则隐藏标题栏
+	 * @return	{this, HTMLElement}	如果无参数则返回内容器DOM对象
+	 */
+	info: function (text,icon) {
+	    var DOM = this.DOM,
+	        title = DOM.info;
+			 
+
+	    if (text === undefined) return title[0];
+	    if (text === false) {
+	        title.hide().html('');
+	       
+	    } else {
+	        title.show().html(text || '');
+	       
+	    };
+
+	    return this;
+	},
 	/**
 	 * 位置(相对于可视区域)
 	 * @param	{Number, String}
@@ -1812,7 +1832,7 @@ artDialog._templates =
 +							'</tr>'
 +							'<tr>'
 +								'<td colspan="2" class="aui_footer">'
-+									'<div class="aui_buttons"></div>'
++									'<div class="aui_buttons"><div class="aui_info"></div></div>'
 +								'</td>'
 +							'</tr>'
 +						'</tbody>'
@@ -1839,6 +1859,7 @@ artDialog.defaults = {
 								// 消息内容
 	content: '<div class="aui_loading"><span>loading..</span></div>',
 	title: '\u6d88\u606f',		// 标题. 默认'消息'
+	info:'',                    //提示信息，默认为空
 	button: null,				// 自定义按钮
 	ok: null,					// 确定按钮回调函数
 	cancel: null,				// 取消按钮回调函数

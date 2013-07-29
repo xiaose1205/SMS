@@ -1,0 +1,218 @@
+﻿
+/**子窗体*/
+.child_form {
+    background: none;
+    background-color: rgb(249, 249, 249);
+}
+
+    .child_form .control-group {
+        margin-bottom: 5px;
+    }
+
+
+.z-legend {
+    background: url("../img/legend_bg.png") no-repeat left;
+    margin: 8px 0px 10px 0px;
+    height: 30px;
+    line-height: 25px;
+    padding-left: 10px;
+    _background: url(../img/legend_bg.png) no-repeat left center;
+}
+
+    .z-legend strong {
+        margin-left: 10px;
+    }
+
+.formTable {
+    border-collapse: collapse;
+}
+
+    .formTable tr td:first-child {
+        text-indent: 10px;
+    }
+
+tr td.first-child {
+    text-indent: 10px;
+}
+
+.formTable td {
+    border: 1px solid rgb(238, 238, 238);
+    font-size: 12px;
+}
+
+.z-datagrid .dg_row:hover {
+    background-color: rgb(255, 252, 233);
+}
+
+.z-datagrid .selected {
+    background-color: rgb(216, 247, 157);
+}
+
+    .z-datagrid .selected:hover {
+        background-color: rgb(230, 255, 166);
+    }
+
+.z-datagrid td.selector {
+    padding-right: 2px;
+    text-overflow: clip;
+}
+
+.z-datagrid td.rowNo {
+    padding-right: 2px;
+    text-overflow: clip;
+}
+
+.z-datagrid td.noellipsis {
+    padding-right: 2px;
+    text-overflow: clip;
+}
+
+table.z-datagrid {
+    background: url("../img/default/thbg.gif") repeat-x top rgb(255, 255, 255);
+    margin: 0px;
+    border: 1px solid rgb(218, 224, 229);
+    clear: both;
+    border-collapse: separate;
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+    table.z-datagrid td {
+        padding: 4px 7px 0px 6px;
+        color: rgb(85, 85, 85);
+        line-height: 16px;
+        border-bottom-color: rgb(237, 239, 242);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+
+    table.z-datagrid th {
+        padding: 4px 7px 0px 6px;
+        color: rgb(85, 85, 85);
+        line-height: 16px;
+        border-bottom-color: rgb(237, 239, 242);
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+    }
+
+.z-datagrid td.tightenTB {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+    .z-datagrid td.tightenTB img {
+        vertical-align: middle;
+    }
+
+table.z-datagrid td td {
+    border-bottom-color: currentColor;
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+}
+
+table.z-datagrid th td {
+    border-bottom-color: currentColor;
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+}
+
+table.z-datagrid .inTd-minor td {
+    color: rgb(153, 153, 153);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom-color: currentColor;
+    border-bottom-width: 0px;
+    border-bottom-style: none;
+}
+
+table.z-datagrid .caption {
+    color: rgb(51, 51, 51);
+}
+
+table.z-datagrid td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table.z-datagrid thead td {
+    color: rgb(51, 102, 153);
+    font-weight: normal;
+}
+
+table.z-datagrid tr.dataTableHead td {
+    color: rgb(51, 102, 153);
+    font-weight: normal;
+}
+
+table.z-datagrid thead td {
+    background: url("../img/default/th.gif") no-repeat left top;
+    padding: 0px 7px 2px 6px;
+    height: 24px;
+    line-height: 22px;
+    border-bottom-color: rgb(218, 224, 229);
+    border-left-color: rgb(214, 214, 214);
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    _padding-bottom: 0px;
+}
+
+table.z-datagrid tr.dataTableHead td {
+    background: url("../img/default/th.gif") no-repeat left top;
+    padding: 0px 7px 2px 6px;
+    height: 24px;
+    line-height: 22px;
+    border-bottom-color: rgb(218, 224, 229);
+    border-left-color: rgb(214, 214, 214);
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    _padding-bottom: 0px;
+}
+
+table.z-datagrid thead td:first-child {
+    background-image: none;
+}
+
+table.z-datagrid tr.dataTableHead td:first-child {
+    background-image: none;
+}
+
+table.z-datagrid thead td.thOver {
+    background: url("../img/default/thbg_over.gif") no-repeat left top;
+}
+
+table.z-datagrid tr.dataTableHead td.thOver {
+    background: url("../img/default/thbg_over.gif") no-repeat left top;
+}
+
+table.z-datagrid tfoot td {
+    height: 22px;
+    color: rgb(119, 136, 153);
+    line-height: 22px;
+    padding-top: 0px;
+    padding-bottom: 1px;
+    vertical-align: middle;
+    border-top-color: rgb(218, 224, 229);
+    border-bottom-color: rgb(218, 224, 229);
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    background-color: rgb(241, 245, 254);
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.invisible {
+    visibility: hidden;
+}
