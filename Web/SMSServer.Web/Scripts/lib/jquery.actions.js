@@ -102,6 +102,7 @@ $.DeleteActionSingle = function (handler, id, funCallback) {
 };
 
 $.childAction = function (fun) {
+    $.showError("");
     var isunvailty = false;
     $("#form1").find("input[type][name]").each(function () {
 
@@ -144,7 +145,7 @@ $.childAction = function (fun) {
         }
     });
     if (isunvailty == false) {
-        $("#form1").xwAjaxPost(fun);
+        $(".form-horizontal").xwAjaxPost(fun);
     }
 };
 
@@ -165,7 +166,7 @@ $.popupWindow = function (width, height, name, url) {
         });
 };
 
-$.showError = function (message, func,element) {
+$.showError = function (message, func, element) {
     var api = art.dialog.open.api;
     api.info(message, "error");
     if (typeof (func) != "undefined")

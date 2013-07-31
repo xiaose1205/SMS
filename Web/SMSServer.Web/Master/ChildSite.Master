@@ -9,9 +9,10 @@
 
     <script src="../Scripts/lib/artDialog.js?skin=black"></script>
     <script src="../Scripts/lib/jquery-1.7.1.min.js"></script>
-    <script src="../Scripts/lib/jquery.common.js"></script>
     <script src="../Scripts/lib/jquery.form.js"></script>
     <script src="../Scripts/lib/iframeTools.source.js"></script>
+    <script src="../Scripts/lib/jquery.blockUI.js"></script>
+    <script src="../Scripts/lib/jquery.common.js?t=9s99"></script>
     <script src="../Scripts/lib/artDialog.extend.js"></script>
     <link href="../Styles/bootstrap.min.css" rel="stylesheet" />
     <script src="../Scripts/lib/jquery.actions.js"></script>
@@ -20,7 +21,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="child_form ">
-    <form id="form1" runat="server" class="form-horizontal">
+    <form id="form1" runat="server"  class="form-horizontal">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>
     </form>

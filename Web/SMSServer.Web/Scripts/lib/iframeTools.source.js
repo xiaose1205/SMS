@@ -190,7 +190,8 @@ artDialog.open = function (url, options, cache) {
 	var config = {
 		zIndex: _zIndex(),
 		init: function () {
-			api = this;
+		    api = this;
+		    api.info("","close");
 			DOM = api.DOM;
 			$main = DOM.main;
 			$content = DOM.content;

@@ -11,12 +11,12 @@
 
 
 .z-legend {
-    background: url("../img/legend_bg.png") no-repeat left;
+    background: url("../images/legend_bg.png") no-repeat left;
     margin: 8px 0px 10px 0px;
     height: 30px;
     line-height: 25px;
     padding-left: 10px;
-    _background: url(../img/legend_bg.png) no-repeat left center;
+    _background: url(../images/legend_bg.png) no-repeat left center;
 }
 
     .z-legend strong {

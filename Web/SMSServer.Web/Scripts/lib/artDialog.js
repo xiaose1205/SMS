@@ -318,10 +318,16 @@
              var b = this.DOM, c = b.wrap, b = b.title;
              return a === n ? b[0] : (!1 === a ? (b.hide().html(""), c.addClass("aui_state_noTitle")) : (b.show().html(a || ""), c.removeClass("aui_state_noTitle")), this);
          },
-         "info": function (a,icon) {
+         "info": function (a, icon) {
              var b = this.DOM, c = b.wrap, b = b.info;
-             b.className = "aui_info";
-             return a === n ? b[0] : (!1 === a ? (b.hide().html("")) : (b.show().html(a || ""), b.addClass("msg_"+icon)), this);
+             if (a == "") {
+                 b.className = "msg_close";
+                 icon = "close";
+             }
+             else
+                 b.className = "msg_info";
+
+             return (b.show().html(a || ""), b.addClass("msg_" + icon));
          },
          "position": function (a, b) {
              var c = this.config, d = this.DOM.wrap[0], e = q ? !1 : c.fixed, c = q && this.config.fixed, i = t.scrollLeft(), j = t.scrollTop(), g = e ? 0 : i, e = e ? 0 : j, o = l.width(), h = l.height(), m = d.offsetWidth, p = d.offsetHeight, d = d.style;
@@ -510,10 +516,10 @@
      try {
          document.execCommand("BackgroundImageCache", !1, !0);
      } catch (e) { }
-     b._templates = '<div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_nw"></td><td class="aui_n"></td><td class="aui_ne"></td></tr><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title"></div><a class="aui_close" href="javascript:/*artDialog*/;">¡Á</a></div></td></tr><tr><td class="aui_icon"><div class="aui_iconBg"></div></td><td class="aui_main"><div class="aui_content"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons"><div class="aui_info"></div></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se"></td></tr></tbody></table></div>', b.defaults = {
+     b._templates = '<div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_nw"></td><td class="aui_n"></td><td class="aui_ne"></td></tr><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title"></div><a class="aui_close" href="javascript:/*artDialog*/;">¡Á</a></div></td></tr><tr><td class="aui_icon"><div class="aui_iconBg"></div></td><td class="aui_main"><div class="aui_content"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_info"></div><div class="aui_buttons"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se"></td></tr></tbody></table></div>', b.defaults = {
          "content": '<div class="aui_loading"><span>loading..</span></div>',
          "title": "ÏûÏ¢",
-         "info":"",
+         "info": "",
          "button": null,
          "ok": null,
          "cancel": null,

@@ -27,7 +27,9 @@
 
         };
         var options = $.extend(defaults, options);
+     
         this.each(function () {
+            
             var suboptions = {
                 dataType: 'json',
                 beforeSubmit: postBefore,
@@ -82,7 +84,7 @@
                 $.blockUI({ message: $('#loading') });
             }
             else {
-                $("body").append(" <div id='loadingpanel222'> <img alt='loading' id='loading' src='../img/loading.gif')' style='display:none' /></div>");
+                $("body").append(" <div id='loadingpanel222'> <img alt='loading' id='loading' src='../images/loading.gif')' style='display:none' /></div>");
                 $.blockUI({ message: $('#loading') });
             }
         }

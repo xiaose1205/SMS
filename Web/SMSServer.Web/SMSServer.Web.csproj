@@ -497,6 +497,7 @@
     <Content Include="Images\navigate_bg.png" />
     <Content Include="Images\nav_samll.gif" />
     <Content Include="Images\nav_samll_over.gif" />
+    <Content Include="Images\title_A_bg.gif" />
     <Content Include="Images\title_bg.gif" />
     <Content Include="Images\title_bg.png" />
     <Content Include="Images\title_bg00.png" />
@@ -629,9 +630,11 @@
     <Content Include="Scripts\site\demo.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\buttons.css" />
     <Content Include="Styles\child.css" />
     <Content Include="Styles\common.css" />
     <Content Include="Styles\flexigrid.css" />
+    <Content Include="Styles\font-awesome-ie7.min.css" />
     <Content Include="Styles\login.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Web.config" />

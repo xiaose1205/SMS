@@ -35,5 +35,6 @@
         <input type="button" value="确认" onclick="add();" />
         <input type="button" value="取消" />
     </div>
+
     <%----%>
 </asp:Content>
