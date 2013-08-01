@@ -307,18 +307,7 @@ div.form div.body {
     text-indent: 24px;
 }
 
-input.button {
-    background: url('../Images/btn_bg.png') repeat-x left top;
-    border: solid 1px #4f5a68;
-    padding: 3px 14px 3px 14px;
-    _padding: 3px 6px 3px 6px;
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 4px;
-    cursor: pointer;
-    margin: 4px 8px;
-}
-
+ 
 
 .formPanel {
     margin: 0 auto;
@@ -395,14 +384,17 @@ ul.form input.checkbox {
 ul.form select {
     padding: 2px;
 }
-
-div.button {
-    text-align: left;
-    line-height: 200%;
-    padding: 6px 6px 6px 150px;
-    clear: both;
-}
-
+ .but_tools {
+     width: 99%;
+     text-align: left;
+     
+ }
+  .but_tools  div {
+      margin-left: 150px;
+  }
+    .but_tools  input {
+      margin-right: 20px;
+  }
 .formPanel h4 {
     font-size: 14px;
     text-indent: 28px;

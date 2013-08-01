@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="aspxTest.aspx.cs" Inherits="SMSServer.Web.aspxTest" %>
 
-
+  <a href="#" id="add" class="button button-rounded button-tiny button-primary">添加</a>
+          
 <div class="warning" >
     <p>
         <strong>WARNING: </strong>

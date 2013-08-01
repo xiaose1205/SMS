@@ -55,6 +55,7 @@
   <ItemGroup>
     <Content Include="aspxTest.aspx" />
     <Content Include="demo\add.aspx" />
+    <Content Include="demo\addIndex.aspx" />
     <Content Include="demo\Index.aspx" />
     <Content Include="Images\1_090915220603_1.jpg" />
     <Content Include="Images\accept.png" />
@@ -653,6 +654,13 @@
     </Compile>
     <Compile Include="demo\add.aspx.designer.cs">
       <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="demo\addIndex.aspx.cs">
+      <DependentUpon>addIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="demo\addIndex.aspx.designer.cs">
+      <DependentUpon>addIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="demo\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

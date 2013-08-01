@@ -168,11 +168,16 @@ $.popupWindow = function (width, height, name, url) {
 
 $.showError = function (message, func, element) {
     var api = art.dialog.open.api;
-    api.info(message, "error");
-    if (typeof (func) != "undefined")
-        func();
-    if (element != undefined) {
+    if (api == undefined) {
 
+
+    } else {
+        api.info(message, "error");
+        if (typeof (func) != "undefined")
+            func();
+        if (element != undefined) {
+
+        }
     }
     //art.dialog({
     //    icon: 'error',

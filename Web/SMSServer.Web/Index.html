@@ -9,9 +9,10 @@
     <script type="text/javascript" src="Scripts/lib/jquery-1.7.1.min.js"></script>
     <script language="javascript" type="text/javascript" src="Scripts/lib/flexigrid.js"></script>
     <script language="javascript" type="text/javascript" src="Scripts/Script.js"></script>
-    <script src="Scripts/lib/artDialog.js?skin=black"></script> 
+    <script src="Scripts/lib/artDialog.js?skin=black"></script>
     <script src="Scripts/lib/iframeTools.source.js"></script>
-    <script src="Scripts/lib/jquery.actions.js"></script> <link href="Styles/buttons.css" rel="stylesheet" />
+    <script src="Scripts/lib/jquery.actions.js"></script>
+    <link href="Styles/buttons.css" rel="stylesheet" />
     <link href="Styles/Site.css" rel="stylesheet" type="text/css" />
     <link href="Styles/flexigrid.css" rel="stylesheet" type="text/css" />
     <script src="Scripts/menu.js"></script>
@@ -29,7 +30,7 @@
                 resizable: false,
                 height: '100%'
             });
-          
+
         });
     </script>
 </head>
@@ -55,17 +56,16 @@
             <div class="navigatehead" id="navigatehead">
 
                 <h3>
-                    <a href="javascript:void(0)" onclick="OpenShutManager()" class="navbtn"  title="收缩菜单列表">
-   
-                    </a>
+                    <a href="javascript:void(0)" onclick="OpenShutManager()" class="navbtn" title="收缩菜单列表"></a>
                     <img src="Images/icon_settings.png" />功能菜单列表
                 </h3>
             </div>
 
             <label>
                 <img src="Images/icon_home.gif" />
-                当前位置：短信运营系统 > 彩信管理 > 发送彩信 
+                当前位置：短信运营系统 > <span id="nav1"></span>> <span id="nav2"></span>
             </label>
+            <div style="float:right;display:none;background-color:khaki;padding:3px;padding-left:10px;padding-right:10px;margin-top:5px;margin-right:10px;" id="pageload"><img src="Images/icons/indicator.gif" style="border:0px;margin-right:5px;"/>加载中...</div>
         </div>
     </div>
 
@@ -81,11 +81,12 @@
                             <img src="Images/icons/album_option.gif" />发送短信</a>
                     </li>
                     <li>
-                        <a href="#">接收短信</a>
+                        <a href="#" page="demo/addindex.aspx">接收短信</a>
                     </li>
                     <li class="selected">
-                       
-                        <a href="#"  page="pageTest.html"><img src="Images/icons/album_option.gif" />已发短信</a>
+
+                        <a href="#" page="pageTest.html">
+                            <img src="Images/icons/album_option.gif" />已发短信</a>
                     </li>
                 </ul>
                 <h3><a href="javascript:void(0)">
