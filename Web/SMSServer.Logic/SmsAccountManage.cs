@@ -2,7 +2,7 @@
 
 namespace SMSServer.Logic
 {
-    public class Sms_AccountManage : BaseManager<Sms_AccountManage, Sms_Account>
+    public class SmsAccountManage : BaseManager<SmsAccountManage, SmsAccountInfo>
     {
 
         /// <summary>
@@ -16,9 +16,9 @@ namespace SMSServer.Logic
         {
             using (UpdateAction action = new UpdateAction(Entity))
             {
-                action.SqlKeyValue(Sms_Account.Columns.Password, newpwd);
-                action.SqlWhere(Sms_Account.Columns.Account, username);
-                action.SqlWhere(Sms_Account.Columns.Password, password);
+                action.SqlKeyValue(SmsAccountInfo.Columns.Password, newpwd);
+                action.SqlWhere(SmsAccountInfo.Columns.Account, username);
+                action.SqlWhere(SmsAccountInfo.Columns.Password, password);
                 action.Excute();
                 return action.ReturnCode > 0;
             }
@@ -29,13 +29,13 @@ namespace SMSServer.Logic
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public Sms_Account GetAccountInfo(string username, string password)
+        public SmsAccountInfo GetAccountInfo(string username, string password)
         {
             using (SelectAction action = new SelectAction(Entity))
             {
-                action.SqlWhere(Sms_Account.Columns.Account, username);
-                action.SqlWhere(Sms_Account.Columns.Password, password);
-                return action.QueryEntity<Sms_Account>();
+                action.SqlWhere(SmsAccountInfo.Columns.Account, username);
+                action.SqlWhere(SmsAccountInfo.Columns.Password, password);
+                return action.QueryEntity<SmsAccountInfo>();
             }
 
         }

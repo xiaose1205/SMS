@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity">
+      <HintPath>..\lib\MySql.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,18 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityBulider.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBulider.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="EntityBulider.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityBulider.cs</LastGenOutput>
-    </None>
+    <Compile Include="SmsAccountChannelInfo.cs" />
+    <Compile Include="SmsAccountInfo.cs" />
+    <Compile Include="SmsAddrecordInfo.cs" />
+    <Compile Include="SmsBatchDetailsInfo.cs" />
+    <Compile Include="SmsBatchInfo.cs" />
+    <Compile Include="SmsBlackphoneInfo.cs" />
+    <Compile Include="SmsChannelInfo.cs" />
+    <Compile Include="SmsContentfilterkeyInfo.cs" />
+    <Compile Include="SmsDeductrecordInfo.cs" />
+    <Compile Include="SmsEnterpriseInfo.cs" />
+    <Compile Include="SmsMoInfo.cs" />
+    <Compile Include="SmsOperatorInfo.cs" />
+    <Compile Include="SmsTelesegInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -61,6 +69,12 @@
       <Project>{5EBB695E-D6E4-4E48-B4E5-B6A674679019}</Project>
       <Name>HelloData.FrameWork</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EntityBulider.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityBulider1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -27,9 +27,9 @@ namespace SMSServer.Util
                 || string.IsNullOrEmpty(password)
                 || password.Length < 32)
                 return false;
-            Sms_Account account = CacheHelper.Get<Sms_Account>(AcctountCachePre + username);
+            SmsAccountInfo account = CacheHelper.Get<SmsAccountInfo>(AcctountCachePre + username);
             if (account == null)
-                account = Sms_AccountManage.Instance.GetAccountInfo(username, password);
+                account = SmsAccountManage.Instance.GetAccountInfo(username, password);
             if (account == null || account.EnterpriseID == 0)
                 return false;
             CacheHelper.Insert(AcctountCachePre + username, account);
@@ -85,11 +85,11 @@ namespace SMSServer.Util
                 return false;
             if (mobilefirstInt != 0 || mobilefirstInt != 1)
                 return false;
-            PageList<Sms_teleseg> telesegs =
-               CacheHelper.Get<PageList<Sms_teleseg>>(TelesegCachePre);
+            PageList<SmsTelesegInfo> telesegs =
+               CacheHelper.Get<PageList<SmsTelesegInfo>>(TelesegCachePre);
             if (telesegs == null)
             {
-                telesegs = Sms_telesegManage.Instance.FindList(-1, 0); 
+                telesegs = SmsTelesegManage.Instance.FindList(-1, 0); 
                 if (telesegs != null && telesegs.Count > 0)
                     CacheHelper.Insert(TelesegCachePre, telesegs);
             }

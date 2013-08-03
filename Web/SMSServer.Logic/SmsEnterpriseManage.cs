@@ -6,7 +6,7 @@ using HelloData.FrameWork.Data;
 
 namespace SMSServer.Logic
 {
-    public class Sms_ContentFilterKeyManage : BaseManager<Sms_ContentFilterKeyManage, Sms_ContentFilterKey>
+    public class SmsEnterpriseManage : BaseManager<SmsEnterpriseManage, SmsEnterpriseInfo>
     {
     }
 }

@@ -6,7 +6,7 @@ using HelloData.FrameWork.Data;
 
 namespace SMSServer.Logic
 {
-    public class Sms_DeductRecordManage : BaseManager<Sms_DeductRecordManage, Sms_DeductRecord>
+    public class SmsBlackPhoneManage : BaseManager<SmsBlackPhoneManage, SmsBlackphoneInfo>
     {
     }
 }

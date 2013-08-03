@@ -35,7 +35,7 @@ namespace SMSServer.Wcf
             GetAccountInfoResponse response = new GetAccountInfoResponse();
             try
             {
-                Sms_AddRecord addRecord = Sms_AddRecordManage.Instance.GetAccountInfo(username, password);
+                SmsAddrecordInfo addRecord = SmsAddRecordManage.Instance.GetAccountInfo(username, password);
                 response.AccountInfo = new AccountModel();
                 response.AccountInfo.Mount = addRecord.AfterAdd.HasValue ? addRecord.AfterAdd.Value : 0;
             }
@@ -57,9 +57,9 @@ namespace SMSServer.Wcf
             try
             {
 
-                List<Sms_MO> smsMos = Sms_MOManage.Instance.GetUserMo(username, password);
+                List<SmsMoInfo> smsMos = SmsMOManage.Instance.GetUserMo(username, password);
                 response.MoModels = new List<MoModel>();
-                foreach (Sms_MO mo in smsMos)
+                foreach (SmsMoInfo mo in smsMos)
                 {
                     response.MoModels.Add(new MoModel
                                               {
@@ -94,7 +94,7 @@ namespace SMSServer.Wcf
                     return (ModifyResponse)CheckUtil.CreateResponse(ResponseCodeEnum.ACCOUNT_ERROR);
                 if (string.IsNullOrEmpty(newpassword))
                     return (ModifyResponse)CheckUtil.CreateResponse(ResponseCodeEnum.MODIFY_ERROR);
-                modifyResponse.IsSuccess = Sms_AccountManage.Instance.UpdatePwd(username, password, newpassword);
+                modifyResponse.IsSuccess = SmsAccountManage.Instance.UpdatePwd(username, password, newpassword);
                 if (modifyResponse.IsSuccess)
                    CacheHelper.Remove(CheckUtil.AcctountCachePre + username);
             }

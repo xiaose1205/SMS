@@ -7,29 +7,29 @@ using HelloData.FrameWork.Data.Enum;
 
 namespace SMSServer.Logic
 {
-    public class Sms_MOManage : BaseManager<Sms_MOManage, Sms_MO>
+    public class SmsMOManage : BaseManager<SmsMOManage, SmsMoInfo>
     {
 
-        public List<Sms_MO> GetUserMo(string username, string password)
+        public List<SmsMoInfo> GetUserMo(string username, string password)
         {
             using (SelectAction action = new SelectAction(""))
             {
-                action.SqlClomns = "_Sms_MO.*";
+                action.SqlClomns = "_SmsMoInfo.*";
                 {
                     //添加视图的关联关系
                     List<QueryField> field = new List<QueryField>();
                     field.Add(new QueryField()
                     {
-                        Value = Sms_MO.Columns.AccountID,
+                        Value = SmsMoInfo.Columns.AccountID,
                         Condition = ConditionEnum.And,
-                        FiledName = Sms_Account.Columns.ID
+                        FiledName = SmsAccountInfo.Columns.ID
                     });
-                    action.AddJoin(ViewJoinEnum.innerjoin, "Sms_Account", "Sms_MO", field);
+                    action.AddJoin(ViewJoinEnum.innerjoin, "SmsAccountInfo", "SmsMoInfo", field);
                 }
-                action.SqlWhere(Sms_Account.Columns.Account, username);
-                action.SqlWhere(Sms_Account.Columns.Password, password);
+                action.SqlWhere(SmsAccountInfo.Columns.Account, username);
+                action.SqlWhere(SmsAccountInfo.Columns.Password, password);
                 action.PageSize = 20;
-                return action.QueryPage<Sms_MO>(1);
+                return action.QueryPage<SmsMoInfo>(1);
             }
         }
     }

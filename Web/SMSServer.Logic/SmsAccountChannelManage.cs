@@ -6,7 +6,7 @@ using HelloData.FrameWork.Data;
 
 namespace SMSServer.Logic
 {
-    public class Sms_OperatorManage : BaseManager<Sms_OperatorManage, Sms_Operator>
+    public class SmsAccountChannelManage : BaseManager<SmsAccountChannelManage, SmsAccountChannelInfo>
     {
     }
 }

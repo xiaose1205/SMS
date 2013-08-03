@@ -2,8 +2,11 @@
 <#@ output extension=".cs" #>
 <#@ assembly name="System.Data" #>
 <#@ assembly name="System.xml" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Data.SqlClient" #>
+<#@ assembly name="$(SolutionDir)\Lib\MySql.Data.dll" #>
+<#@ assembly name="$(SolutionDir)\Lib\MySql.Data.Entity.dll" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="MySql.Data.MySqlClient" #>
+
 <#	// 生成配置
 	// 是否生成所有表
 	bool builderAll = true; 
@@ -11,9 +14,10 @@
 	bool useTableNamesDictionary = true;
 #>
 <#	// 连接字符串,表结构查询语句
-	string musicStoreConnectionString = @"Data Source=58.221.61.242,1576;Initial Catalog=SMS_server;Persist Security Info=True;User ID=sa;Password=wangjun19871205;Max Pool Size=100;Min Pool Size=20";
-	string getAllTableSchemaSqlTemplate = @"SELECT sysobjects.Name as TableName, syscolumns.isnullable as IsNull,syscolumns.Name as ColumnName, SysTypes.Name as ColumnType, syscolumns.Length as ColumnLength, isnull(sys.extended_properties.Value,'') as Remark,case when syscolumns.name in (select primarykey=a.name FROM syscolumns a inner join sysobjects b on a.id=b.id  and b.xtype='U' and b.name<>'dtproperties' where  exists(SELECT 1 FROM sysobjects where xtype='PK' and name in (SELECT name FROM sysindexes WHERE indid in(SELECT indid FROM sysindexkeys WHERE id = a.id AND colid=a.colid))) and b.name=sysobjects.Name) then 1 else 0 end as IsKey FROM sysobjects,SysTypes,syscolumns LEFT JOIN sys.extended_properties ON (Syscolumns.Id = sys.extended_properties.major_id AND Syscolumns.Colid = sys.extended_properties.minor_id) WHERE (sysobjects.Xtype ='u' OR Sysobjects.Xtype ='v') AND sysobjects.name='{0}' AND Sysobjects.Id = Syscolumns.Id AND SysTypes.XType = Syscolumns.XType AND SysTypes.Name <> 'sysname' AND Sysobjects.Name Like '%' AND (sys.extended_properties.name='MS_Description' or sys.extended_properties.name is null) ORDER By SysObjects.Name, SysColumns.colid ";
-#>
+     string dbname="sms";
+    string musicStoreConnectionString = @"server=127.0.0.1;User Id=root;password=123456;database="+dbname+";Charset=utf8;port=3309";
+	string getAllTableSchemaSqlTemplate = @"SELECT *,COLUMN_NAME as ColumnName,DATA_TYPE as dataType FROM INFORMATION_SCHEMA.COLUMNS  where table_name='{0}' and TABLE_SCHEMA='"+dbname+"'";
+ #>
 <#	// 设置要生成的当前数据库中所有的表名	
 	Dictionary<string,string> tableNames=new Dictionary<string,string>();
 
@@ -21,24 +25,24 @@
 <#	// 获取当前数据库中所有的表名	
 	if (builderAll == true )
 	{  		
-		using (SqlConnection sqlConnection = new SqlConnection(musicStoreConnectionString))
+		using (MySqlConnection MySqlConnection1 = new MySqlConnection(musicStoreConnectionString))
 		{
 			// 获取所有用户表的查询语句
-			string getAllTableNameSql = "SELECT name FROM sysobjects where xtype='U'";
-			SqlCommand sqlCommand = new SqlCommand(getAllTableNameSql, sqlConnection);
-			sqlConnection.Open();
-			SqlDataReader reader = sqlCommand.ExecuteReader();
+			string getAllTableNameSql = "SELECT TABLE_NAME,TABLE_COMMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'  AND TABLE_SCHEMA='"+dbname+"'";
+		   MySqlCommand  MySqlCommand  = new MySqlCommand (getAllTableNameSql, MySqlConnection1);
+			MySqlConnection1.Open();
+			MySqlDataReader  reader = MySqlCommand .ExecuteReader();
 
 			while (reader.Read())
 			{
-				string theTableName = reader["name"] as string;
+				string theTableName = reader["TABLE_NAME"] as string;
 				if(useTableNamesDictionary == true)
 				{
 					if(tableNames.ContainsKey(theTableName)){
 						continue;
 					}
 				}
-				tableNames.Add(theTableName,theTableName);
+				tableNames.Add(theTableName, reader["TABLE_COMMENT"] as string);
 			}
 		} 
 	}
@@ -59,45 +63,28 @@ using HelloData.FrameWork.Data;
 		foreach (string tableName in tableNames.Keys)
 		{
 #>
-<#
-			// 表注释
-			string tableRemark = string.Empty;
-			using (SqlConnection sqlConnection = new SqlConnection(musicStoreConnectionString))
-			{
-				// 获取所有用户表的查询语句
-				string getTableRemarkSql = string.Format("SELECT value FROM fn_listextendedproperty (NULL, 'schema', 'dbo', 'table', default, NULL, NULL) where name=N'MS_Description' or objname=N'{0}' ", tableName);
-				SqlCommand sqlCommand = new SqlCommand(getTableRemarkSql, sqlConnection);
-				sqlConnection.Open();
-				SqlDataReader reader = sqlCommand.ExecuteReader();
-
-				if (reader.Read())
-				{
-					tableRemark = reader["value"] as string;
-					tableRemark += "实体类";
-				}
-			} 
-#>	
+ 
     /// <summary>
-	///	<#=tableRemark #>
+	///	<#=tableNames[tableName] #>
 	/// </summary>
 	[Serializable]
-    public partial class <#=tableNames[tableName] #>: BaseEntity
+    public partial class <#=tableName #>: BaseEntity
     {
 	  
 <#	// 生成属性
-			using (SqlConnection sqlConnection = new SqlConnection(musicStoreConnectionString))
+			using (MySqlConnection MySqlConnection = new MySqlConnection(musicStoreConnectionString))
 			{
 				// 获取所有用户表的查询语句
 				string getAllTableSchemaSql = string.Format(getAllTableSchemaSqlTemplate, tableName);
-				SqlCommand sqlCommand = new SqlCommand(getAllTableSchemaSql, sqlConnection);
-				sqlConnection.Open();
-				SqlDataReader reader = sqlCommand.ExecuteReader();
+			  	MySqlCommand  MySqlCommand  = new MySqlCommand (getAllTableSchemaSql, MySqlConnection);
+				MySqlConnection.Open();
+				MySqlDataReader  reader = MySqlCommand .ExecuteReader();
 
 				while (reader.Read())
 				{
-			     	bool iskey=reader["iskey"].ToString()!="0";//是否为主键
-					bool isnullable=reader["IsNull"].ToString()=="0";//不允许为空
-					string dbDataType = reader["ColumnType"] as string; // 数据库中使用的类型
+			     	bool iskey=reader["COLUMN_KEY"].ToString()!="";//是否为主键
+					bool isnullable=reader["IS_NULLABLE"].ToString()=="NO";//不允许为空
+					string dbDataType = reader["DATA_TYPE"] as string; // 数据库中使用的类型
 					string dataType = string.Empty; // 数据类型
 					
 					switch (dbDataType)
@@ -116,6 +103,14 @@ using HelloData.FrameWork.Data;
 						case "varchar":
 						case "nvarchar":
 						case "text":
+							dataType = "string";
+							break;
+						case "double":
+					     	if(isnullable)
+								dataType="decimal";
+							else
+							    dataType = "decimal?";
+							break;
 						case "ntext":
 							dataType = "string";
 							break;
@@ -176,28 +171,27 @@ using HelloData.FrameWork.Data;
 							dataType = "byte[]";
 							break;
 						default:
+					     	dataType = "string";
 							break;
 					}
-						if(!iskey)
-					{
 #>
-		/// <summary>
-		///	<#=reader["Remark"] as string#>
+	    /// <summary>
+		///	<#=(reader["COLUMN_COMMENT"] as string).Replace(Environment.NewLine,"").Replace("\n","").Replace("\r","").Replace(" ","")#>
 		/// </summary>
-		public <#=dataType #> <#=reader["ColumnName"] as string#> { get; set; }		
+<#
+		if(!iskey)
+		{
+#> 		public <#=dataType #> <#=reader["ColumnName"] as string#> { get; set; }		
 <#
 }else
 {
 #>
-        public  <#=tableNames[tableName] #>()
+        [Column(IsKeyProperty = true<#= (iskey?",AutoIncrement=true":"")#>)]
+		public <#=dataType #> <#=reader["ColumnName"] as string#> { get; set; }	
+		public  <#= tableName  #>()
         {
-            base.SetIni(this,"<#=tableNames[tableName] #>","<#=reader["ColumnName"] as string#>");
-        }
-        /// <summary>
-		///	<#=(reader["Remark"] as string).Replace(Environment.NewLine,"").Replace("\n","").Replace("\r","").Replace(" ","")#>
-		/// </summary>
-	   [Column(IsKeyProperty = true)]
-		public <#=dataType #> <#=reader["ColumnName"] as string#> { get; set; }		
+            base.SetIni(this,"<#=tableName #>","<#=reader["ColumnName"] as string#>");
+        }	
 <#
 }
 
@@ -208,7 +202,7 @@ using HelloData.FrameWork.Data;
 		{
 <#
 				reader.Close();
-				SqlDataReader reader1 = sqlCommand.ExecuteReader();
+				MySqlDataReader  reader1 = MySqlCommand .ExecuteReader();
 			   while (reader1.Read())
 				{
 				

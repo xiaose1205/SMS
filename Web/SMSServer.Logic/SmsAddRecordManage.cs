@@ -7,7 +7,7 @@ using HelloData.FrameWork.Data.Enum;
 
 namespace SMSServer.Logic
 {
-    public class Sms_AddRecordManage : BaseManager<Sms_AddRecordManage, Sms_AddRecord>
+    public class SmsAddRecordManage : BaseManager<SmsAddRecordManage, SmsAddrecordInfo>
     {
         /// <summary>
         /// 获取账号的基本信息
@@ -15,7 +15,7 @@ namespace SMSServer.Logic
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public Sms_AddRecord GetAccountInfo(string username, string password)
+        public SmsAddrecordInfo GetAccountInfo(string username, string password)
         {
             using (SelectAction action = new SelectAction(Entity))
             {
@@ -25,16 +25,16 @@ namespace SMSServer.Logic
                     List<QueryField> field = new List<QueryField>();
                     field.Add(new QueryField()
                     {
-                        FiledName = Sms_AddRecord.Columns.AccountID,
+                        FiledName = SmsAddrecordInfo.Columns.AccountID,
                         Condition = ConditionEnum.And,
-                        Value = Sms_Account.Columns.ID
+                        Value = SmsAccountInfo.Columns.ID
                     });
-                    action.AddJoin(ViewJoinEnum.leftjoin, "Sms_Account", "Sms_AddRecord", field);
+                    action.AddJoin(ViewJoinEnum.leftjoin, "SmsAccountInfo", "Sms_AddRecord", field);
                 }
-                action.SqlWhere(Sms_Account.Columns.Account, username);
-                action.SqlWhere(Sms_Account.Columns.Password, password);
-                action.SqlOrderBy("_Sms_AddRecord." + Sms_AddRecord.Columns.CreateTime, OrderByEnum.Desc);
-                return action.QueryEntity<Sms_AddRecord>();
+                action.SqlWhere(SmsAccountInfo.Columns.Account, username);
+                action.SqlWhere(SmsAccountInfo.Columns.Password, password);
+                action.SqlOrderBy("_Sms_AddRecord." + SmsAddrecordInfo.Columns.CreateTime, OrderByEnum.Desc);
+                return action.QueryEntity<SmsAddrecordInfo>();
             }
         }
     }

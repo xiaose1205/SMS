@@ -40,20 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sms_AccountManage.cs" />
+    <Compile Include="SmsAccountManage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sms_Account_channelManage.cs" />
-    <Compile Include="Sms_AddRecordManage.cs" />
-    <Compile Include="Sms_BatchManage.cs" />
-    <Compile Include="Sms_Batch_DetailsManage.cs" />
-    <Compile Include="Sms_BlackPhoneManage.cs" />
-    <Compile Include="Sms_ChannelManage.cs" />
-    <Compile Include="Sms_ContentFilterKeyManage.cs" />
-    <Compile Include="Sms_DeductRecordManage.cs" />
-    <Compile Include="Sms_EnterpriseManage.cs" />
-    <Compile Include="Sms_MOManage.cs" />
-    <Compile Include="Sms_OperatorManage.cs" />
-    <Compile Include="Sms_telesegManage.cs" />
+    <Compile Include="SmsAccountChannelManage.cs" />
+    <Compile Include="SmsAddRecordManage.cs" />
+    <Compile Include="SmsBatchManage.cs" />
+    <Compile Include="SmsBatchDetailsManage.cs" />
+    <Compile Include="SmsBlackPhoneManage.cs" />
+    <Compile Include="SmsChannelManage.cs" />
+    <Compile Include="SmsContentFilterKeyManage.cs" />
+    <Compile Include="SmsDeductRecordManage.cs" />
+    <Compile Include="SmsEnterpriseManage.cs" />
+    <Compile Include="SmsMOManage.cs" />
+    <Compile Include="SmsOperatorManage.cs" />
+    <Compile Include="SmsTelesegManage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">

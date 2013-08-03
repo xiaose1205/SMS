@@ -6,7 +6,7 @@ using HelloData.FrameWork.Data;
 
 namespace SMSServer.Logic
 {
-    public class Sms_BatchManage : BaseManager<Sms_BatchManage, Sms_Batch>
+    public class SmsOperatorManage : BaseManager<SmsOperatorManage, SmsOperatorInfo>
     {
     }
 }
