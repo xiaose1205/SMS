@@ -620,3 +620,18 @@ div.pGroup {
 	/* common inner cell properties*/ {
 	overflow: hidden;
 }
+
+.flexigrid div.bDiv td.chboxtd, .flexigrid div.bDiv tr.trOver td.chboxtd, .flexigrid div.bDiv tr:hover td.chboxtd
+{
+    background: url(../Images/flexigrid/grid3-special-col-bg.gif) repeat-y;
+}
+.flexigrid div.bDiv tr.trSelected:hover td.chboxtd, .flexigrid div.bDiv tr.trSelected.trOver td.chboxtd, .flexigrid tr.trSelected td.chboxtd
+{
+    background: #d5effc url(../Images/flexigrid/grid3-special-col-sel-bg.gif) repeat-y;
+}
+.flexigrid .itemchk
+{
+    width: 14px;
+    height: 14px;
+    border: none;
+}

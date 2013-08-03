@@ -59,7 +59,7 @@
 
             //扩展
             extParam: {},   // 扩展数据参数，在此添加的参数会传递至服务器
-            gridClass: "bbit-grid",            //Style
+            gridClass: "flexigrid",            //Style
             showcheckbox: false,
             onrowchecked: false,    // 行中的 checkbox 的单击事件, 并传递当前的 checkbox
             onrowclick: false,  // 在行中单击的事件 ，并传递当前行所缓存的数据
@@ -378,6 +378,7 @@
 							    }
 
 							    if (p.showcheckbox) {
+							       
 							        if (idx == "0") { //checkbox,是否显示每一行的 checkbox
 							            var checkbox = $("<input/>", { "type": "checkbox", "id": "chk_" + row.id, "class": "itemchk", "value": row.id });
 							            $(td).addClass("chboxtd");
@@ -403,7 +404,7 @@
 							        }
 							    }
 							    if (td.innerHTML == '合计') {
-							        $(tr).css({ "color": "red","font-weight":"bold" });
+							        $(tr).css({ "color": "red", "font-weight": "bold" });
 							    }
 							    $(td).attr('abbr', $(this).attr('abbr'));
 							    $(tr).append(td);
@@ -711,8 +712,10 @@
                         this.innerHTML = '&nbsp;';
                     }
                     tdDiv.innerHTML = this.innerHTML;
-                    if (pth != null && pth.innerText != "操作")
-                        tdDiv.title = this.innerText;
+                    if (pth != null && $("div", pth).text() != "操作") {
+                        tdDiv.title = $(this).text();
+                        //$(tdDiv).attr("title", this.innerHTML)
+                    }
                     var prnt = $(this).parent()[0];
                     var pid = false;
                     if (prnt.id) {
@@ -727,6 +730,7 @@
             },
             getCheckedRows: function () {
                 //扩展，指定返回colModel定义的数据
+               
                 if (p.specify) {
                     var rows = [];
                     $(":checkbox:checked", g.bDiv).each(function () {
@@ -796,6 +800,7 @@
                             event.stopPropagation();
                         });
                     });
+                    
                     $(this).click(function (e) {
                         var obj = (e.target || e.srcElement);
                         if (obj.href || obj.type) return true;
@@ -828,8 +833,10 @@
                 });
             },
             checkAllOrNot: function (parent) {
-                var ischeck = this.checked || !!parent;
+                var ischeck = $("input.noborder").attr("checked")=="checked" ;
+              
                 $('tbody tr', g.bDiv).each(function () {
+                   
                     if (ischeck) {
                         $(this).addClass("trSelected");
                     }
@@ -1362,7 +1369,7 @@
                 if (cn == 0 && p.showcheckbox) {
                     if (p.mutliSelect) {
                         var chkall = $("input[type='checkbox']", this); // 获取 全选按钮
-                        if (chkall.length > 0) {
+                        if (chkall.length > 0) { 
                             chkall[0].onclick = g.checkAllOrNot;    // 处理 全选 或 取消全选事件
                         }
                     }

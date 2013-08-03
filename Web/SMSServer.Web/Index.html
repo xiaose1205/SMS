@@ -7,7 +7,7 @@
     <meta name="keywords" content="后台框架" />
     <meta name="description" content="后台框架" />
     <script type="text/javascript" src="Scripts/lib/jquery-1.7.1.min.js"></script>
-    <script language="javascript" type="text/javascript" src="Scripts/lib/flexigrid.js"></script>
+    <script language="javascript" type="text/javascript" src="Scripts/lib/flexigrid-1.1A.js"></script>
     <script language="javascript" type="text/javascript" src="Scripts/Script.js"></script>
     <script src="Scripts/lib/artDialog.js?skin=black"></script>
     <script src="Scripts/lib/iframeTools.source.js"></script>
@@ -65,14 +65,29 @@
                 <img src="Images/icon_home.gif" />
                 当前位置：短信运营系统 > <span id="nav1"></span>> <span id="nav2"></span>
             </label>
-            <div style="float:right;display:none;background-color:khaki;padding:3px;padding-left:10px;padding-right:10px;margin-top:5px;margin-right:10px;" id="pageload"><img src="Images/icons/indicator.gif" style="border:0px;margin-right:5px;"/>加载中...</div>
+            <div style="float: right; display: none; background-color: khaki; padding: 3px; padding-left: 10px; padding-right: 10px; margin-top: 5px; margin-right: 10px;" id="pageload">
+                <img src="Images/icons/indicator.gif" style="border: 0px; margin-right: 5px;" />加载中...
+            </div>
         </div>
     </div>
 
     <div id="outContainer" class="outContainer">
+
+        <div id="infoshow" style="bottom: 5px; right: 5px; position: fixed; padding-right: 10px; display: none;z-index:1002">
+            <div style="float: right; margin-top: 10px; margin-right: 5px;">
+                <img src="Images/close.gif" />
+            </div>
+            <p>
+                <strong>WARNING: </strong>
+                <span>This is a warning message.
+                </span>
+            </p>
+
+        </div>
+
         <div id="container" class="container">
             <div id="sidebar" class="sidebar">
-                <!-- 菜单列表 -->
+
                 <h3 class="selected"><a href="javascript:void(0)">
                     <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icon_sms.png" />短信管理</a></h3>
                 <ul>

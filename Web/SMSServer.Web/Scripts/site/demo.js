@@ -12,7 +12,9 @@
 }
 
 function addindex() {
+ 
     if ($.trim($("#UserName").val()) == "") {
+      
         $.showError("用户名不能为空");
         return;
     }
@@ -28,50 +30,64 @@ function addindex() {
 //    singleSelect: true,
 //    resizable: false,
 //    height: '100%'
-////});
-//$(document).ready(function () {
-//    if ($("#grid") != undefined) {
-//        $("#grid").flexigrid({
-//            url: '../demo/data',
-//            dataType: 'json',
-//            colModel: [{ display: 'ISO', name: 'iso', width: 40, sortable: true, align: 'center' },
-//		{ display: 'Name', name: 'name', width: 180, sortable: true, align: 'left' },
-//		{ display: 'Printable Name', name: 'printable_name', width: 120, sortable: true, align: 'left' },
-//		{ display: 'ISO3', name: 'iso3', width: 130, sortable: true, align: 'left', hide: true },
-//		{ display: 'Number Code', name: 'numcode', width: 80, sortable: true, align: 'right' }],
-//            minColToggle: 1,
-//            onrowclick: false,
-//            sortname: "iso",
-//            sortorder: "asc",
-//            usepager: true,
-//            useRp: true,
-//            rp: 15,
-//            resizable: false,
-//            width: 'auto',
-//            height: 'auto',
-//            autoload: true,
-//            singleSelect: true,
-//            specify: true,
-//            striped: true,
-//            showcheckbox: true,
-//            showToggleBtn: true
-//        });
-        
-//    }
-
-//    function doQuery() {
-//        if ($("#grid") != undefined) {
-//            var contactQuery = {
-//                "name": $("#name").val()
-//            };
-//            var params = {
-//                extParam: contactQuery
-//            };
-//            if ($('#grid')[0] != undefined) {
-//                $('#grid')[0].p.newp = 1;
-//                $('#grid').flexOptions(params).flexReload();
-//            }
-//        }
-
-//    }
 //});
+var gird;
+$(document).ready(function () {
+    if ($("#grid") != undefined) {
+        gird=   $("#grid").flexigrid({
+            url: 'demo/Ajax.ashx?handler=user&type=list',
+            dataType: 'json',
+            colModel: [
+                { display: 'id', name: 'id', width: 100, align: 'center', hide: false },
+                { display: '用户名称', name: 'name', width: 250, align: 'center' },
+                { display: '权限', name: 'identity', width: 150, align: 'center' }
+            ],
+            minColToggle: 1,
+            onrowclick: false,
+            sortname: "id",
+            sortorder: "asc",
+            usepager: true,
+            useRp: true,
+            rp: 15,
+            resizable: false,
+            width: 'auto',
+            height: 'auto',
+            autoload: true,
+            singleSelect: true,
+            specify: true,
+            striped: true,
+            showcheckbox: true,
+            mutliSelect:true,
+            showToggleBtn: true 
+        });
+    }
+   
+    $("#add").click(function () {
+        $.AddAction(500, 180, '添加用户', "demo/add.aspx", function () {
+        });;
+    });
+    $("#search").click(function () {
+        doQuery();
+    });
+    $("#delete").click(function() {
+        $.DeleteAction("", function() {
+        },"")
+    });
+});
+function doQuery() {
+
+    if ($("#grid") != undefined) {
+        alert(gird.getCheckedRows());
+        var contactQuery = {
+            "name": $("#name").val()
+        };
+        var params = {
+            extParam: contactQuery
+        };
+        if ($('#grid')[0] != undefined) {
+            $('#grid')[0].p.newp = 1;
+            $('#grid').flexOptions(params).flexReload();
+        }
+    }
+
+}

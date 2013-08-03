@@ -1,4 +1,4 @@
-﻿
+
 
 /*操作添加的页面*/
 $.AddAction = function (width, height, name, url, funCallback) {
@@ -165,19 +165,34 @@ $.popupWindow = function (width, height, name, url) {
             resize: false
         });
 };
+var isshowIngo = false;
+function showInf(a, b) {
+    if (isshowIngo == false) {
+        isshowIngo = true;
+        $("#infoshow").show();
+        window.setTimeout(function () {
+            $("#infoshow").hide("slow");
+            isshowIngo = false;
+        }, 5000);
+    }
+    $("#infoshow").removeClass().addClass(a);
+    $("#infoshow").find("strong").html(a + ":");
+    $("#infoshow").find("span").html(b);
+  
+}
 
 $.showError = function (message, func, element) {
     var api = art.dialog.open.api;
     if (api == undefined) {
-
-
+        showInf("error",message);
     } else {
         api.info(message, "error");
-        if (typeof (func) != "undefined")
-            func();
-        if (element != undefined) {
+      
+    }
+    if (typeof (func) != "undefined")
+        func();
+    if (element != undefined) {
 
-        }
     }
     //art.dialog({
     //    icon: 'error',

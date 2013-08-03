@@ -1,15 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/MainSite.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="SMSServer.Web.demo.Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ScriptHolder" runat="server">
-    <script type="text/javascript">
-        $(function () {
-         
-            $("#add").click(function () {
-                $.AddAction(500, 180, '添加用户', "demo/add.aspx", function () {
-                });;
-            });
-        });
-    </script>
+   
     <script src="../Scripts/site/demo.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -17,11 +9,11 @@
     <div class="tools">
         <div class="cont_tools">
 
-            <a href="#" class="button button-rounded button-tiny   button-action">查询</a>
+            <a href="#" id="search" class="button button-rounded button-tiny   button-action">查询</a>
 
             <a href="#" id="add" class="button button-rounded button-tiny button-primary">添加</a>
-            <a href="#" class="button button-rounded button-tiny  button-primary">删除</a>
-            <a href="#" class="button button-rounded button-tiny  button-primary">修改</a>
+            <a href="#"  id="delete" class="button button-rounded button-tiny  button-primary">删除</a>
+            <a href="#"  id="edit" class="button button-rounded button-tiny  button-primary">修改</a>
         </div>
         <div class="search_tools">
             <span>用户名称:</span>

@@ -30,6 +30,9 @@ $(document).ready(function () {
      
         return false;
     });
+    $("#infoshow").click(function() {
+        $(this).hide("slow");
+    });
 });
 function exit() {
 
@@ -107,10 +110,16 @@ function loadPage(url) {
     else {
         urlnew = url + "?t=" + date.getMilliseconds();
     }
-    $(".contentbody").load(urlnew, function (response, status, xhr) {
-        $("#pageload").hide();
+    //$(".contentbody").load(urlnew, function (response, status, xhr) {
+    //    $("#pageload").hide();
+    //    }
+    //);
+    $.ajax({
+        url: urlnew, success: function (data) {
+            $(".contentbody").html(data);
+            $("#pageload").hide();
         }
-    );
+    });
  
 }
 

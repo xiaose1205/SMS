@@ -63,6 +63,7 @@
     <Content Include="Images\body_bg-mini.gif" />
     <Content Include="Images\body_bg.gif" />
     <Content Include="Images\btn_bg.png" />
+    <Content Include="Images\close.gif" />
     <Content Include="Images\default\addpicture.jpg" />
     <Content Include="Images\default\apptrigger_button.png" />
     <Content Include="Images\default\app_hover.png" />
@@ -105,10 +106,12 @@
     <Content Include="Images\error.png" />
     <Content Include="Images\flexigrid\bg.gif" />
     <Content Include="Images\flexigrid\btn-sprite.gif" />
+    <Content Include="Images\flexigrid\chtd-bg.gif" />
     <Content Include="Images\flexigrid\ddn.png" />
     <Content Include="Images\flexigrid\dn.png" />
     <Content Include="Images\flexigrid\fhbg.gif" />
     <Content Include="Images\flexigrid\first.gif" />
+    <Content Include="Images\flexigrid\grid3-special-col-bg.gif" />
     <Content Include="Images\flexigrid\hl.png" />
     <Content Include="Images\flexigrid\last.gif" />
     <Content Include="Images\flexigrid\line.gif" />
@@ -662,6 +665,9 @@
     <Compile Include="demo\addIndex.aspx.designer.cs">
       <DependentUpon>addIndex.aspx</DependentUpon>
     </Compile>
+    <Compile Include="demo\ajax.ashx.cs">
+      <DependentUpon>ajax.ashx</DependentUpon>
+    </Compile>
     <Compile Include="demo\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -712,12 +718,27 @@
   <ItemGroup>
     <Content Include="Master\MainSite.Master" />
     <Content Include="Master\ChildSite.Master" />
+    <Content Include="demo\ajax.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">
+      <Project>{5ebb695e-d6e4-4e48-b4e5-b6a674679019}</Project>
+      <Name>HelloData.FrameWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelloData.FWCommon\HelloData.FWCommon.csproj">
+      <Project>{f5ec683a-cb1a-4f7f-b779-e3d4f2a9843f}</Project>
+      <Name>HelloData.FWCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelloData.Web\HelloData.Web.csproj">
+      <Project>{2e597779-c89d-4ff1-a4dd-367fb8c4f877}</Project>
+      <Name>HelloData.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
