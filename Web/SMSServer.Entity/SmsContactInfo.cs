@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsBlackphoneInfo: BaseEntity
+public partial class SmsContactInfo: BaseEntity
 {
-    public SmsBlackphoneInfo(){
-         base.SetIni(this,"sms_blackphone","ID");
+    public SmsContactInfo(){
+         base.SetIni(this,"sms_contact","ID");
     }
     /// <summary>
     ///    
@@ -26,35 +26,53 @@ public partial class SmsBlackphoneInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string Phone {get; set;}
+    public string Name {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime? CreateTime {get; set;}
+    public int Sex {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? OperatorID {get; set;}
+    public DateTime Birthday {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? Blacktype {get; set;}
+    public string Mobile {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
     public string Comment {get; set;}
 
+    /// <summary>
+    ///    
+    /// </summary>
+    public int AvailFlag {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string IDCard {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public DateTime CreateTime {get; set;}
+
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string Phone = "Phone";
-        public const string CreateTime = "CreateTime";
-        public const string OperatorID = "OperatorID";
-        public const string Blacktype = "Blacktype";
+        public const string Name = "Name";
+        public const string Sex = "Sex";
+        public const string Birthday = "Birthday";
+        public const string Mobile = "Mobile";
         public const string Comment = "Comment";
+        public const string AvailFlag = "AvailFlag";
+        public const string IDCard = "IDCard";
+        public const string CreateTime = "CreateTime";
     }
 }

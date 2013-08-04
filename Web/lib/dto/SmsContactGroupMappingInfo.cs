@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsOperatorInfo: BaseEntity
+public partial class SmsContactGroupMappingInfo: BaseEntity
 {
-    public SmsOperatorInfo(){
-         base.SetIni(this,"sms_operator","ID");
+    public SmsContactGroupMappingInfo(){
+         base.SetIni(this,"sms_contact_group_mapping","ID");
     }
     /// <summary>
     ///    
@@ -26,41 +26,35 @@ public partial class SmsOperatorInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string OperatorName {get; set;}
+    public int ContactpersonID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Introduction {get; set;}
+    public int ContactGroupID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string OperatorArea {get; set;}
+    public string GroupCode {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string ContactNmae {get; set;}
+    public int AvailFlag {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Telphone {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Remark {get; set;}
+    public DateTime CreateTime {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string OperatorName = "OperatorName";
-        public const string Introduction = "Introduction";
-        public const string OperatorArea = "OperatorArea";
-        public const string ContactNmae = "ContactNmae";
-        public const string Telphone = "Telphone";
-        public const string Remark = "Remark";
+        public const string ContactpersonID = "ContactpersonID";
+        public const string ContactGroupID = "ContactGroupID";
+        public const string GroupCode = "GroupCode";
+        public const string AvailFlag = "AvailFlag";
+        public const string CreateTime = "CreateTime";
     }
 }

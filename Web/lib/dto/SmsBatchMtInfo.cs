@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsBatchInfo: BaseEntity
+public partial class SmsBatchMtInfo: BaseEntity
 {
-    public SmsBatchInfo(){
-         base.SetIni(this,"sms_batch","ID");
+    public SmsBatchMtInfo(){
+         base.SetIni(this,"sms_batch_mt","ID");
     }
     /// <summary>
     /// ??ID   
@@ -29,7 +29,7 @@ public partial class SmsBatchInfo: BaseEntity
     public int AccountID {get; set;}
 
     /// <summary>
-    /// ????	0:??? 1:??? 2:???? 3:???? 4:????   
+    /// ????    0:??? 1:??? 2:???? 3:???? 4:????   
     /// </summary>
     public int? MessageState {get; set;}
 
@@ -44,12 +44,12 @@ public partial class SmsBatchInfo: BaseEntity
     public int? Msgcount {get; set;}
 
     /// <summary>
-    /// ????	??: 1??: 2WAPPUSH: 3   
+    /// ????    ??: 1??: 2WAPPUSH: 3   
     /// </summary>
     public int? MsgType {get; set;}
 
     /// <summary>
-    /// ???	1???5??   
+    /// ???    1???5??   
     /// </summary>
     public int? Level {get; set;}
 
@@ -84,7 +84,7 @@ public partial class SmsBatchInfo: BaseEntity
     public DateTime? PostTime {get; set;}
 
     /// <summary>
-    /// ????	0? ????1? ????   
+    /// ????    0? ????1? ????   
     /// </summary>
     public int? BatchState {get; set;}
 

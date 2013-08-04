@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsOperatorInfo: BaseEntity
+public partial class SmsHolidayInfo: BaseEntity
 {
-    public SmsOperatorInfo(){
-         base.SetIni(this,"sms_operator","ID");
+    public SmsHolidayInfo(){
+         base.SetIni(this,"sms_holiday","ID");
     }
     /// <summary>
     ///    
@@ -26,41 +26,35 @@ public partial class SmsOperatorInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string OperatorName {get; set;}
+    public string Name {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Introduction {get; set;}
+    public DateTime? Time {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string OperatorArea {get; set;}
+    public int? TimeType {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string ContactNmae {get; set;}
+    public int? EnterPriseID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Telphone {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Remark {get; set;}
+    public DateTime? CreateTime {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string OperatorName = "OperatorName";
-        public const string Introduction = "Introduction";
-        public const string OperatorArea = "OperatorArea";
-        public const string ContactNmae = "ContactNmae";
-        public const string Telphone = "Telphone";
-        public const string Remark = "Remark";
+        public const string Name = "Name";
+        public const string Time = "Time";
+        public const string TimeType = "TimeType";
+        public const string EnterPriseID = "EnterPriseID";
+        public const string CreateTime = "CreateTime";
     }
 }

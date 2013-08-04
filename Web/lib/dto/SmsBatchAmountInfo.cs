@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsContentfilterkeyInfo: BaseEntity
+public partial class SmsBatchAmountInfo: BaseEntity
 {
-    public SmsContentfilterkeyInfo(){
-         base.SetIni(this,"sms_contentfilterkey","ID");
+    public SmsBatchAmountInfo(){
+         base.SetIni(this,"sms_batch_amount","ID");
     }
     /// <summary>
     ///    
@@ -24,19 +24,29 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     public int ID {get; set;}
 
     /// <summary>
-    ///    
+    /// ?????????   
     /// </summary>
-    public int? OperatorID {get; set;}
+    public int? BatchID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Key {get; set;}
+    public int? RealAmount {get; set;}
 
     /// <summary>
-    ///    
+    /// ?????   
     /// </summary>
-    public int? Keytype {get; set;}
+    public int? SendAmount {get; set;}
+
+    /// <summary>
+    /// ???????   
+    /// </summary>
+    public int? SuccessAmount {get; set;}
+
+    /// <summary>
+    /// ??????????????????????????????   
+    /// </summary>
+    public int? PlanSendCount {get; set;}
 
     /// <summary>
     ///    
@@ -46,9 +56,11 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string OperatorID = "OperatorID";
-        public const string Key = "Key";
-        public const string Keytype = "Keytype";
+        public const string BatchID = "BatchID";
+        public const string RealAmount = "RealAmount";
+        public const string SendAmount = "SendAmount";
+        public const string SuccessAmount = "SuccessAmount";
+        public const string PlanSendCount = "PlanSendCount";
         public const string CreateTime = "CreateTime";
     }
 }

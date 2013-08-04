@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsMoInfo: BaseEntity
+public partial class SmsContactgroupInfo: BaseEntity
 {
-    public SmsMoInfo(){
-         base.SetIni(this,"sms_mo","ID");
+    public SmsContactgroupInfo(){
+         base.SetIni(this,"sms_contactgroup","ID");
     }
     /// <summary>
     ///    
@@ -26,53 +26,53 @@ public partial class SmsMoInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? AccountID {get; set;}
+    public int EnterPriseID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string ReceiveSpid {get; set;}
+    public string Name {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Phone {get; set;}
+    public string GroupCode {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Content {get; set;}
+    public string ParentCode {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime? ReceiveTime {get; set;}
+    public int? GroupOrder {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? Readed {get; set;}
+    public int AvailFlag {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? Responsed {get; set;}
+    public DateTime CreateTime {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime? CreateTime {get; set;}
+    public int? ParentGroupID {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string AccountID = "AccountID";
-        public const string ReceiveSpid = "ReceiveSpid";
-        public const string Phone = "Phone";
-        public const string Content = "Content";
-        public const string ReceiveTime = "ReceiveTime";
-        public const string Readed = "Readed";
-        public const string Responsed = "Responsed";
+        public const string EnterPriseID = "EnterPriseID";
+        public const string Name = "Name";
+        public const string GroupCode = "GroupCode";
+        public const string ParentCode = "ParentCode";
+        public const string GroupOrder = "GroupOrder";
+        public const string AvailFlag = "AvailFlag";
         public const string CreateTime = "CreateTime";
+        public const string ParentGroupID = "ParentGroupID";
     }
 }
