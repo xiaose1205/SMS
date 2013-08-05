@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 22:46:09
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsBlackphoneInfo: BaseEntity
+public partial class SmsAccountChannelInfo: BaseEntity
 {
-    public SmsBlackphoneInfo(){
-         base.SetIni(this,"sms_blackphone","ID");
+    public SmsAccountChannelInfo(){
+         base.SetIni(this,"sms_account_channel","ID");
     }
     /// <summary>
     ///    
@@ -26,35 +26,35 @@ public partial class SmsBlackphoneInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string Phone {get; set;}
+    public int AccountID {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public int ChannelID {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? Channeltype {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? Sendproportion {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
     public DateTime? CreateTime {get; set;}
 
-    /// <summary>
-    ///    
-    /// </summary>
-    public int? OperatorID {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public int? Blacktype {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Comment {get; set;}
-
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string Phone = "Phone";
+        public const string AccountID = "AccountID";
+        public const string ChannelID = "ChannelID";
+        public const string Channeltype = "Channeltype";
+        public const string Sendproportion = "Sendproportion";
         public const string CreateTime = "CreateTime";
-        public const string OperatorID = "OperatorID";
-        public const string Blacktype = "Blacktype";
-        public const string Comment = "Comment";
     }
 }

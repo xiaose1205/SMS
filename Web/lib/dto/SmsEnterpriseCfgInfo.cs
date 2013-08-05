@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 23:25:44
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsEnterpriseInfo: BaseEntity
+public partial class SmsEnterpriseCfgInfo: BaseEntity
 {
-    public SmsEnterpriseInfo(){
-         base.SetIni(this,"sms_enterprise","ID");
+    public SmsEnterpriseCfgInfo(){
+         base.SetIni(this,"sms_enterprise_cfg","ID");
     }
     /// <summary>
     ///    
@@ -26,17 +26,17 @@ public partial class SmsEnterpriseInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string EnterpriseName {get; set;}
+    public int? EnterpriseID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Introduction {get; set;}
+    public string CfgKey {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? AvailFlag {get; set;}
+    public string CfgValue {get; set;}
 
     /// <summary>
     ///    
@@ -46,9 +46,9 @@ public partial class SmsEnterpriseInfo: BaseEntity
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string EnterpriseName = "Enterprise_Name";
-        public const string Introduction = "Introduction";
-        public const string AvailFlag = "AvailFlag";
+        public const string EnterpriseID = "EnterpriseID";
+        public const string CfgKey = "CfgKey";
+        public const string CfgValue = "CfgValue";
         public const string CreateTime = "CreateTime";
     }
 }

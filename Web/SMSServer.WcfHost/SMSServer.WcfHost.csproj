@@ -87,6 +87,14 @@
       <Project>{f5ec683a-cb1a-4f7f-b779-e3d4f2a9843f}</Project>
       <Name>HelloData.FWCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SMSServer.Entity\SMSServer.Entity.csproj">
+      <Project>{c30f05cd-c48d-4895-a8ab-06d40950fdf9}</Project>
+      <Name>SMSServer.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMSServer.Service\SMSServer.Service.csproj">
+      <Project>{d59ab992-2bc3-414d-997c-51a687bd1983}</Project>
+      <Name>SMSServer.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SMSServer.Wcf\SMSServer.Wcf.csproj">
       <Project>{CDF6945E-E268-4DDE-A97B-2A47DD82C580}</Project>
       <Name>SMSServer.Wcf</Name>

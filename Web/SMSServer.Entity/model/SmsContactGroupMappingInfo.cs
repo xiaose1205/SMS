@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 22:46:09
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsContactInfo: BaseEntity
+public partial class SmsContactGroupMappingInfo: BaseEntity
 {
-    public SmsContactInfo(){
-         base.SetIni(this,"sms_contact","ID");
+    public SmsContactGroupMappingInfo(){
+         base.SetIni(this,"sms_contact_group_mapping","ID");
     }
     /// <summary>
     ///    
@@ -26,27 +26,17 @@ public partial class SmsContactInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string Name {get; set;}
+    public int ContactpersonID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int Sex {get; set;}
+    public int ContactGroupID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime Birthday {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Mobile {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Comment {get; set;}
+    public string GroupCode {get; set;}
 
     /// <summary>
     ///    
@@ -56,23 +46,15 @@ public partial class SmsContactInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string IDCard {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
     public DateTime CreateTime {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string Name = "Name";
-        public const string Sex = "Sex";
-        public const string Birthday = "Birthday";
-        public const string Mobile = "Mobile";
-        public const string Comment = "Comment";
+        public const string ContactpersonID = "ContactpersonID";
+        public const string ContactGroupID = "ContactGroupID";
+        public const string GroupCode = "GroupCode";
         public const string AvailFlag = "AvailFlag";
-        public const string IDCard = "IDCard";
         public const string CreateTime = "CreateTime";
     }
 }

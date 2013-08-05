@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using SMSServer.Service;
+using SMSService.Entity;
 
 
 namespace SMSServer.WcfHost.Batch
@@ -17,7 +19,7 @@ namespace SMSServer.WcfHost.Batch
             this.ServiceName = "批次读取";
         }
 
-        BatchManage batchmrg = new BatchManage();
+        BatchService batchmrg = new BatchService();
         public override void WorkHandle()
         {
             try
@@ -42,12 +44,12 @@ namespace SMSServer.WcfHost.Batch
                 }
                 if (!string.IsNullOrEmpty(batchids))
                 {
-                    List<Batch_Wait_MTModel> mtlists = batchmrg.GetReadyMt(AppContent.ReadBatchCount, batchids.TrimEnd(','));
-                    foreach (Batch_Wait_MTModel item in mtlists)
+                    List<SmsBatchWaitInfo> mtlists = batchmrg.GetReadyMt(AppContent.ReadBatchCount, batchids.TrimEnd(','));
+                    foreach (SmsBatchWaitInfo item in mtlists)
                     {
                         #region 获取发送账号及密码
-                        HytMsg.BLL.EnterPriseConfig config = new BLL.EnterPriseConfig();
-                        EnterPriseConfigModel configmodel = config.GetModelWithKey("GateWayUser", item.EnterPriseID);
+                        EnterpriseService config = new EnterpriseService();
+                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("GateWayUser", item.EnterPriseID);
                         string username = string.Empty;
                         string password = string.Empty;
                         if (configmodel == null)
@@ -57,7 +59,7 @@ namespace SMSServer.WcfHost.Batch
                         }
                         else
                         {
-                            username = configmodel.ConfigureValue;
+                            username = configmodel.CfgValue;
                         }
                         #endregion
                         
@@ -69,14 +71,14 @@ namespace SMSServer.WcfHost.Batch
                         }
                         else
                         {
-                            password = configmodel.ConfigureValue;
+                            password = configmodel.CfgValue;
                         }  
                         Print("加入队列：" + item.BatchID + "");
                         foreach (var batch in AppContent.SendingBatchs)
                         {
-                            if (batch.BatchID == item.BatchID)
+                            if (batch.ID == item.BatchID)
                             {
-                                item.TaskID = batch.TaskID;
+                              //  item.TaskID = batch.TaskID;
                                 item.GatePwd = password;
                                 item.GateUser = username;
                             }

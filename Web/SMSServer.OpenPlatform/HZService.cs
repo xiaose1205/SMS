@@ -8,7 +8,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 合众接口实现
     /// </summary>
-    public class HZ : AbstractMethod
+    public class HZService : AbstractMethod
     {
        
         public static string ResultString(string url)

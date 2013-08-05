@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 23:25:44
 生成机器：wangjun
 author：xiaose
 */
@@ -46,7 +46,12 @@ public partial class SmsBatchDetailsInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string phone {get; set;}
+    public string Phone {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string Content {get; set;}
 
     /// <summary>
     ///    
@@ -68,6 +73,11 @@ public partial class SmsBatchDetailsInfo: BaseEntity
     /// </summary>
     public DateTime? ReportTime {get; set;}
 
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? AccountID {get; set;}
+
     public static class Columns 
     { 
         public const string ID = "ID";
@@ -75,10 +85,12 @@ public partial class SmsBatchDetailsInfo: BaseEntity
         public const string MsgId = "Msg_id";
         public const string SmsType = "Sms_type";
         public const string ChannelID = "ChannelID";
-        public const string phone = "phone";
+        public const string Phone = "Phone";
+        public const string Content = "Content";
         public const string State = "State";
         public const string StateReport = "State_report";
         public const string SubmitTime = "Submit_time";
         public const string ReportTime = "Report_time";
+        public const string AccountID = "AccountID";
     }
 }

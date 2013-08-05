@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-05 23:25:44
+生成时间:2013-08-05 22:46:09
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsOperatorInfo: BaseEntity
+public partial class SmsEnterpriseInfo: BaseEntity
 {
-    public SmsOperatorInfo(){
-         base.SetIni(this,"sms_operator","ID");
+    public SmsEnterpriseInfo(){
+         base.SetIni(this,"sms_enterprise","ID");
     }
     /// <summary>
     ///    
@@ -26,7 +26,7 @@ public partial class SmsOperatorInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string OperatorName {get; set;}
+    public string EnterpriseName {get; set;}
 
     /// <summary>
     ///    
@@ -36,31 +36,19 @@ public partial class SmsOperatorInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string OperatorArea {get; set;}
+    public int? AvailFlag {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string ContactNmae {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Telphone {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string Remark {get; set;}
+    public DateTime? CreateTime {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string OperatorName = "OperatorName";
+        public const string EnterpriseName = "Enterprise_Name";
         public const string Introduction = "Introduction";
-        public const string OperatorArea = "OperatorArea";
-        public const string ContactNmae = "ContactNmae";
-        public const string Telphone = "Telphone";
-        public const string Remark = "Remark";
+        public const string AvailFlag = "AvailFlag";
+        public const string CreateTime = "CreateTime";
     }
 }

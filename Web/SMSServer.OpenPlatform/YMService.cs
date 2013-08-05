@@ -9,7 +9,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 亿美接口实现
     /// </summary>
-    public class YM : AbstractMethod
+    public class YMService : AbstractMethod
     {
         //调用dll方法
         [DllImport("EUCPComm.dll", EntryPoint = "SendSMS")]  //即时发送

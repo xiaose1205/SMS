@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 23:25:44
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsContactgroupInfo: BaseEntity
+public partial class SmsBatchWaitInfo: BaseEntity
 {
-    public SmsContactgroupInfo(){
-         base.SetIni(this,"sms_contactgroup","ID");
+    public SmsBatchWaitInfo(){
+         base.SetIni(this,"sms_batch_wait","ID");
     }
     /// <summary>
     ///    
@@ -26,53 +26,53 @@ public partial class SmsContactgroupInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int EnterPriseID {get; set;}
+    public int? MtID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Name {get; set;}
+    public int? BatchID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string GroupCode {get; set;}
+    public DateTime? CreateTime {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string ParentCode {get; set;}
+    public int? AccountID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? GroupOrder {get; set;}
+    public int? MsgCount {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int AvailFlag {get; set;}
+    public byte[] MsgPack {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime CreateTime {get; set;}
+    public int? MsgType {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? ParentGroupID {get; set;}
+    public int? EnterPriseID {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string EnterPriseID = "EnterPriseID";
-        public const string Name = "Name";
-        public const string GroupCode = "GroupCode";
-        public const string ParentCode = "ParentCode";
-        public const string GroupOrder = "GroupOrder";
-        public const string AvailFlag = "AvailFlag";
+        public const string MtID = "MtID";
+        public const string BatchID = "BatchID";
         public const string CreateTime = "CreateTime";
-        public const string ParentGroupID = "ParentGroupID";
+        public const string AccountID = "AccountID";
+        public const string MsgCount = "MsgCount";
+        public const string MsgPack = "MsgPack";
+        public const string MsgType = "MsgType";
+        public const string EnterPriseID = "EnterPriseID";
     }
 }

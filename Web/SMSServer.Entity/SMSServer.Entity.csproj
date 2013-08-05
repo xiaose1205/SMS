@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SMSService.Entity</RootNamespace>
     <AssemblyName>SMSService.Entity</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,20 +47,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentParms.cs" />
+    <Compile Include="EntityBulider1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityBulider.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\SmsBatchWaitInfo.cs" />
+    <Compile Include="model\SmsEnterpriseCfgInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmsAccountChannelInfo.cs" />
-    <Compile Include="SmsAccountInfo.cs" />
-    <Compile Include="SmsAddrecordInfo.cs" />
-    <Compile Include="SmsBatchDetailsInfo.cs" />
-    <Compile Include="SmsBatchInfo.cs" />
-    <Compile Include="SmsBlackphoneInfo.cs" />
-    <Compile Include="SmsChannelInfo.cs" />
-    <Compile Include="SmsContentfilterkeyInfo.cs" />
-    <Compile Include="SmsDeductrecordInfo.cs" />
-    <Compile Include="SmsEnterpriseInfo.cs" />
-    <Compile Include="SmsMoInfo.cs" />
-    <Compile Include="SmsOperatorInfo.cs" />
-    <Compile Include="SmsTelesegInfo.cs" />
+    <Compile Include="model\SmsAccountChannelInfo.cs" />
+    <Compile Include="model\SmsAccountInfo.cs" />
+    <Compile Include="model\SmsAddrecordInfo.cs" />
+    <Compile Include="model\SmsBatchAmountInfo.cs" />
+    <Compile Include="model\SmsBatchDetailsInfo.cs" />
+    <Compile Include="model\SmsBatchInfo.cs" />
+    <Compile Include="model\SmsBatchMtInfo.cs" />
+    <Compile Include="model\SmsBlackphoneInfo.cs" />
+    <Compile Include="model\SmsChannelInfo.cs" />
+    <Compile Include="model\SmsContactgroupInfo.cs" />
+    <Compile Include="model\SmsContactGroupMappingInfo.cs" />
+    <Compile Include="model\SmsContactInfo.cs" />
+    <Compile Include="model\SmsContentfilterkeyInfo.cs" />
+    <Compile Include="model\SmsDeductrecordInfo.cs" />
+    <Compile Include="model\SmsEnterpriseInfo.cs" />
+    <Compile Include="model\SmsHolidayInfo.cs" />
+    <Compile Include="model\SmsMoInfo.cs" />
+    <Compile Include="model\SmsOperatorInfo.cs" />
+    <Compile Include="model\SmsTelesegInfo.cs" />
+    <Compile Include="SendingBatchModel.cs" />
+    <Compile Include="SmsBatchWaitInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

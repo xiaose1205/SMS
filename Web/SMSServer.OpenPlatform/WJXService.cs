@@ -8,7 +8,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 无极限接口实现
     /// </summary>
-    public class WJX : AbstractMethod
+    public class WJXService : AbstractMethod
     {
        
        /// <summary>

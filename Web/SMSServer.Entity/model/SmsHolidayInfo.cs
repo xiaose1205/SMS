@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-05 23:25:44
+生成时间:2013-08-05 22:46:09
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsContactInfo: BaseEntity
+public partial class SmsHolidayInfo: BaseEntity
 {
-    public SmsContactInfo(){
-         base.SetIni(this,"sms_contact","ID");
+    public SmsHolidayInfo(){
+         base.SetIni(this,"sms_holiday","ID");
     }
     /// <summary>
     ///    
@@ -31,48 +31,30 @@ public partial class SmsContactInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int Sex {get; set;}
+    public DateTime? Time {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime Birthday {get; set;}
+    public int? TimeType {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Mobile {get; set;}
+    public int? EnterPriseID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Comment {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public int AvailFlag {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public string IDCard {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public DateTime CreateTime {get; set;}
+    public DateTime? CreateTime {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
         public const string Name = "Name";
-        public const string Sex = "Sex";
-        public const string Birthday = "Birthday";
-        public const string Mobile = "Mobile";
-        public const string Comment = "Comment";
-        public const string AvailFlag = "AvailFlag";
-        public const string IDCard = "IDCard";
+        public const string Time = "Time";
+        public const string TimeType = "TimeType";
+        public const string EnterPriseID = "EnterPriseID";
         public const string CreateTime = "CreateTime";
     }
 }

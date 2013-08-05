@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 23:25:44
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsBatchAmountInfo: BaseEntity
+public partial class SmsBatchWaitInfo: BaseEntity
 {
-    public SmsBatchAmountInfo(){
-         base.SetIni(this,"sms_batch_amount","ID");
+    public SmsBatchWaitInfo(){
+         base.SetIni(this,"sms_batch_wait","ID");
     }
     /// <summary>
     ///    
@@ -24,43 +24,55 @@ public partial class SmsBatchAmountInfo: BaseEntity
     public int ID {get; set;}
 
     /// <summary>
-    /// ?????????   
+    ///    
+    /// </summary>
+    public int? MtID {get; set;}
+
+    /// <summary>
+    ///    
     /// </summary>
     public int? BatchID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? RealAmount {get; set;}
-
-    /// <summary>
-    /// ?????   
-    /// </summary>
-    public int? SendAmount {get; set;}
-
-    /// <summary>
-    /// ???????   
-    /// </summary>
-    public int? SuccessAmount {get; set;}
-
-    /// <summary>
-    /// ??????????????????????????????   
-    /// </summary>
-    public int? PlanSendCount {get; set;}
+    public DateTime? CreateTime {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public DateTime? CreateTime {get; set;}
+    public int? AccountID {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? MsgCount {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string MsgPack {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? MsgType {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? EnterPriseID {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
+        public const string MtID = "MtID";
         public const string BatchID = "BatchID";
-        public const string RealAmount = "RealAmount";
-        public const string SendAmount = "SendAmount";
-        public const string SuccessAmount = "SuccessAmount";
-        public const string PlanSendCount = "PlanSendCount";
         public const string CreateTime = "CreateTime";
+        public const string AccountID = "AccountID";
+        public const string MsgCount = "MsgCount";
+        public const string MsgPack = "MsgPack";
+        public const string MsgType = "MsgType";
+        public const string EnterPriseID = "EnterPriseID";
     }
 }

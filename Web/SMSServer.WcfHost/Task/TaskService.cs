@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using HytMsg.Model;
-using HytMsg.BLL.GateWay;
+using Model;
+using BLL.GateWay;
 
 
 namespace SMSServer.WcfHost.Task
@@ -139,7 +139,7 @@ namespace SMSServer.WcfHost.Task
             try
             {
                 TaskModel model = (TaskModel)taskmodel;
-                BatchManage manger = new BatchManage();
+                BatchService manger = new BatchService();
                 string batchid = Guid.NewGuid().ToString();
                 BatchModel batchmodel = new BatchModel();
                 batchmodel.BatchID = Guid.NewGuid().ToString();

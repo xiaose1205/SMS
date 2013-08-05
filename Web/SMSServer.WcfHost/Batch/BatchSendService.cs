@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HytMsg.Model;
-using HytMsg.BLL.GateWay;
-using HytMsg.BLL;
+
 using System.Threading;
+using SMSServer.Service;
+using SMSService.Entity;
 
 namespace SMSServer.WcfHost.Batch
 {
@@ -18,7 +18,7 @@ namespace SMSServer.WcfHost.Batch
             this.ServiceName = "批次发送";
         }
 
-        BatchManage mrg = new BatchManage();
+        BatchService mrg = new BatchService();
         int SendingMtCount = 0;
         object lockobj = new object();
         public override void WorkHandle()
@@ -29,7 +29,7 @@ namespace SMSServer.WcfHost.Batch
 
                 if (AppContent.SendingMts.Count == 0)
                     break;
-                Batch_Wait_MTModel model = AppContent.SendingMts.Dequeue();
+                SmsBatchWaitInfo model = AppContent.SendingMts.Dequeue();
                 Print("发送：" + model.BatchID + "");
                 ThreadPool.QueueUserWorkItem(new WaitCallback(Sendmt), model);
                 Thread.Sleep(base.SleepSpan / AppContent.SendMtCount);
@@ -40,7 +40,7 @@ namespace SMSServer.WcfHost.Batch
 
         void Sendmt(object sender)
         {
-            Batch_Wait_MTModel model = sender as Batch_Wait_MTModel;
+            SmsBatchWaitInfo model = sender as SmsBatchWaitInfo;
             if (model != null)
             {
                 if (string.IsNullOrEmpty(model.GateUser))
@@ -87,9 +87,9 @@ namespace SMSServer.WcfHost.Batch
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public Batch_Wait_MTModel ConvertItemTOMtmodel(MessageItem item)
+        public SmsBatchWaitInfo ConvertItemTOMtmodel(MessageItem item)
         {
-            Batch_Wait_MTModel model = new Batch_Wait_MTModel();
+            SmsBatchWaitInfo model = new SmsBatchWaitInfo();
             model.BatchID = item.BatchID;
             model.EnterPriseID = item.EnterPriseID;
             model.MsgCount = item.MsgCount;
@@ -102,7 +102,7 @@ namespace SMSServer.WcfHost.Batch
         /// 处理已经发送过的wait_mt
         /// </summary>
         /// <param name="model"></param>
-        public void CompleteMt(Batch_Wait_MTModel model, int result)
+        public void CompleteMt(SmsBatchWaitInfo model, int result)
         {
             Print("发送" + model.BatchID + "结果：" + result);
             SendingBatchModel sendingmodel = null;

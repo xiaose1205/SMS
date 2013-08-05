@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 22:46:09
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsContentfilterkeyInfo: BaseEntity
+public partial class SmsAddrecordInfo: BaseEntity
 {
-    public SmsContentfilterkeyInfo(){
-         base.SetIni(this,"sms_contentfilterkey","ID");
+    public SmsAddrecordInfo(){
+         base.SetIni(this,"sms_addrecord","ID");
     }
     /// <summary>
     ///    
@@ -26,17 +26,22 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? OperatorID {get; set;}
+    public int AccountID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string Key {get; set;}
+    public float? BeforeAdd {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int? Keytype {get; set;}
+    public float? AddMount {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public float? AfterAdd {get; set;}
 
     /// <summary>
     ///    
@@ -46,9 +51,10 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string OperatorID = "OperatorID";
-        public const string Key = "Key";
-        public const string Keytype = "Keytype";
+        public const string AccountID = "AccountID";
+        public const string BeforeAdd = "BeforeAdd";
+        public const string AddMount = "AddMount";
+        public const string AfterAdd = "AfterAdd";
         public const string CreateTime = "CreateTime";
     }
 }

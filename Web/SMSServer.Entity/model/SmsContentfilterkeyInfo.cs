@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-04 23:18:00
+生成时间:2013-08-05 22:46:09
 生成机器：wangjun
 author：xiaose
 */
@@ -12,10 +12,10 @@ using HelloData.FrameWork.Data;
 ///    
 /// </summary>
 [Serializable]
-public partial class SmsContactGroupMappingInfo: BaseEntity
+public partial class SmsContentfilterkeyInfo: BaseEntity
 {
-    public SmsContactGroupMappingInfo(){
-         base.SetIni(this,"sms_contact_group_mapping","ID");
+    public SmsContentfilterkeyInfo(){
+         base.SetIni(this,"sms_contentfilterkey","ID");
     }
     /// <summary>
     ///    
@@ -26,35 +26,29 @@ public partial class SmsContactGroupMappingInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int ContactpersonID {get; set;}
+    public int? OperatorID {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int ContactGroupID {get; set;}
+    public string Key {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public string GroupCode {get; set;}
+    public int? Keytype {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public int AvailFlag {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public DateTime CreateTime {get; set;}
+    public DateTime? CreateTime {get; set;}
 
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string ContactpersonID = "ContactpersonID";
-        public const string ContactGroupID = "ContactGroupID";
-        public const string GroupCode = "GroupCode";
-        public const string AvailFlag = "AvailFlag";
+        public const string OperatorID = "OperatorID";
+        public const string Key = "Key";
+        public const string Keytype = "Keytype";
         public const string CreateTime = "CreateTime";
     }
 }

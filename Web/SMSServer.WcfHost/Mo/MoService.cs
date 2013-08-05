@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HytMsg.Model;
+using Model;
 using System.Threading;
-using HytMsg.BLL;
+using BLL;
 namespace SMSServer.WcfHost.Mo
 {
     public class MoService : BaseService<MoService>
@@ -16,7 +16,7 @@ namespace SMSServer.WcfHost.Mo
             this.ServiceName = "获取上行";
         }
 
-        BLL.EnterPriseConfig bll = new BLL.EnterPriseConfig();
+        EnterpriseService bll = new EnterpriseService();
         BLL.MO Mobll = new BLL.MO();
         public override void WorkHandle()
         {
