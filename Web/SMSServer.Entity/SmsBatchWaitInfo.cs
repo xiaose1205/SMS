@@ -23,7 +23,5 @@ using HelloData.FrameWork.Data;
 public partial class SmsBatchWaitInfo
 {
     [Column(NoSqlProperty = true)]
-    public string GatePwd { get; set; }
-    [Column(NoSqlProperty = true)]
-    public string GateUser { get; set; }
+    public string[] Channels { get; set; } 
 }

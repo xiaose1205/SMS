@@ -43,9 +43,9 @@ namespace SMSServer.WcfHost.Batch
             SmsBatchWaitInfo model = sender as SmsBatchWaitInfo;
             if (model != null)
             {
-                if (string.IsNullOrEmpty(model.GateUser))
+                if ( model.Channels.Length==0)
                 {
-                    CompleteMt(model, (int)SendResultEnum.INVALID_ACCOUNT); 
+                    CompleteMt(model, (int)SendResultEnum.CONTACT_ERROR); 
                     return;
                 }
                 PostMsg post = PostServers.Current.GetFormPool();

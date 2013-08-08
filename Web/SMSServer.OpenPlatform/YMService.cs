@@ -9,7 +9,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 亿美接口实现
     /// </summary>
-    public class YMService : AbstractMethod
+    public class YMService : BaseMethod
     {
         //调用dll方法
         [DllImport("EUCPComm.dll", EntryPoint = "SendSMS")]  //即时发送
@@ -77,7 +77,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string SendSMS(user us)
+        public override string SendSMS(SendUser us)
         {
             //即时发送      这里是软件序列号    手机号       短信内容     优先级
             int result = SendSMS(us.serialNumber, us.phone, us.msg, us.priority);
@@ -105,7 +105,7 @@ namespace SMSServer.OpenPlatform
                 return "其他故障值：" + result.ToString();
         }
 
-        public override string GetStatusreport(user us)
+        public override string GetStatusreport(SendUser us)
         {
             return "亿美没有提供该接口";
         }
@@ -114,7 +114,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string Getbalance(user us)
+        public override string Getbalance(SendUser us)
         {
            StringBuilder balance = new StringBuilder(0, 20);
             //得到余额            注册号         余额
@@ -140,7 +140,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string Getascending(user us)
+        public override string Getascending(SendUser us)
         {
             deleSQF mySmsContent = new deleSQF(getSMSContent);
             //接收短信                序列号       函数指针

@@ -91,6 +91,10 @@
       <Project>{c30f05cd-c48d-4895-a8ab-06d40950fdf9}</Project>
       <Name>SMSServer.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SMSServer.OpenPlatform\SMSServer.OpenPlatform.csproj">
+      <Project>{15811f4d-9ad5-45fd-a08b-7dc7e0e5a749}</Project>
+      <Name>SMSServer.OpenPlatform</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SMSServer.Service\SMSServer.Service.csproj">
       <Project>{d59ab992-2bc3-414d-997c-51a687bd1983}</Project>
       <Name>SMSServer.Service</Name>

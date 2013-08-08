@@ -8,7 +8,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 合众接口实现
     /// </summary>
-    public class HZService : AbstractMethod
+    public class HZService : BaseMethod
     {
        
         public static string ResultString(string url)
@@ -23,7 +23,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>
-        public override string SendSMS(user usr)
+        public override string SendSMS(SendUser usr)
         {
             //http://61.143.160.139:8080/smshttp?act=sendmsg&unitid=826&username=DGHK&passwd=123456&msg=测试&phone=13533597705
 
@@ -36,7 +36,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>
-        public override string GetStatusreport(user usr)
+        public override string GetStatusreport(SendUser usr)
         {
             //http://61.143.160.139:8080/smshttp?act=getstatue&unitid=826&username=DGHK&passwd=123456
 
@@ -49,7 +49,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>
-        public override string Getbalance(user usr)
+        public override string Getbalance(SendUser usr)
         {
             //http://61.143.160.139:8080/smshttp?act=getbalance&unitid=826&username=DGHK&passwd=123456
 
@@ -64,7 +64,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>ascending
-        public override string Getascending(user usr)
+        public override string Getascending(SendUser usr)
         {
             //http://61.143.160.139:8080/smshttp?act=smsrecord&unitid=826&username=DGHK&passwd=123456
 

@@ -7,6 +7,7 @@ using HelloData.FWCommon.Logging;
 using HelloData.FrameWork;
 using HelloData.FrameWork.Data;
 using System.Configuration;
+using SMSServer.OpenPlatform;
 using SMSServer.Wcf;
 
 namespace SMSServer.WcfHost
@@ -40,8 +41,12 @@ namespace SMSServer.WcfHost
             AppCons.IsParmes = bool.Parse(ConfigurationManager.AppSettings["SqlParms"].ToString());
             Logger.CurrentLog.Info("Service_STARTING");
             AppCons.IsOpenCache = bool.Parse(ConfigurationManager.AppSettings["OpenCache"].ToString());
-            AppCons.CurrentCache = new  WebCache();
+            AppCons.CurrentCache = new WebCache();
 
+            //注册发送的信道
+            ServicesFactory.RegisterAppHandler(new HZService());
+            ServicesFactory.RegisterAppHandler(new WJXService());
+            ServicesFactory.RegisterAppHandler(new YMService());
 
 
             if (!debugLog)
@@ -54,7 +59,7 @@ namespace SMSServer.WcfHost
                 ServiceBase.Run(ServicesToRun);
             }
             else
-            {   
+            {
                 Logger.CurrentLog.Info("WCF_STARTING");
                 ServiceHost host = new ServiceHost(typeof(SMSServerWcf));
                 if (host.Description.Behaviors.Find<System.ServiceModel.Description.ServiceMetadataBehavior>() == null)
@@ -65,8 +70,8 @@ namespace SMSServer.WcfHost
                     host.AddServiceEndpoint(typeof(System.ServiceModel.Description.IMetadataExchange), metaBind, "MEX");
                 }
                 host.Open();
-                Logger.CurrentLog.Info("wcf状态"+host.State.ToString());
-             
+                Logger.CurrentLog.Info("wcf状态" + host.State.ToString());
+
                 Console.ReadLine();
             }
         }

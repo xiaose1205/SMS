@@ -31,5 +31,15 @@ namespace SMSServer.Service
         {
             throw new NotImplementedException();
         }
+
+        public bool CheckUser(int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateBatchState(SMSService.Entity.BatchState batchState, int p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

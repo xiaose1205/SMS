@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Model;
 using System.Threading;
-using BLL;
+using SMSServer.Service;
+
 namespace SMSServer.WcfHost.Mo
 {
     public class MoService : BaseService<MoService>
@@ -17,7 +15,7 @@ namespace SMSServer.WcfHost.Mo
         }
 
         EnterpriseService bll = new EnterpriseService();
-        BLL.MO Mobll = new BLL.MO();
+       SmsMoInfo Mobll = new SmsMoInfo();
         public override void WorkHandle()
         {
             if (!AppContent.IsMoReceive)

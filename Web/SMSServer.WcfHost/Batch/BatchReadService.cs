@@ -31,15 +31,15 @@ namespace SMSServer.WcfHost.Batch
                 foreach (SendingBatchModel item in batchlists)
                 {
                     #region 检查发送用户是否已不存在
-                    TaskManage mrg = new TaskManage();
-                    if (!mrg.CheckUser(item.UploadUserID))
+
+                    if (!batchmrg.CheckUser(item.AccountID))
                     {
-                        batchmrg.UpdateBatchState(BatchState.Complete, item.BatchID);
+                        batchmrg.UpdateBatchState(BatchState.Complete, item.ID);
                         continue;
                     }
                     #endregion
 
-                    batchids += item.BatchID + ",";
+                    batchids += item.ID + ",";
                     AppContent.SendingBatchs.Add(item);
                 }
                 if (!string.IsNullOrEmpty(batchids))
@@ -47,40 +47,30 @@ namespace SMSServer.WcfHost.Batch
                     List<SmsBatchWaitInfo> mtlists = batchmrg.GetReadyMt(AppContent.ReadBatchCount, batchids.TrimEnd(','));
                     foreach (SmsBatchWaitInfo item in mtlists)
                     {
-                        #region 获取发送账号及密码
+                        #region 获取当前账号发送所走的信道
                         EnterpriseService config = new EnterpriseService();
-                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("GateWayUser", item.EnterPriseID);
-                        string username = string.Empty;
-                        string password = string.Empty;
+                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.EnterPriseID);
+
+                        string[] channels;
                         if (configmodel == null)
                         {
-                            Print("当前企业的账号为空：" + item.EnterPriseID + "");
+                            Print("当前企业的没有选择信道为空：" + item.EnterPriseID + "");
 
                         }
                         else
                         {
-                            username = configmodel.CfgValue;
-                        }
+                            channels = configmodel.CfgValue.Split(',');
+
                         #endregion
-                        
-                        configmodel = config.GetModelWithKey("GateWayPwd", item.EnterPriseID);
-                        if (configmodel == null)
-                        {
-                            Print("当前企业的密码为空：" + item.EnterPriseID + "");
 
-                        }
-                        else
-                        {
-                            password = configmodel.CfgValue;
-                        }  
-                        Print("加入队列：" + item.BatchID + "");
-                        foreach (var batch in AppContent.SendingBatchs)
-                        {
-                            if (batch.ID == item.BatchID)
+
+                            Print("加入队列：" + item.BatchID + "");
+                            foreach (var batch in AppContent.SendingBatchs)
                             {
-                              //  item.TaskID = batch.TaskID;
-                                item.GatePwd = password;
-                                item.GateUser = username;
+                                if (batch.ID == item.BatchID)
+                                { 
+                                    item.Channels = channels;
+                                }
                             }
                         }
                         AppContent.SendingMts.Enqueue(item);

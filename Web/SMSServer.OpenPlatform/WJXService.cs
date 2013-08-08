@@ -8,7 +8,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 无极限接口实现
     /// </summary>
-    public class WJXService : AbstractMethod
+    public class WJXService : BaseMethod
     {
        
        /// <summary>
@@ -16,7 +16,7 @@ namespace SMSServer.OpenPlatform
        /// </summary>
        /// <param name="us"></param>
        /// <returns></returns>
-        public override string SendSMS(user usr)
+        public override string SendSMS(SendUser usr)
         {
             HttpHelper Sendhttp = new HttpHelper();
             Sendhttp.WEncoding = Encoding.UTF8;
@@ -28,12 +28,12 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string GetStatusreport(user us)
+        public override string GetStatusreport(SendUser us)
         {
             throw new NotImplementedException();
         }
 
-        public override string Getbalance(user us)
+        public override string Getbalance(SendUser us)
         {
             return "无极限没有提供该接口";
         }
@@ -42,7 +42,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string Getascending(user us)
+        public override string Getascending(SendUser us)
         {
             throw new NotImplementedException();
         }
