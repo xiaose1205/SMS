@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-05 22:46:09
+生成时间:2013-08-09 21:48:23
 生成机器：wangjun
 author：xiaose
 */
@@ -26,7 +26,7 @@ public partial class SmsMoInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? AccountID {get; set;}
+    public int EnterpriseID { get; set; }
 
     /// <summary>
     ///    

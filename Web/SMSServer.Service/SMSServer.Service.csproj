@@ -41,12 +41,17 @@
     <Compile Include="AppContent.cs" />
     <Compile Include="BatchService.cs" />
     <Compile Include="EnterpriseService.cs" />
+    <Compile Include="MoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">
       <Project>{5EBB695E-D6E4-4E48-B4E5-B6A674679019}</Project>
       <Name>HelloData.FrameWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelloData.FWCommon\HelloData.FWCommon.csproj">
+      <Project>{f5ec683a-cb1a-4f7f-b779-e3d4f2a9843f}</Project>
+      <Name>HelloData.FWCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSServer.Entity\SMSServer.Entity.csproj">
       <Project>{c30f05cd-c48d-4895-a8ab-06d40950fdf9}</Project>

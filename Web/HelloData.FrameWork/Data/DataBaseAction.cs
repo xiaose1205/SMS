@@ -826,29 +826,6 @@ namespace HelloData.FrameWork.Data
                 {
                     if (dr == null)
                         return default(T);
-                    if (CacheHelper.IsOpenCache)
-                    {
-                        string cachekey = string.Format("entity_{2}_{0}_key_{1}",
-                            TbName,
-                            Cachekeyvalue, _appindex);
-                        if (!IsNeedCache)
-                        {
-                          CacheHelper.Remove(cachekey);
-                            T entity = Sqlcom.GetFromReader<T>(dr, pInfos);
-                            return entity;
-                        }
-                        else
-                        {
-                            T entity = CacheHelper.Get<T>(cachekey);
-                            if (entity == null)
-                            {
-                                entity = Sqlcom.GetFromReader<T>(dr, pInfos);
-                              CacheHelper.Insert(cachekey, entity);
-                            }
-                            return entity;
-                        }
-
-                    }
                     return Sqlcom.GetFromReader<T>(dr, pInfos);
                 }
             }
@@ -890,40 +867,16 @@ namespace HelloData.FrameWork.Data
             PageList<T> lists = new PageList<T>();
             int totalcount = 0;
             DbHelper.Parameters = Parameters;
-            if (CacheHelper.IsOpenCache)
+
+            DataTable dt = DbHelper.CreatePage(CreateSql(OperateEnum.SelectPage, pagesize, pageindex), this._selcountstr, out totalcount);
+            if (dt != null)
             {
-                string cachekey = string.Format("entity_{4}_{0}_key_{1}_{2}_{3}",
-                    TbName,
-                    Cachekeyvalue,
-                    pageindex,
-                    pagesize, _appindex);
-                PageList<T> entitys = CacheHelper.Get<PageList<T>>(cachekey);
-                if (entitys == null || entitys.Count == 0)
-                {
-                    DataTable dt = DbHelper.CreatePage(CreateSql(OperateEnum.SelectPage, pagesize, pageindex), this._selcountstr, out totalcount);
-                    if (dt != null)
-                    {
-                        Dictionary<string, PropertyInfo> pInfos = Sqlcom.MappingToProperty<T>(dt);
-                        lists.AddRange(from DataRow dr in dt.Rows select Sqlcom.GetFromReader<T>(dr, pInfos));
-                        lists.TotalCount = totalcount;
-                        lists.TotalPage = totalcount / pagesize + (totalcount % pagesize > 0 ? 1 : 0);
-                      CacheHelper.Insert(cachekey, lists);
-                    }
-                }
-                else
-                    return entitys;
+                Dictionary<string, PropertyInfo> pInfos = Sqlcom.MappingToProperty<T>(dt);
+                lists.AddRange(from DataRow dr in dt.Rows select Sqlcom.GetFromReader<T>(dr, pInfos));
+                lists.TotalCount = totalcount;
+                lists.TotalPage = totalcount / pagesize + (totalcount % pagesize > 0 ? 1 : 0);
             }
-            else
-            {
-                DataTable dt = DbHelper.CreatePage(CreateSql(OperateEnum.SelectPage, pagesize, pageindex), this._selcountstr, out totalcount);
-                if (dt != null)
-                {
-                    Dictionary<string, PropertyInfo> pInfos = Sqlcom.MappingToProperty<T>(dt);
-                    lists.AddRange(from DataRow dr in dt.Rows select Sqlcom.GetFromReader<T>(dr, pInfos));
-                    lists.TotalCount = totalcount;
-                    lists.TotalPage = totalcount / pagesize + (totalcount % pagesize > 0 ? 1 : 0);
-                }
-            }
+
             return lists;
         }
 
@@ -933,32 +886,13 @@ namespace HelloData.FrameWork.Data
             _tradstr = sqlStr;
             List<T> lists = new List<T>();
             DbHelper.Parameters = Parameters;
-            CreateWhereStr(sqlStr);
-            if (CacheHelper.IsOpenCache)
+          
+            DataTable dt = DbHelper.ExeDataTable(sqlStr); if (dt != null)
             {
-                string cachekey = string.Format("entity_{0}_key_{1}", TbName, Cachekeyvalue);
-                List<T> entitys = CacheHelper.Get<List<T>>(cachekey);
-                if (entitys == null || entitys.Count == 0)
-                {
-                    DataTable dt = DbHelper.ExeDataTable(sqlStr);
-                    if (dt != null)
-                    {
-                        Dictionary<string, PropertyInfo> pInfos = Sqlcom.MappingToProperty<T>(dt);
-                        lists.AddRange(from DataRow dr in dt.Rows select Sqlcom.GetFromReader<T>(dr, pInfos));
-                      CacheHelper.Insert(cachekey, lists);
-                    }
-                }
-                else
-                    return entitys;
+                Dictionary<string, PropertyInfo> pInfos = Sqlcom.MappingToProperty<T>(dt);
+                lists.AddRange(from DataRow dr in dt.Rows select Sqlcom.GetFromReader<T>(dr, pInfos));
             }
-            else
-            {
-                DataTable dt = DbHelper.ExeDataTable(sqlStr); if (dt != null)
-                {
-                    Dictionary<string, PropertyInfo> pInfos = Sqlcom.MappingToProperty<T>(dt);
-                    lists.AddRange(from DataRow dr in dt.Rows select Sqlcom.GetFromReader<T>(dr, pInfos));
-                }
-            }
+
             return lists;
         }
 

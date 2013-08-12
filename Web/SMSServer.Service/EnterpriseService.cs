@@ -17,14 +17,45 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HelloData.FWCommon.Cache;
+using SMSService.Logic;
 
 namespace SMSServer.Service
 {
     public class EnterpriseService
     {
-        public SmsEnterpriseCfgInfo GetModelWithKey(string p, int? nullable)
+
+
+        public SmsEnterpriseCfgInfo GetModelWithKey(string cfgkey, int enterpriseId)
+        {
+            return SmsEnterpriseCfgManage.Instance.GetModelWithKey(cfgkey, enterpriseId);
+        }
+
+        public List<SmsEnterpriseInfo> GetEnterprise()
         {
             throw new NotImplementedException();
+        }
+
+        public int[] GetChannels(SmsEnterpriseCfgInfo cfg)
+        {
+            if (cfg == null)
+                return new int[0];
+            if (string.IsNullOrEmpty(cfg.CfgValue))
+                return new int[0];
+            string[] array = cfg.CfgValue.Split(',');
+            int[] iArray = new int[array.Length];
+            for (int a = 0; a < array.Length; a++)
+            {
+                try
+                {
+                    iArray[a] = int.Parse(array[a]);
+                }
+                catch (Exception)
+                { 
+                } 
+            }
+            return iArray;
+
         }
     }
 }

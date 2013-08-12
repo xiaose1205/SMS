@@ -8,7 +8,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 合众接口实现
     /// </summary>
-    public class HZService : BaseMethod
+    public class HZService : BaseService
     {
        
         public static string ResultString(string url)
@@ -71,6 +71,21 @@ namespace SMSServer.OpenPlatform
             string url = "http://61.143.160.139:8080/smshttp?act=smsrecord&";
             url += "unitid=" + usr.unitid + "&username=" + usr.username + "&passwd=" + usr.passwd;
             return ResultString(url);
+        }
+
+        public override SendUser GetUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetSignNum()
+        {
+            return 10001;
+        }
+
+        public override List<MoInfo> GetMo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

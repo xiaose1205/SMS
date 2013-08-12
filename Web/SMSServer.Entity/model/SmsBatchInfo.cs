@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-05 22:46:09
+生成时间:2013-08-09 21:48:23
 生成机器：wangjun
 author：xiaose
 */
@@ -93,6 +93,11 @@ public partial class SmsBatchInfo: BaseEntity
     /// </summary>
     public int? MtCount {get; set;}
 
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? EnterPriseID {get; set;}
+
     public static class Columns 
     { 
         public const string ID = "ID";
@@ -110,5 +115,6 @@ public partial class SmsBatchInfo: BaseEntity
         public const string PostTime = "Post_time";
         public const string BatchState = "BatchState";
         public const string MtCount = "MtCount";
+        public const string EnterPriseID = "EnterPriseID";
     }
 }

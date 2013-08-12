@@ -48,12 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MoInfo.cs" />
     <Compile Include="ServicesFactory.cs" />
     <Compile Include="CookiesModel.cs" />
     <Compile Include="HttpHeaderModel.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="HZService.cs" />
-    <Compile Include="BaseMethod.cs" />
+    <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendUser.cs" />
     <Compile Include="WJXService.cs" />

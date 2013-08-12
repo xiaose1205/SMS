@@ -49,7 +49,7 @@ namespace SMSServer.WcfHost.Batch
                     {
                         #region 获取当前账号发送所走的信道
                         EnterpriseService config = new EnterpriseService();
-                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.EnterPriseID);
+                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.EnterPriseID.Value);
 
                         string[] channels;
                         if (configmodel == null)
@@ -68,7 +68,7 @@ namespace SMSServer.WcfHost.Batch
                             foreach (var batch in AppContent.SendingBatchs)
                             {
                                 if (batch.ID == item.BatchID)
-                                { 
+                                {
                                     item.Channels = channels;
                                 }
                             }

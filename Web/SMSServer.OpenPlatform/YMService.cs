@@ -9,7 +9,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 亿美接口实现
     /// </summary>
-    public class YMService : BaseMethod
+    public class YMService : BaseService
     {
         //调用dll方法
         [DllImport("EUCPComm.dll", EntryPoint = "SendSMS")]  //即时发送
@@ -163,6 +163,21 @@ namespace SMSServer.OpenPlatform
                     resultString = "其他故障值：" + result.ToString();
             }
             return resultString;
+        }
+
+        public override SendUser GetUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetSignNum()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<MoInfo> GetMo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

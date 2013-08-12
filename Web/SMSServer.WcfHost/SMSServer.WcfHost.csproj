@@ -55,7 +55,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Batch\BatchReadService.cs" />
     <Compile Include="Batch\BatchSendService.cs" />
-    <Compile Include="Mo\MoService.cs" />
+    <Compile Include="Mo\ReadMoService.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>

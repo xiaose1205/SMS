@@ -44,9 +44,9 @@ namespace SMSServer.WcfHost
             AppCons.CurrentCache = new WebCache();
 
             //注册发送的信道
-            ServicesFactory.RegisterAppHandler(new HZService());
-            ServicesFactory.RegisterAppHandler(new WJXService());
-            ServicesFactory.RegisterAppHandler(new YMService());
+            ServicesFactory.RegisterApp(new HZService());
+            ServicesFactory.RegisterApp(new WJXService());
+            ServicesFactory.RegisterApp(new YMService());
 
 
             if (!debugLog)

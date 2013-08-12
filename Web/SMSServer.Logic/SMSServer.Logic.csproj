@@ -51,6 +51,7 @@
     <Compile Include="SmsChannelManage.cs" />
     <Compile Include="SmsContentFilterKeyManage.cs" />
     <Compile Include="SmsDeductRecordManage.cs" />
+    <Compile Include="SmsEnterpriseCfgManage.cs" />
     <Compile Include="SmsEnterpriseManage.cs" />
     <Compile Include="SmsMOManage.cs" />
     <Compile Include="SmsOperatorManage.cs" />
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">
       <Project>{5EBB695E-D6E4-4E48-B4E5-B6A674679019}</Project>
       <Name>HelloData.FrameWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelloData.FWCommon\HelloData.FWCommon.csproj">
+      <Project>{f5ec683a-cb1a-4f7f-b779-e3d4f2a9843f}</Project>
+      <Name>HelloData.FWCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSServer.Entity\SMSServer.Entity.csproj">
       <Project>{C30F05CD-C48D-4895-A8AB-06D40950FDF9}</Project>

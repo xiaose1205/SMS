@@ -8,7 +8,7 @@ namespace SMSServer.OpenPlatform
     /// <summary>
     /// 无极限接口实现
     /// </summary>
-    public class WJXService : BaseMethod
+    public class WJXService : BaseService
     {
        
        /// <summary>
@@ -43,6 +43,21 @@ namespace SMSServer.OpenPlatform
         /// <param name="us"></param>
         /// <returns></returns>
         public override string Getascending(SendUser us)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override SendUser GetUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetSignNum()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<MoInfo> GetMo()
         {
             throw new NotImplementedException();
         }
