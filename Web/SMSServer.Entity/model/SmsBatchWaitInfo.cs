@@ -56,7 +56,7 @@ public partial class SmsBatchWaitInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? MsgType {get; set;}
+    public int MsgType {get; set;}
 
     /// <summary>
     ///    

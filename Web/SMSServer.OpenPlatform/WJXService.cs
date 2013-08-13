@@ -16,7 +16,7 @@ namespace SMSServer.OpenPlatform
        /// </summary>
        /// <param name="us"></param>
        /// <returns></returns>
-        public override string SendSMS(SendUser usr)
+        public override string SendSMS(SendUser usr,List<SMSInfo> smsInfos)
         {
             HttpHelper Sendhttp = new HttpHelper();
             Sendhttp.WEncoding = Encoding.UTF8;

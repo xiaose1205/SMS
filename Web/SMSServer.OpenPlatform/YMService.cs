@@ -77,7 +77,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string SendSMS(SendUser us)
+        public override string SendSMS(SendUser us, List<SMSInfo> smsInfos)
         {
             //即时发送      这里是软件序列号    手机号       短信内容     优先级
             int result = SendSMS(us.serialNumber, us.phone, us.msg, us.priority);

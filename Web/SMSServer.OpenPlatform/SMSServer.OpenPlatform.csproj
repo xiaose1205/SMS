@@ -57,6 +57,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendUser.cs" />
+    <Compile Include="SMSInfo.cs" />
     <Compile Include="WJXService.cs" />
     <Compile Include="YMService.cs" />
   </ItemGroup>

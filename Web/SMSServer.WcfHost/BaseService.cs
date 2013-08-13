@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using HelloData.FWCommon.Logging;
 
 namespace SMSServer.WcfHost
 {
@@ -39,19 +40,12 @@ namespace SMSServer.WcfHost
         }
         public void Print(string message)
         {
-            Common.Logger.Logger.CurrentLog.Debug(  this.ServiceName + ":" + message);
+            Logger.CurrentLog.Debug(this.ServiceName + ":" + message);
         }
-        public void Print(string message, LoggerType type)
-        {
-            Common.Logger.Logger.CurrentLog.Debug( this.ServiceName + ":" + message);
-        }
-        public void Print(string message, Exception ex, LoggerType type)
-        {
-            Common.Logger.Logger.CurrentLog.Debug(  this.ServiceName + ":" + message);
-        }
+
         public void Print(string message, Exception ex)
         {
-            Common.Logger.Logger.CurrentLog.Debug( this.ServiceName + ":" + message, ex);
+            Logger.CurrentLog.Debug(this.ServiceName + ":" + message, ex);
         }
         public void ThreadStar(object sender)
         {
@@ -63,7 +57,7 @@ namespace SMSServer.WcfHost
             while (this.State == ServiceState.Open)
             {
                 try
-                { 
+                {
                     WorkHandle();
                 }
                 catch (ThreadAbortException)

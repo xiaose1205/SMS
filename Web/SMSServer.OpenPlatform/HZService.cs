@@ -23,7 +23,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>
-        public override string SendSMS(SendUser usr)
+        public override string SendSMS(SendUser usr, List<SMSInfo> smsInfos)
         {
             //http://61.143.160.139:8080/smshttp?act=sendmsg&unitid=826&username=DGHK&passwd=123456&msg=测试&phone=13533597705
 

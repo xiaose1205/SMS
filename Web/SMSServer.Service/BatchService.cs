@@ -26,7 +26,13 @@ namespace SMSServer.Service
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 获取待发的批次
+        /// 
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
         public List<SmsBatchWaitInfo> GetReadyMt(int p1, string p2)
         {
             throw new NotImplementedException();
