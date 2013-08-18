@@ -61,7 +61,7 @@ public partial class SmsBatchWaitInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? EnterPriseID {get; set;}
+    public int EnterPriseID {get; set;}
 
     public static class Columns 
     { 

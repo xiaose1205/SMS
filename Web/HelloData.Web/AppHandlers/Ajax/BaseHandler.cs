@@ -31,12 +31,12 @@ namespace HelloData.Web.AppHandlers
         public abstract string HandlerName { get; }
 
 
-        HttpResponse Response
+        public HttpResponse Response
         {
             get { return HttpContext.Response; }
         }
 
-        private HttpRequest Request
+        public HttpRequest Request
         {
             get { return HttpContext.Request; }
         }
@@ -63,5 +63,15 @@ namespace HelloData.Web.AppHandlers
 
         public HttpContext HttpContext { get; set; }
 
+        public string DateTostr(DateTime? date)
+        {
+            if (date.HasValue)
+                return date.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            return "";
+        }
+        public string DateTostr(DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd HH:mm:ss");
+        }
     }
 }

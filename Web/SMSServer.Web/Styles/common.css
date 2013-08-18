@@ -5,7 +5,8 @@
     border: 1px solid #A7A6A6;
 }
 .cont_tools {
-    width: 45%;
+    width: 25%;
+    min-width: 150px;
     padding-left: .3em;
     float: right;
     overflow: hidden;

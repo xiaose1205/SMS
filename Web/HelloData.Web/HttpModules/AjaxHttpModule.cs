@@ -31,6 +31,12 @@ namespace HelloData.Web.HttpModules
 
         }
 
+
+        public String ModuleName
+        {
+            get { return "AjaxHttpModule"; }
+        }
+
         public void Init(HttpApplication context)
         {
             context.BeginRequest += AjaxUrl_BeginRequest;
@@ -44,7 +50,8 @@ namespace HelloData.Web.HttpModules
             if (requestPath.Contains("ajax/"))
             {//符合ajax请求的内容
 
-                string[] controls = requestPath.Substring(0, requestPath.IndexOf('?')).Split('/');
+                string[] controls = requestPath.Substring(requestPath.IndexOf("ajax/"),
+                    requestPath.IndexOf('?') > 0 ? requestPath.IndexOf('?') : requestPath.Length - requestPath.IndexOf("ajax/")).Split('/');
                 context.Response.ContentType = "text/plain";
                 HttpRequest Request = context.Request;
                 HttpResponse Response = context.Response;

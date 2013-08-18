@@ -17,14 +17,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SMSServer.Logic;
+using SMSService.Entity;
 
 namespace SMSServer.Service
 {
     public class BatchService
     {
-        public List<SMSService.Entity.SendingBatchModel> GetReadyBatch(int p)
+        public List< SendingBatchModel> GetReadyBatch(int batchCount)
         {
-            throw new NotImplementedException();
+            List<SendingBatchModel> infos = SmsBatchManage.Instance.GetReadyBatch(batchCount);
+            return infos;
         }
         /// <summary>
         /// 获取待发的批次
@@ -44,6 +47,16 @@ namespace SMSServer.Service
         }
 
         public void UpdateBatchState(SMSService.Entity.BatchState batchState, int p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveToMt(SmsBatchWaitInfo model, SMSService.Entity.SendingBatchModel sendingmodel, SMSService.Entity.SendResultEnum sendResultEnum)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteBatchDetial(List<string> phones, string content)
         {
             throw new NotImplementedException();
         }

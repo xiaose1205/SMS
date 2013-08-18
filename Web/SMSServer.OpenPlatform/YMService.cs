@@ -77,32 +77,33 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="us"></param>
         /// <returns></returns>
-        public override string SendSMS(SendUser us, List<SMSInfo> smsInfos)
+        public override int SendSMS(SendUser us, SMSMassInfo smsInfos)
         {
             //即时发送      这里是软件序列号    手机号       短信内容     优先级
             int result = SendSMS(us.serialNumber, us.phone, us.msg, us.priority);
-            if (result == 1)
-                return "发送成功";
-            else if (result == 101)
-                return "网络故障";
-            else if (result == 102)
-                return "其它故障";
-            else if (result == 0)
-                return "失败";
-            else if (result == 100)
-                return "序列号码为空或无效";
-            else if (result == 107)
-                return "手机号码为空或者超过1000个";
-            else if (result == 108)
-                return "手机号码分割符号不正确";
-            else if (result == 109)
-                return "部分手机号码不正确，已删除，其余手机号码被发送";
-            else if (result == 110)
-                return "短信内容为空或超长（70个汉字）";
-            else if (result == 201)
-                return "计费失败，请充值";
-            else
-                return "其他故障值：" + result.ToString();
+            return result;
+            //if (result == 1)
+            //    return "发送成功";
+            //else if (result == 101)
+            //    return "网络故障";
+            //else if (result == 102)
+            //    return "其它故障";
+            //else if (result == 0)
+            //    return "失败";
+            //else if (result == 100)
+            //    return "序列号码为空或无效";
+            //else if (result == 107)
+            //    return "手机号码为空或者超过1000个";
+            //else if (result == 108)
+            //    return "手机号码分割符号不正确";
+            //else if (result == 109)
+            //    return "部分手机号码不正确，已删除，其余手机号码被发送";
+            //else if (result == 110)
+            //    return "短信内容为空或超长（70个汉字）";
+            //else if (result == 201)
+            //    return "计费失败，请充值";
+            //else
+            //    return "其他故障值：" + result.ToString();
         }
 
         public override string GetStatusreport(SendUser us)
@@ -176,6 +177,22 @@ namespace SMSServer.OpenPlatform
         }
 
         public override List<MoInfo> GetMo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int MassCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GroupCount()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public override int SendSMS(SendUser us, SMSGroupInfo smsInfos)
         {
             throw new NotImplementedException();
         }

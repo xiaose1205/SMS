@@ -30,27 +30,36 @@ namespace HelloData.Web.AppHandlers
     {
         public HandlerResponse BindParamToAction(MethodInfo methodInfo, HttpContext context, IAppHandler instance)
         {
-            ParameterInfo[] parameterInfos = methodInfo.GetParameters();
-            /*获取ajax请求的数据*/
-            StreamReader reader = new StreamReader(context.Request.InputStream);
-            string bodyText = reader.ReadToEnd();
-            // string bodyText = "{  \"result\":{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\"},\"ido\":233}";
-            // string bodyText = "{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\",\"ido\":236}";
-            if (String.IsNullOrEmpty(bodyText))
-                return new HandlerResponse().GetDefaultResponse();
-            /*将数据转换到字典*/
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            Dictionary<string, object> dictionary = jss.Deserialize<Dictionary<string, object>>(bodyText);
-            object[] parameters = new object[parameterInfos.Length];
-            int index = 0;
-            foreach (ParameterInfo info in parameterInfos)
+            if (!string.IsNullOrEmpty(context.Request.Params["parame"]) && context.Request.Params["parame"]=="1")
             {
-                parameters[index] = AddValueToPamars(info.Name, info.ParameterType, dictionary);
-                index++;
+                var invoker = FastReflectionCaches.MethodInvokerCache.Get(methodInfo);
+                object result = invoker.Invoke(instance);
+                return (HandlerResponse)result;
             }
-            var invoker = FastReflectionCaches.MethodInvokerCache.Get(methodInfo);
-            object result = invoker.Invoke(instance, parameters);
-            return (HandlerResponse)result;
+            else
+            { 
+                ParameterInfo[] parameterInfos = methodInfo.GetParameters();
+                /*获取ajax请求的数据*/
+                StreamReader reader = new StreamReader(context.Request.InputStream);
+                string bodyText = reader.ReadToEnd();
+                // string bodyText = "{  \"result\":{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\"},\"ido\":233}";
+                // string bodyText = "{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\",\"ido\":236}";
+                if (String.IsNullOrEmpty(bodyText))
+                    return new HandlerResponse().GetDefaultResponse();
+                /*将数据转换到字典*/
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                Dictionary<string, object> dictionary = jss.Deserialize<Dictionary<string, object>>(bodyText);
+                object[] parameters = new object[parameterInfos.Length];
+                int index = 0;
+                foreach (ParameterInfo info in parameterInfos)
+                {
+                    parameters[index] = AddValueToPamars(info.Name, info.ParameterType, dictionary);
+                    index++;
+                }
+                var invoker = FastReflectionCaches.MethodInvokerCache.Get(methodInfo);
+                object result = invoker.Invoke(instance, parameters);
+                return (HandlerResponse)result;
+            }
         }
 
         /// <summary>
@@ -90,7 +99,17 @@ namespace HelloData.Web.AppHandlers
                     Object theObj = System.Activator.CreateInstance(pType);
                     foreach (var property in pInfos)
                     {
-                        property.SetValue(theObj, AddValueToPamars(property.Name, property.PropertyType, dictionary), null);
+                        try
+                        {
+
+                            property.SetValue(theObj, AddValueToPamars(property.Name, property.PropertyType, dictionary), null);
+
+
+                        }
+                        catch (Exception)
+                        {
+
+                        }
                     }
                     return theObj;
                 }
@@ -106,12 +125,22 @@ namespace HelloData.Web.AppHandlers
                         if (d.ContainsKey(infoName))
                             return AddValueToPamars(infoName, pType, d);
                     }
-                    Object theObj = System.Activator.CreateInstance(pType);
-                    foreach (var property in pInfos)
+                    try
                     {
-                        property.SetValue(theObj, AddValueToPamars(property.Name, property.PropertyType, dictionary), null);
+
+
+                        Object theObj = System.Activator.CreateInstance(pType);
+                        if (theObj != null)
+                            foreach (var property in pInfos)
+                            {
+                                property.SetValue(theObj, AddValueToPamars(property.Name, property.PropertyType, dictionary), null);
+                            }
+                        return theObj;
                     }
-                    return theObj;
+                    catch (Exception)
+                    {
+                        return null;
+                    }
                 }
             }
             return null;

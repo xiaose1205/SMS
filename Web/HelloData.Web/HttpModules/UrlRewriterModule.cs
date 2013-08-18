@@ -16,7 +16,10 @@ namespace HelloData.Web.HttpModules
     public class UrlRewriterModule : System.Web.IHttpModule
     {
         static Timer _eventTimer;
-
+        public String ModuleName
+        {
+            get { return "UrlRewriterModule"; }
+        }
         /// <summary>
         /// 实现接口的Init方法
         /// </summary>

@@ -49,7 +49,7 @@ namespace SMSServer.WcfHost.Batch
                     {
                         #region 获取当前账号发送所走的信道
                         EnterpriseService config = new EnterpriseService();
-                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.EnterPriseID.Value);
+                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.EnterPriseID);
 
                         string[] channels;
                         if (configmodel == null)
@@ -59,11 +59,7 @@ namespace SMSServer.WcfHost.Batch
                         }
                         else
                         {
-                            channels = configmodel.CfgValue.Split(',');
-
-                        #endregion
-
-
+                            channels = configmodel.CfgValue.Split(',');   
                             Print("加入队列：" + item.BatchID + "");
                             foreach (var batch in AppContent.SendingBatchs)
                             {
@@ -74,6 +70,7 @@ namespace SMSServer.WcfHost.Batch
                             }
                         }
                         AppContent.SendingMts.Enqueue(item);
+                        #endregion
                     }
 
                 }

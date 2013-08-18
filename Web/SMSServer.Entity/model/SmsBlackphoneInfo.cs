@@ -36,12 +36,8 @@ public partial class SmsBlackphoneInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? OperatorID {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public int? Blacktype {get; set;}
+    public int EnterpriseID { get; set; }
+ 
 
     /// <summary>
     ///    
@@ -53,8 +49,7 @@ public partial class SmsBlackphoneInfo: BaseEntity
         public const string ID = "ID";
         public const string Phone = "Phone";
         public const string CreateTime = "CreateTime";
-        public const string OperatorID = "OperatorID";
-        public const string Blacktype = "Blacktype";
+        public const string EnterpriseID = "EnterpriseID"; 
         public const string Comment = "Comment";
     }
 }

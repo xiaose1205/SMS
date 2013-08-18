@@ -11,7 +11,12 @@ namespace SMSServer.OpenPlatform
         /// 发送短信
         /// </summary>
         /// <returns></returns>
-        public abstract string SendSMS(SendUser us, List<SMSInfo> smsInfos);
+        public abstract int SendSMS(SendUser us, SMSMassInfo smsInfos);
+        /// <summary>
+        /// 发送短信
+        /// </summary>
+        /// <returns></returns>
+        public abstract int SendSMS(SendUser us, SMSGroupInfo smsInfos);
         /// <summary>
         /// 获取状态报告
         /// </summary>
@@ -36,5 +41,15 @@ namespace SMSServer.OpenPlatform
         public abstract int GetSignNum();
 
         public abstract List<MoInfo> GetMo();
+        /// <summary>
+        /// mass的发送大小
+        /// </summary>
+        /// <returns></returns>
+        public abstract int MassCount();
+        /// <summary>
+        /// group发送大小
+        /// </summary>
+        /// <returns></returns>
+        public abstract int GroupCount();
     }
 }

@@ -32,12 +32,15 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajax\BlackHandler.cs" />
     <Compile Include="AppContent.cs" />
     <Compile Include="BatchService.cs" />
     <Compile Include="EnterpriseService.cs" />
@@ -52,6 +55,10 @@
     <ProjectReference Include="..\HelloData.FWCommon\HelloData.FWCommon.csproj">
       <Project>{f5ec683a-cb1a-4f7f-b779-e3d4f2a9843f}</Project>
       <Name>HelloData.FWCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelloData.Web\HelloData.Web.csproj">
+      <Project>{2e597779-c89d-4ff1-a4dd-367fb8c4f877}</Project>
+      <Name>HelloData.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSServer.Entity\SMSServer.Entity.csproj">
       <Project>{c30f05cd-c48d-4895-a8ab-06d40950fdf9}</Project>

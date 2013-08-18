@@ -5,6 +5,7 @@ using System.Text;
 
 using System.Threading;
 using Newtonsoft.Json;
+using SMSServer.OpenPlatform;
 using SMSServer.Service;
 using SMSService.Entity;
 
@@ -38,6 +39,7 @@ namespace SMSServer.WcfHost.Batch
                     SendingMtCount++;
             }
         }
+        EnterpriseService config = new EnterpriseService();
 
         void Sendmt(object sender)
         {
@@ -46,78 +48,91 @@ namespace SMSServer.WcfHost.Batch
             {
                 if (model.Channels.Length == 0)
                 {
-                    // CompleteMt(model, (int)SendResultEnum.CONTACT_ERROR);
+                    CompleteMt(model);
                     return;
                 }
                 if ((SMSEnum)model.MsgType == SMSEnum.Group)
-                {
+                {//群发
                     SMSGroup gGroup = JsonConvert.DeserializeObject<SMSGroup>(model.MsgPack);
 
                 }
                 else
-                {
+                {//组发
                     SMSMass mMass = JsonConvert.DeserializeObject<SMSMass>(model.MsgPack);
+                    foreach (string chanelid in model.Channels)
+                    {
+                        BaseService service = ServicesFactory.Execute(int.Parse(chanelid));
+                        int count = service.MassCount();
+                        for (int i = 0; i < (mMass.phones.Count / count + (mMass.phones.Count % count > 0 ? 1 : 0)); i++)
+                        {
+                            List<string> readyphones = new List<string>();
+                            if (mMass.phones.Count - i * count >= count)
+                                readyphones = mMass.phones.GetRange(i * count, count);
+                            else
+                                readyphones = mMass.phones.GetRange(i * count, mMass.phones.Count - i * count);
+
+                            int result = service.SendSMS(service.GetUser(), GetFromDetails(readyphones, mMass.content));
+                            WriteBatchDetial(readyphones, mMass.content, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result));
+
+                        }
+                    }
+                    CompleteMt(model);
+
                 }
 
                 lock (lockobj)
                     SendingMtCount--;
             }
         }
-        ///// <summary>
-        ///// 转换messageitem  to  wait_mtmodel
-        ///// </summary>
-        ///// <param name="item"></param>
-        ///// <returns></returns>
-        //public SmsBatchWaitInfo ConvertItemTOMtmodel(MessageItem item)
-        //{
-        //    SmsBatchWaitInfo model = new SmsBatchWaitInfo();
-        //    model.BatchID = item.BatchID;
-        //    model.EnterPriseID = item.EnterPriseID;
-        //    model.MsgCount = item.MsgCount;
-        //    model.Msgpack = item.MessageBytes;
-        //    model.Mtid = item.Mtid;
-        //    model.MsgType = item.SendType;
-        //    return model;
-        //}
-        ///// <summary>
-        ///// 处理已经发送过的wait_mt
-        ///// </summary>
-        ///// <param name="model"></param>
-        //public void CompleteMt(SmsBatchWaitInfo model, int result)
-        //{
-        //    Print("发送" + model.BatchID + "结果：" + result);
-        //    SendingBatchModel sendingmodel = null;
-        //    foreach (SendingBatchModel batchmodel in AppContent.SendingBatchs)
-        //    {
-        //        if (batchmodel.BatchID == model.BatchID)
-        //        {
-        //            try
-        //            {
-        //                sendingmodel = batchmodel;
-        //                batchmodel.SendCount++;
-        //                if (batchmodel.SendCount == batchmodel.MtCount)
-        //                {
-        //                    Print("发送完成：" + batchmodel.BatchID + "");
-        //                    //更新状态为完成
-        //                    mrg.UpdateBatchState(BatchState.Complete, batchmodel.BatchID);
-        //                    AppContent.SendingBatchs.Remove(batchmodel);
-        //                    if (model.TaskID != Guid.Empty.ToString() && !string.IsNullOrEmpty(model.TaskID))
-        //                    {
-        //                        TaskManage taskmrg = new TaskManage();
-        //                        //sql语句里面判断是否为一次性的任务，否则就是继续执行。
-        //                        taskmrg.UpdateTaskBySended((int)TaskState.Stop, model.TaskID.ToString());
-        //                    }
-        //                }
-        //                break;
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Print(ex.Message);
-        //            }
-        //        }
+        /// <summary>
+        /// 写入号码详情表
+        /// </summary>
+        /// <param name="phones"></param>
+        /// <param name="content"></param>
+        public void WriteBatchDetial(List<string> phones, string content, SendResultEnum eEnum)
+        {
+            mrg.WriteBatchDetial(phones, content);
+        }
 
-        //    }
-        //    mrg.RemoveToMt(model, sendingmodel, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result));
-        //}
+        public SMSMassInfo GetFromDetails(List<string> phones, string content)
+        {
+            SMSMassInfo info = new SMSMassInfo();
+            info.Content = content;
+            info.Phones = phones;
+            return info;
+        }
+
+        /// <summary>
+        /// 处理已经发送过的wait_mt
+        /// </summary>
+        /// <param name="model"></param>
+        public void CompleteMt(SmsBatchWaitInfo model)
+        {
+            foreach (SendingBatchModel batchmodel in AppContent.SendingBatchs)
+            {
+                if (batchmodel.ID == model.BatchID)
+                {
+                    try
+                    {
+                        //sendingmodel = batchmodel;
+                        batchmodel.SendCount++;
+                        if (batchmodel.SendCount == batchmodel.MtCount)
+                        {
+                            Print("发送完成：" + batchmodel.ID + "");
+                            //更新状态为完成
+                            mrg.UpdateBatchState(BatchState.Complete, batchmodel.ID);
+                            AppContent.SendingBatchs.Remove(batchmodel);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Print(ex.Message);
+                    }
+                    break;
+                }
+
+            }
+            // mrg.RemoveToMt(model, sendingmodel, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result));
+        }
     }
 }

@@ -28,13 +28,13 @@ namespace HelloData.AppHandlers
 
         public static void ExecuteHandler(string controllerName, HttpContext context, string actionName)
         {
-            if (!context.Request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
-            {
-                context.Response.Write(new HandlerResponse() { Message = "只支持json传输协议", Result = 0 }.ToString());
-                return;
-            }
+            //if (!context.Request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+            //{
+            //    context.Response.Write(new HandlerResponse() { Message = "只支持json传输协议", Result = 0 }.ToString());
+            //    return;
+            //}
             IAppHandler handler;
-          
+
             if (s_Handlers.TryGetValue(controllerName, out handler))
             {
                 handler.HttpContext = context;
@@ -47,7 +47,14 @@ namespace HelloData.AppHandlers
                     {// 有操作的方法action
                         hasAction = true;
                         ActionExcute excute = new ActionExcute();
-                        context.Response.Write(excute.BindParamToAction(action, context, handler).ToString());
+                        HandlerResponse handlerResponse = excute.BindParamToAction(action, context, handler);
+                        if (handlerResponse != null)
+                            if (handlerResponse.Result == 101)
+                                context.Response.Write(handlerResponse.Message);
+                            else
+                            {
+                                context.Response.Write(handlerResponse.ToString());
+                            }
                         break;
                     }
                 }

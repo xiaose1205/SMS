@@ -9,6 +9,7 @@ using HelloData.FrameWork.Data;
 using System.Configuration;
 using SMSServer.OpenPlatform;
 using SMSServer.Wcf;
+using SMSServer.WcfHost.Batch;
 
 namespace SMSServer.WcfHost
 {
@@ -60,6 +61,7 @@ namespace SMSServer.WcfHost
             }
             else
             {
+               
                 Logger.CurrentLog.Info("WCF_STARTING");
                 ServiceHost host = new ServiceHost(typeof(SMSServerWcf));
                 if (host.Description.Behaviors.Find<System.ServiceModel.Description.ServiceMetadataBehavior>() == null)

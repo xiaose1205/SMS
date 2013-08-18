@@ -16,11 +16,12 @@ namespace SMSServer.OpenPlatform
        /// </summary>
        /// <param name="us"></param>
        /// <returns></returns>
-        public override string SendSMS(SendUser usr,List<SMSInfo> smsInfos)
+        public override int SendSMS(SendUser usr,SMSMassInfo smsInfos)
         {
             HttpHelper Sendhttp = new HttpHelper();
             Sendhttp.WEncoding = Encoding.UTF8;
-            return Sendhttp.ParMTReport(Sendhttp.ResultPamrs(Sendhttp.GetWebServiceStr(usr.url, usr.method, Sendhttp.CreateSoap(usr)), usr.method)).ToString();
+             Sendhttp.ParMTReport(Sendhttp.ResultPamrs(Sendhttp.GetWebServiceStr(usr.url, usr.method, Sendhttp.CreateSoap(usr)), usr.method)).ToString();
+           return 0;
         }
 
         /// <summary>
@@ -58,6 +59,21 @@ namespace SMSServer.OpenPlatform
         }
 
         public override List<MoInfo> GetMo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int MassCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GroupCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int SendSMS(SendUser us, SMSGroupInfo smsInfos)
         {
             throw new NotImplementedException();
         }

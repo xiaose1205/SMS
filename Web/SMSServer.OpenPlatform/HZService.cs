@@ -23,13 +23,14 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>
-        public override string SendSMS(SendUser usr, List<SMSInfo> smsInfos)
+        public override int SendSMS(SendUser usr, SMSMassInfo smsInfos)
         {
             //http://61.143.160.139:8080/smshttp?act=sendmsg&unitid=826&username=DGHK&passwd=123456&msg=测试&phone=13533597705
 
             string url = "http://61.143.160.139:8080/smshttp?act=sendmsg&";
             url += "unitid=" + usr.unitid + "&username=" + usr.username + "&passwd=" + usr.passwd + "&msg=" + usr.msg + "&phone=" + usr.phone;
-            return ResultString(url);
+             ResultString(url);
+            return 0;
         }
         /// <summary>
         /// 状态报告
@@ -84,6 +85,21 @@ namespace SMSServer.OpenPlatform
         }
 
         public override List<MoInfo> GetMo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int MassCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GroupCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int SendSMS(SendUser us, SMSGroupInfo smsInfos)
         {
             throw new NotImplementedException();
         }

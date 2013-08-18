@@ -23,5 +23,7 @@ namespace SMSService.Entity
     public class SendingBatchModel:SmsBatchInfo
     {
         public bool IsRead { get; set; }
+
+        public int SendCount { get; set; }
     }
 }
