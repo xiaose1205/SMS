@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using SMSService.Entity;
 
 namespace SMSServer.Service
@@ -88,5 +89,65 @@ namespace SMSServer.Service
 
         //public static string ParmsModel = "#{0}#";
         public static string ParmsModel = "@{0}";
+
+        /// <summary>
+        /// 唯一实例
+        /// </summary>
+        class Currentset
+        {
+            static Currentset()
+            {
+            }
+            internal static readonly AppContent Instance = new AppContent();
+        }
+        public static AppContent Current
+        {
+            get { return Currentset.Instance; }
+        }
+        /// <summary>
+        /// 用户的登录处理
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="expriseTime"></param>
+        public void LoginUser(SmsAccountInfo user, DateTime expriseTime)
+        {
+            HttpCookie cookie = new HttpCookie("userid", user.ID.ToString());
+            cookie.Expires = expriseTime;
+
+            HttpContext.Current.Request.Cookies.Add(cookie);
+            cookie = new HttpCookie("account", user.Account);
+            cookie.Expires = expriseTime;
+            HttpContext.Current.Request.Cookies.Add(cookie);
+        }
+        /// <summary>
+        /// 获取当前的用户的iD跟UserName
+        /// </summary>
+        /// <returns></returns>
+        public SmsAccountInfo GetCurrentUser()
+        {
+            var httpCookie1 = HttpContext.Current.Request.Cookies["userid"];
+            if (httpCookie1 != null && !string.IsNullOrEmpty(httpCookie1.Value))
+            {
+                SmsAccountInfo user = new SmsAccountInfo();
+                var httpCookie = HttpContext.Current.Request.Cookies["userid"];
+                if (httpCookie != null)
+                    user.ID = int.Parse(httpCookie.Value);
+                var cookie = HttpContext.Current.Request.Cookies["account"];
+                if (cookie != null)
+                    user.Account = cookie.Value;
+                return user;
+            }
+            return null;
+
+        }
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <param name="user"></param>
+        public void LogoutUser()
+        {
+            HttpContext.Current.Request.Cookies.Remove("userID");
+            HttpContext.Current.Request.Cookies.Remove("userName");
+        }
     }
 }

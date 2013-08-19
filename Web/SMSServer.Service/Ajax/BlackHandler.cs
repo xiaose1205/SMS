@@ -38,16 +38,57 @@ namespace SMSServer.Service.Ajax
             get { return "black"; }
         }
 
+        public SmsBlackphoneInfo GetBlackInfo(int id)
+        {
+            if (id <= 0)
+                return null;
+            else
+            {
+                return SmsBlackPhoneManage.Instance.GetInfo(id);
+            }
+        }
+
         public HandlerResponse AddBlack()
         {
-            return CreateHandler(0, "登录失败");
+            SmsBlackphoneInfo info = new SmsBlackphoneInfo();
+            info.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
+            info.Phone = Request.Params["phone"];
+            info.CreateTime = DateTime.Now;
+            SmsBlackPhoneManage.Instance.AddBlack(info);
+            return CreateHandler(1, "添加成功");
+
+        }
+        public HandlerResponse EditBlack()
+        {
+            SmsBlackphoneInfo info = new SmsBlackphoneInfo();
+            info.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
+            info.Phone = Request.Params["phone"];
+            info.CreateTime = DateTime.Now;
+            info.ID = Convert.ToInt32(Request.Params["id"]);
+            SmsBlackPhoneManage.Instance.EditBlack(info);
+            return CreateHandler(1, "修改成功");
+
+        }
+        public HandlerResponse Delete()
+        {
+            string ids = Request.Params["ids"];
+            if (string.IsNullOrEmpty(ids))
+                return CreateHandler(0, "删除失败");
+            SmsBlackPhoneManage.Instance.DeleteBlack(ids.TrimEnd(','));
+            return CreateHandler(1, "删除成功");
+
+        }
+        public HandlerResponse Clear()
+        {
+            int EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
+            SmsBlackPhoneManage.Instance.ClearBlack(EnterpriseID);
+            return CreateHandler(1, "清除成功");
 
         }
 
-
         public HandlerResponse GetList()
         {
-            int PageIndex=int.Parse(Request.Params["PageIndex"]);
+            int PageIndex = int.Parse(Request.Params["PageIndex"]);
             int PageSize = int.Parse(Request.Params["PageSize"]);
             PageList<SmsBlackphoneInfo> infos = SmsBlackPhoneManage.Instance.GetList(PageIndex, PageSize);
 

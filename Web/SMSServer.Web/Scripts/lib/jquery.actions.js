@@ -71,9 +71,9 @@ $.DeleteAction = function (handler, funCallback, msg) {
     for (var i = 0; i < checkedRows.length; i++) {
         ids += checkedRows[i][0] + ",";
     }
-    var showmsg = (msg == undefined || msg == "" ? "确认要删除选中数据吗？" : msg)
+    var showmsg = (msg == undefined || msg == "" ? "确认要删除选中数据吗？" : msg);
     art.dialog.confirm(showmsg, function () {
-        $.post("/Ajax.ashx", { handler: handler, type: 'delete', ids: ids }, function (data) {
+        $.post("../ajax/" + handler + "/delete?parame=1", { ids: ids }, function (data) {
             if (data.Result == 1) {
                 funCallback();
             } else {
@@ -88,7 +88,7 @@ $.DeleteAction = function (handler, funCallback, msg) {
 /*删除操作不是checkbox时的操作*/
 $.DeleteActionSingle = function (handler, id, funCallback) {
     art.dialog.confirm("确认要删除选中数据吗?", function () {
-        $.post("/Ajax.ashx", { handler: handler, type: 'delete', ids: id }, function (data) {
+        $.post("../ajax/" + handler + "/delete?parame=1", { ids: id }, function (data) {
             if (data.Result == 1) {
                 $.showSuccess(data.Message);
                 funCallback();
@@ -178,16 +178,16 @@ function showInf(a, b) {
     $("#infoshow").removeClass().addClass(a);
     $("#infoshow").find("strong").html(a + ":");
     $("#infoshow").find("span").html(b);
-  
+
 }
 
 $.showError = function (message, func, element) {
     var api = art.dialog.open.api;
     if (api == undefined) {
-        showInf("error",message);
+        showInf("error", message);
     } else {
         api.info(message, "error");
-      
+
     }
     if (typeof (func) != "undefined")
         func();

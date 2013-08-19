@@ -21,9 +21,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="child_form ">
-    <form id="form1" runat="server"  class="form-horizontal">
+  
         <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>
-    </form>
+  
 </body>
 </html>

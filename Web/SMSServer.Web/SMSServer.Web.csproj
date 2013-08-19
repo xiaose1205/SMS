@@ -520,8 +520,10 @@
     <Content Include="Images\warning.png" />
     <Content Include="Images\未命名-2.png" />
     <Content Include="Index.html" />
+    <Content Include="Info\AddBlack.aspx" />
     <Content Include="Info\Black.aspx" />
     <Content Include="Info\Contact.aspx" />
+    <Content Include="Info\EditBlack.aspx" />
     <Content Include="Info\KeyWord.aspx" />
     <Content Include="Info\Template.aspx" />
     <Content Include="Login.aspx" />
@@ -733,6 +735,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Info\AddBlack.aspx.cs">
+      <DependentUpon>AddBlack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\AddBlack.aspx.designer.cs">
+      <DependentUpon>AddBlack.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Info\Black.aspx.cs">
       <DependentUpon>Black.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -746,6 +755,13 @@
     </Compile>
     <Compile Include="Info\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\EditBlack.aspx.cs">
+      <DependentUpon>EditBlack.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\EditBlack.aspx.designer.cs">
+      <DependentUpon>EditBlack.aspx</DependentUpon>
     </Compile>
     <Compile Include="Info\KeyWord.aspx.cs">
       <DependentUpon>KeyWord.aspx</DependentUpon>
@@ -833,6 +849,7 @@
     <Content Include="Master\MainSite.Master" />
     <Content Include="Master\ChildSite.Master" />
     <Content Include="demo\ajax.ashx" />
+    <Content Include="log4net.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
