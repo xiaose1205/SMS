@@ -24,12 +24,31 @@ namespace SMSServer.Logic
                         Condition = ConditionEnum.And,
                         FiledName = SmsAccountInfo.Columns.ID
                     });
-                    action.AddJoin(ViewJoinEnum.innerjoin, "SmsAccountInfo", "SmsMoInfo", field);
+                    action.AddJoin(ViewJoinEnum.innerjoin, "sms_account", "sms_mo", field);
                 }
                 action.SqlWhere(SmsAccountInfo.Columns.Account, username);
                 action.SqlWhere(SmsAccountInfo.Columns.Password, password);
                 action.PageSize = 20;
                 return action.QueryPage<SmsMoInfo>(1);
+            }
+        }
+
+        public PageList<SmsMoInfo> GetList(int PageIndex, int PageSize, string phone, string content, string starttime, string endtime)
+        {
+            using (SelectAction action = new SelectAction(this.Entity))
+            {
+                if (!string.IsNullOrEmpty(phone))
+                    action.SqlWhere(SmsMoInfo.Columns.Phone, phone, ConditionEnum.And, RelationEnum.Like);
+                if (!string.IsNullOrEmpty(content))
+                    action.SqlWhere(SmsMoInfo.Columns.Content, content, ConditionEnum.And, RelationEnum.Like);
+                if (!string.IsNullOrEmpty(starttime) && string.IsNullOrEmpty(endtime))
+                    action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, starttime, ConditionEnum.And, RelationEnum.LargeThen);
+                if (string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
+                    action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
+                if (!string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
+                    action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
+                action.PageSize = PageSize;
+                return action.QueryPage<SmsMoInfo>(PageIndex); 
             }
         }
     }

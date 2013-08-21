@@ -2,16 +2,16 @@
 $(document).ready(function () {
     if ($("#grid") != undefined) {
         gird = $("#grid").flexigrid({
-            url: 'demo/Ajax.ashx?handler=user&type=list',
+            url: 'ajax/phonehistory/getlist?parame=1',
             dataType: 'json',
             colModel: [
                 { display: 'id', name: 'id', width: 100, align: 'center', hide: true },
-                { display: '批次名称', name: 'name', width: 150, align: 'center' },
-                { display: '手机号码', name: 'identity', width: 100, align: 'center' },
-                { display: '短信内容', name: 'identity', width: 250, align: 'center' },
-                { display: '状态', name: 'identity', width: 80, align: 'center' },
-                { display: '状态描述', name: 'identity', width: 150, align: 'center' },
-                { display: '发送时间', name: 'identity', width: 100, align: 'center' }
+                { display: '批次名称', name: 'batchname', width: 150, align: 'center' },
+                { display: '手机号码', name: 'phone', width: 100, align: 'center' },
+                { display: '短信内容', name: 'content', width: 250, align: 'center' },
+                { display: '状态', name: 'state', width: 80, align: 'center' },
+                { display: '状态描述', name: 'stateremark', width: 150, align: 'center' },
+                { display: '发送时间', name: 'posttime', width: 100, align: 'center' }
             ],
             minColToggle: 1,
             onrowclick: false,

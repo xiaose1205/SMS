@@ -521,9 +521,13 @@
     <Content Include="Images\未命名-2.png" />
     <Content Include="Index.html" />
     <Content Include="Info\AddBlack.aspx" />
+    <Content Include="Info\AddKeyword.aspx" />
+    <Content Include="Info\AddTemplate.aspx" />
     <Content Include="Info\Black.aspx" />
     <Content Include="Info\Contact.aspx" />
     <Content Include="Info\EditBlack.aspx" />
+    <Content Include="Info\EditKeyword.aspx" />
+    <Content Include="Info\EditTemplate.aspx" />
     <Content Include="Info\KeyWord.aspx" />
     <Content Include="Info\Template.aspx" />
     <Content Include="Login.aspx" />
@@ -742,6 +746,20 @@
     <Compile Include="Info\AddBlack.aspx.designer.cs">
       <DependentUpon>AddBlack.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Info\AddKeyword.aspx.cs">
+      <DependentUpon>AddKeyword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\AddKeyword.aspx.designer.cs">
+      <DependentUpon>AddKeyword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\AddTemplate.aspx.cs">
+      <DependentUpon>AddTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\AddTemplate.aspx.designer.cs">
+      <DependentUpon>AddTemplate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Info\Black.aspx.cs">
       <DependentUpon>Black.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -762,6 +780,20 @@
     </Compile>
     <Compile Include="Info\EditBlack.aspx.designer.cs">
       <DependentUpon>EditBlack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\EditKeyword.aspx.cs">
+      <DependentUpon>EditKeyword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\EditKeyword.aspx.designer.cs">
+      <DependentUpon>EditKeyword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\EditTemplate.aspx.cs">
+      <DependentUpon>EditTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\EditTemplate.aspx.designer.cs">
+      <DependentUpon>EditTemplate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Info\KeyWord.aspx.cs">
       <DependentUpon>KeyWord.aspx</DependentUpon>
@@ -869,6 +901,10 @@
     <ProjectReference Include="..\HelloData.Web\HelloData.Web.csproj">
       <Project>{2e597779-c89d-4ff1-a4dd-367fb8c4f877}</Project>
       <Name>HelloData.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SMSServer.Entity\SMSServer.Entity.csproj">
+      <Project>{C30F05CD-C48D-4895-A8AB-06D40950FDF9}</Project>
+      <Name>SMSServer.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMSServer.Service\SMSServer.Service.csproj">
       <Project>{d59ab992-2bc3-414d-997c-51a687bd1983}</Project>

@@ -47,7 +47,7 @@ $(document).ready(function () {
         $.AddAction(450, 110, '添加黑名单', "info/addblack.aspx", doQuery);;
     });
     $("#edit").click(function () {
-        $.EditAction(450, 110, '修改黑名单', "info/EditBlack.aspx", doQuery);;
+        $.EditAction(450, 110, '修改黑名单', "info/EditBlack.aspx?id={0}", doQuery);;
     });
     $("#delete").click(function () {
         $.DeleteAction("black", doQuery, "是否确认删除所选的数据？");
@@ -74,6 +74,19 @@ function add() {
         return;
     }
 
+    /*下面这段代码会自动处理提交信息，并执行返回后的function*/
+    $.childAction(function () {
+        var api = art.dialog.open.api;
+        api && api.close();
+    });
+}
+function edit() {
+    if ($.trim($(".phone").val()) == "") {
+        $.showError("手机号码不能为空");
+        return;
+    }
+    $("input[name='id']").val($(".blackid").val());
+    $("input[name='phone']").val($(".phone").val());
     /*下面这段代码会自动处理提交信息，并执行返回后的function*/
     $.childAction(function () {
         var api = art.dialog.open.api;

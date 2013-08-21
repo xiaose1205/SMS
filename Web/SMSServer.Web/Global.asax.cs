@@ -37,7 +37,12 @@ namespace SMSServer.Web
             //使用内置的webcache缓存
             AppCons.CurrentCache = new WebCache();
             //注册ajax
-            AppHandlerManager.RegisterAppHandler(new BlackHandler()); 
+            AppHandlerManager.RegisterAppHandler(new BlackHandler());
+            AppHandlerManager.RegisterAppHandler(new TemplateHandler());
+            AppHandlerManager.RegisterAppHandler(new KeyWordHandler());
+            AppHandlerManager.RegisterAppHandler(new MoHandler());
+            AppHandlerManager.RegisterAppHandler(new BatchHistoryHandler());
+            AppHandlerManager.RegisterAppHandler(new PhoneHistoryHandler());
         }
 
         protected void Session_Start(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-09 21:48:23
+生成时间:2013-08-21 23:54:05
 生成机器：wangjun
 author：xiaose
 */
@@ -36,12 +36,7 @@ public partial class SmsBlackphoneInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? OperatorID {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public int? Blacktype {get; set;}
+    public int? EnterpriseID {get; set;}
 
     /// <summary>
     ///    
@@ -53,8 +48,7 @@ public partial class SmsBlackphoneInfo: BaseEntity
         public const string ID = "ID";
         public const string Phone = "Phone";
         public const string CreateTime = "CreateTime";
-        public const string OperatorID = "OperatorID";
-        public const string Blacktype = "Blacktype";
+        public const string EnterpriseID = "EnterpriseID";
         public const string Comment = "Comment";
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="SmsMOManage.cs" />
     <Compile Include="SmsOperatorManage.cs" />
     <Compile Include="SmsTelesegManage.cs" />
+    <Compile Include="SmsTemplateManage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">

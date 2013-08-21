@@ -8,18 +8,18 @@ using SMSServer.Service.Ajax;
 
 namespace SMSServer.Web.Info
 {
-    public partial class EditBlack : System.Web.UI.Page
+    public partial class EditKeyword : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 int id = Convert.ToInt32(Request.QueryString["id"]);
-                BlackHandler handler = new BlackHandler();
-                SmsBlackphoneInfo info = handler.GetBlackInfo(id);
-                phone.Value = info.Phone;
-                blackid.Value = info.ID.ToString();
-                
+                KeyWordHandler handler = new KeyWordHandler();
+                SmsContentfilterkeyInfo info = handler.GetKeywordInfo(id);
+                keyword.Value = info.Key;
+                keywordid.Value = info.ID.ToString();
+
             }
         }
     }

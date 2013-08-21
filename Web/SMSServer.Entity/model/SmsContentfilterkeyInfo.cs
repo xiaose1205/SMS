@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-09 21:48:23
+生成时间:2013-08-20 23:56:34
 生成机器：wangjun
 author：xiaose
 */
@@ -26,7 +26,7 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public int? OperatorID {get; set;}
+    public int? EnterpriseID {get; set;}
 
     /// <summary>
     ///    
@@ -46,7 +46,7 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     public static class Columns 
     { 
         public const string ID = "ID";
-        public const string OperatorID = "OperatorID";
+        public const string EnterpriseID = "EnterpriseID";
         public const string Key = "Key";
         public const string Keytype = "Keytype";
         public const string CreateTime = "CreateTime";
