@@ -8,12 +8,12 @@ using SMSServer.Service;
 
 namespace SMSServer.Web
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class MainPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(AppContent.Current.GetCurrentUser()!=null)
-                Response.Redirect("MainPage.aspx");
+            if (AppContent.Current.GetCurrentUser()== null)
+                Response.Redirect("Login.aspx");
         }
     }
 }

@@ -4,7 +4,7 @@
     <script src="../Scripts/site/black.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form id="form1" runat="server" class="form-horizontal" action="../ajax/black/addblack?parame=1">
+    <form id="form1" runat="server" class="form-horizontal" action="../ajax/black/addblack">
         <div class="z-legend">
             <strong>黑名单</strong>
         </div>

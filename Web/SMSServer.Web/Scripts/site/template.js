@@ -2,7 +2,7 @@
 $(document).ready(function () {
     if ($("#grid") != undefined) {
         gird = $("#grid").flexigrid({
-            url: 'ajax/template/getlist?parame=1',
+            url: 'ajax/template/getlist',
             dataType: 'json',
             colModel: [
                 { display: 'id', name: 'id', width: 100, align: 'center', hide: false },
@@ -54,7 +54,7 @@ $(document).ready(function () {
     });
     $("#clear").click(function () {
         art.dialog.confirm("是否确认清空所有？", function () {
-            $.post("../ajax/template/clear?parame=1", {}, function (data) {
+            $.post("../ajax/template/clear", {}, function (data) {
                 if (data.Result == 1) {
                     doQuery();
                 } else {

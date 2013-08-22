@@ -3,7 +3,7 @@
     <script src="../Scripts/site/template.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <form id="form1" runat="server" class="form-horizontal" action="../ajax/template/edittemplate?parame=1">
+    <form id="form1" runat="server" class="form-horizontal" action="../ajax/template/edittemplate">
         <div class="z-legend">
             <strong>常用短语</strong>
         </div>

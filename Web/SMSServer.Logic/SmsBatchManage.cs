@@ -9,7 +9,7 @@ using SMSService.Entity;
 namespace SMSServer.Logic
 {
     public class SmsBatchManage : BaseManager<SmsBatchManage, SmsBatchInfo>
-    { 
+    {
         public List<SendingBatchModel> GetReadyBatch(int batchCount)
         {
             List<SendingBatchModel> models = new List<SendingBatchModel>();
@@ -27,7 +27,7 @@ namespace SMSServer.Logic
             using (UpdateAction update = new UpdateAction(this.Entity))
             {
                 update.SqlWhere(SmsBatchInfo.Columns.ID, ids.TrimEnd(','), ConditionEnum.And, RelationEnum.In);
-                update.SqlKeyValue(SmsBatchInfo.Columns.BatchState, (int) BatchState.Sending);
+                update.SqlKeyValue(SmsBatchInfo.Columns.BatchState, (int)BatchState.Sending);
                 update.Excute();
             }
             return models;
@@ -37,30 +37,30 @@ namespace SMSServer.Logic
         {
             using (SelectAction action = new SelectAction(""))
             {
-                action.SqlClomns = "_sms_batch_details.*,_sms_batch.batchname";
+                action.SqlClomns = "_sms_batch.*,_sms_batch_amount.RealAmount,_sms_batch_amount.SendAmount,_sms_batch_amount.SuccessAmount";
                 {
                     //添加视图的关联关系
                     List<QueryField> field = new List<QueryField>();
                     field.Add(new QueryField()
                     {
-                        Value = SmsBatchDetailsInfo.Columns.BatchID,
+                        Value = SmsBatchAmountInfo.Columns.BatchID,
                         Condition = ConditionEnum.And,
                         FiledName = SmsBatchInfo.Columns.ID
                     });
-                    action.AddJoin(ViewJoinEnum.innerjoin, "sms_batch", "sms_batch_details", field);
+                    action.AddJoin(ViewJoinEnum.innerjoin, "sms_batch", "sms_batch_amount", field);
                 }
                 if (!string.IsNullOrEmpty(batchname))
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.Phone, batchname);
+                    action.SqlWhere(SmsBatchInfo.Columns.BatchName, batchname, ConditionEnum.And, RelationEnum.Like);
                 if (!string.IsNullOrEmpty(state) && int.Parse(state) > 0)
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.State, state);
+                    action.SqlWhere(SmsBatchInfo.Columns.BatchState, state);
                 if (!string.IsNullOrEmpty(starttime) && string.IsNullOrEmpty(endtime))
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, starttime, ConditionEnum.And, RelationEnum.LargeThen);
-                if (string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
+                    action.SqlWhere(SmsBatchInfo.Columns.PostTime, starttime, ConditionEnum.And, RelationEnum.LargeThen);
                 if (!string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
+                    action.SqlWhere(SmsBatchInfo.Columns.PostTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
+                if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
+                    action.SqlWhere(SmsBatchInfo.Columns.PostTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
 
-                action.PageSize = 20;
+                action.PageSize = PageSize;
                 return action.QueryPage<BatchMoreInfo>(PageIndex);
             }
         }

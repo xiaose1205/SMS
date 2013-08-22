@@ -2,7 +2,7 @@
 $(document).ready(function () {
     if ($("#grid") != undefined) {
         gird = $("#grid").flexigrid({
-            url: 'ajax/batchhistory/getlist?parame=1',
+            url: 'ajax/batchhistory/getlist',
             dataType: 'json',
             colModel: [
                 { display: 'id', name: 'id', width: 100, align: 'center', hide: true },
@@ -25,7 +25,7 @@ $(document).ready(function () {
             resizable: false,
             width: 'auto',
             height: 'auto',
-            autoload: true,
+            autoload: false,
             singleSelect: true,
             specify: true,
             striped: true,
@@ -33,5 +33,25 @@ $(document).ready(function () {
             mutliSelect: true,
             showToggleBtn: true
         });
+        doQuery();
     }
+    function doQuery() {
+        var contactQuery = {
+            "batchname": $("#name").val(),
+            "state": $("#state").val(),
+            "starttime": $("#starttime").val(),
+            "endtime": $("#endtime").val()
+        };
+        var params = {
+            extParam: contactQuery
+        };
+        if ($('#grid')[0] != undefined) {
+            $('#grid')[0].p.newp = 1;
+            $('#grid').flexOptions(params).flexReload();
+        }
+    }
+
+    $("#search").click(function() {
+        doQuery();
+    });
 });

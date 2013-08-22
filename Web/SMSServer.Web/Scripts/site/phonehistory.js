@@ -2,7 +2,7 @@
 $(document).ready(function () {
     if ($("#grid") != undefined) {
         gird = $("#grid").flexigrid({
-            url: 'ajax/phonehistory/getlist?parame=1',
+            url: 'ajax/phonehistory/getlist',
             dataType: 'json',
             colModel: [
                 { display: 'id', name: 'id', width: 100, align: 'center', hide: true },

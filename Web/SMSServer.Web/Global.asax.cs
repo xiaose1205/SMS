@@ -43,6 +43,7 @@ namespace SMSServer.Web
             AppHandlerManager.RegisterAppHandler(new MoHandler());
             AppHandlerManager.RegisterAppHandler(new BatchHistoryHandler());
             AppHandlerManager.RegisterAppHandler(new PhoneHistoryHandler());
+            AppHandlerManager.RegisterAppHandler(new UserHandler());
         }
 
         protected void Session_Start(object sender, EventArgs e)

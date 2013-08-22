@@ -531,6 +531,7 @@
     <Content Include="Info\KeyWord.aspx" />
     <Content Include="Info\Template.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MainPage.aspx" />
     <Content Include="Master\main.aspx" />
     <Content Include="Master\Upload.aspx" />
     <Content Include="Mo\moindex.aspx" />
@@ -662,6 +663,7 @@
     <Content Include="Scripts\site\contact.js" />
     <Content Include="Scripts\site\demo.js" />
     <Content Include="Scripts\site\keyword.js" />
+    <Content Include="Scripts\site\login.js" />
     <Content Include="Scripts\site\mo.js" />
     <Content Include="Scripts\site\phonehistory.js" />
     <Content Include="Scripts\site\sms.js" />
@@ -815,6 +817,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master\ChildSite.Master.cs">
       <DependentUpon>ChildSite.Master</DependentUpon>

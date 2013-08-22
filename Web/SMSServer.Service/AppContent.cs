@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using HelloData.Util;
 using SMSService.Entity;
 
 namespace SMSServer.Service
@@ -111,13 +112,9 @@ namespace SMSServer.Service
         /// <param name="expriseTime"></param>
         public void LoginUser(SmsAccountInfo user, DateTime expriseTime)
         {
-            HttpCookie cookie = new HttpCookie("userid", user.ID.ToString());
-            cookie.Expires = expriseTime;
+            Cookie.SaveCookie("userid", user.ID.ToString(), 20);
+            Cookie.SaveCookie("account", user.Account, 20);
 
-            HttpContext.Current.Request.Cookies.Add(cookie);
-            cookie = new HttpCookie("account", user.Account);
-            cookie.Expires = expriseTime;
-            HttpContext.Current.Request.Cookies.Add(cookie);
         }
         /// <summary>
         /// 获取当前的用户的iD跟UserName
@@ -125,16 +122,16 @@ namespace SMSServer.Service
         /// <returns></returns>
         public SmsAccountInfo GetCurrentUser()
         {
-            var httpCookie1 = HttpContext.Current.Request.Cookies["userid"];
-            if (httpCookie1 != null && !string.IsNullOrEmpty(httpCookie1.Value))
+
+            if (!string.IsNullOrEmpty(Cookie.GetCookie("userid")))
             {
                 SmsAccountInfo user = new SmsAccountInfo();
-                var httpCookie = HttpContext.Current.Request.Cookies["userid"];
+                var httpCookie = Cookie.GetCookie("userid");
                 if (httpCookie != null)
-                    user.ID = int.Parse(httpCookie.Value);
-                var cookie = HttpContext.Current.Request.Cookies["account"];
+                    user.ID = int.Parse(httpCookie);
+                var cookie = Cookie.GetCookie("account");
                 if (cookie != null)
-                    user.Account = cookie.Value;
+                    user.Account = cookie;
                 return user;
             }
             return null;

@@ -43,9 +43,9 @@ namespace SMSServer.Logic
                     action.SqlWhere(SmsMoInfo.Columns.Content, content, ConditionEnum.And, RelationEnum.Like);
                 if (!string.IsNullOrEmpty(starttime) && string.IsNullOrEmpty(endtime))
                     action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, starttime, ConditionEnum.And, RelationEnum.LargeThen);
-                if (string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
-                    action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
                 if (!string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
+                    action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
+                if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
                     action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
                 action.PageSize = PageSize;
                 return action.QueryPage<SmsMoInfo>(PageIndex); 

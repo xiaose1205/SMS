@@ -32,12 +32,12 @@ namespace SMSServer.Logic
                     action.SqlWhere(SmsBatchDetailsInfo.Columns.State, state);
                 if (!string.IsNullOrEmpty(starttime) && string.IsNullOrEmpty(endtime))
                     action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, starttime, ConditionEnum.And, RelationEnum.LargeThen);
-                if (string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
                 if (!string.IsNullOrEmpty(endtime) && string.IsNullOrEmpty(starttime))
+                    action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
+                if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
                     action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
 
-                action.PageSize = 20;
+                action.PageSize = PageSize;
                 return action.QueryPage<SmsBatchDetailsMoreInfo>(PageIndex);
             }
         }

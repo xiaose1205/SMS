@@ -3,7 +3,7 @@
     <script src="../Scripts/site/keyword.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-  <form id="form1" runat="server" class="form-horizontal" action="../ajax/keyword/addkeyword?parame=1">
+  <form id="form1" runat="server" class="form-horizontal" action="../ajax/keyword/addkeyword">
         <div class="z-legend">
             <strong>关键词</strong>
         </div>

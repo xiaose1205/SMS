@@ -2,7 +2,7 @@
 $(document).ready(function() {
     if ($("#grid") != undefined) {
         gird = $("#grid").flexigrid({
-            url: 'ajax/mo/getlist?parame=1',
+            url: 'ajax/mo/getlist',
             colModel: [
                 { display: 'id', name: 'id', width: 100, align: 'center', hide: false },
                 { display: '手机号码', name: 'phone', width: 100, align: 'center' },

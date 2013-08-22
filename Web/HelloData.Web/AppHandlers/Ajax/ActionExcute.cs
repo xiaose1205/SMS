@@ -30,36 +30,36 @@ namespace HelloData.Web.AppHandlers
     {
         public HandlerResponse BindParamToAction(MethodInfo methodInfo, HttpContext context, IAppHandler instance)
         {
-            if (!string.IsNullOrEmpty(context.Request.Params["parame"]) && context.Request.Params["parame"]=="1")
+            //if (!string.IsNullOrEmpty(context.Request.Params["parame"]) && context.Request.Params["parame"]=="1")
             {
                 var invoker = FastReflectionCaches.MethodInvokerCache.Get(methodInfo);
                 object result = invoker.Invoke(instance);
                 return (HandlerResponse)result;
             }
-            else
-            { 
-                ParameterInfo[] parameterInfos = methodInfo.GetParameters();
-                /*获取ajax请求的数据*/
-                StreamReader reader = new StreamReader(context.Request.InputStream);
-                string bodyText = reader.ReadToEnd();
-                // string bodyText = "{  \"result\":{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\"},\"ido\":233}";
-                // string bodyText = "{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\",\"ido\":236}";
-                if (String.IsNullOrEmpty(bodyText))
-                    return new HandlerResponse().GetDefaultResponse();
-                /*将数据转换到字典*/
-                JavaScriptSerializer jss = new JavaScriptSerializer();
-                Dictionary<string, object> dictionary = jss.Deserialize<Dictionary<string, object>>(bodyText);
-                object[] parameters = new object[parameterInfos.Length];
-                int index = 0;
-                foreach (ParameterInfo info in parameterInfos)
-                {
-                    parameters[index] = AddValueToPamars(info.Name, info.ParameterType, dictionary);
-                    index++;
-                }
-                var invoker = FastReflectionCaches.MethodInvokerCache.Get(methodInfo);
-                object result = invoker.Invoke(instance, parameters);
-                return (HandlerResponse)result;
-            }
+            //else
+            //{ 
+            //ParameterInfo[] parameterInfos = methodInfo.GetParameters();
+            ///*获取ajax请求的数据*/
+            //StreamReader reader = new StreamReader(context.Request.InputStream);
+            //string bodyText = reader.ReadToEnd();
+            //// string bodyText = "{  \"result\":{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\"},\"ido\":233}";
+            //// string bodyText = "{ \"Result\":-1,\"Message\":\"不支持GET请求\",\"PostTime\":\"2012-2-2\",\"ido\":236}";
+            //if (String.IsNullOrEmpty(bodyText))
+            //    return new HandlerResponse().GetDefaultResponse();
+            ///*将数据转换到字典*/
+            //JavaScriptSerializer jss = new JavaScriptSerializer();
+            //Dictionary<string, object> dictionary = jss.Deserialize<Dictionary<string, object>>(bodyText);
+            //object[] parameters = new object[parameterInfos.Length];
+            //int index = 0;
+            //foreach (ParameterInfo info in parameterInfos)
+            //{
+            //    parameters[index] = AddValueToPamars(info.Name, info.ParameterType, dictionary);
+            //    index++;
+            //}
+            //var invoker = FastReflectionCaches.MethodInvokerCache.Get(methodInfo);
+            //object result = invoker.Invoke(instance, parameters);
+            //return (HandlerResponse)result;
+            //}
         }
 
         /// <summary>

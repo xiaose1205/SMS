@@ -73,7 +73,7 @@ $.DeleteAction = function (handler, funCallback, msg) {
     }
     var showmsg = (msg == undefined || msg == "" ? "确认要删除选中数据吗？" : msg);
     art.dialog.confirm(showmsg, function () {
-        $.post("../ajax/" + handler + "/delete?parame=1", { ids: ids }, function (data) {
+        $.post("../ajax/" + handler + "/delete", { ids: ids }, function (data) {
             if (data.Result == 1) {
                 funCallback();
             } else {
@@ -88,7 +88,7 @@ $.DeleteAction = function (handler, funCallback, msg) {
 /*删除操作不是checkbox时的操作*/
 $.DeleteActionSingle = function (handler, id, funCallback) {
     art.dialog.confirm("确认要删除选中数据吗?", function () {
-        $.post("../ajax/" + handler + "/delete?parame=1", { ids: id }, function (data) {
+        $.post("../ajax/" + handler + "/delete", { ids: id }, function (data) {
             if (data.Result == 1) {
                 $.showSuccess(data.Message);
                 funCallback();
