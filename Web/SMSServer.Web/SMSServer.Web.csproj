@@ -521,11 +521,13 @@
     <Content Include="Images\未命名-2.png" />
     <Content Include="Index.html" />
     <Content Include="Info\AddBlack.aspx" />
+    <Content Include="Info\AddContact.aspx" />
     <Content Include="Info\AddKeyword.aspx" />
     <Content Include="Info\AddTemplate.aspx" />
     <Content Include="Info\Black.aspx" />
     <Content Include="Info\Contact.aspx" />
     <Content Include="Info\EditBlack.aspx" />
+    <Content Include="Info\EditContact.aspx" />
     <Content Include="Info\EditKeyword.aspx" />
     <Content Include="Info\EditTemplate.aspx" />
     <Content Include="Info\KeyWord.aspx" />
@@ -541,6 +543,7 @@
     <Content Include="Scripts\lib\artDialog.source.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="Scripts\lib\calendar.js" />
     <Content Include="Scripts\lib\DD_belatedPNG.js" />
     <Content Include="Scripts\lib\flexigrid-1.1A.js" />
     <Content Include="Scripts\lib\flexigrid.js" />
@@ -557,6 +560,9 @@
     <Content Include="Scripts\lib\jquery.tagsinput.min.js" />
     <Content Include="Scripts\lib\jquery.textchange.min.js" />
     <Content Include="Scripts\lib\jquery.ztree.all-3.5.min.js" />
+    <Content Include="Scripts\lib\lang\en.js" />
+    <Content Include="Scripts\lib\lang\zh-cn.js" />
+    <Content Include="Scripts\lib\lang\zh-tw.js" />
     <Content Include="Scripts\lib\skins\aero.css" />
     <Content Include="Scripts\lib\skins\aero\aero_s.png" />
     <Content Include="Scripts\lib\skins\aero\aero_s2.png" />
@@ -656,6 +662,14 @@
     <Content Include="Scripts\lib\skins\opera\s2.png" />
     <Content Include="Scripts\lib\skins\simple.css" />
     <Content Include="Scripts\lib\skins\twitter.css" />
+    <Content Include="Scripts\lib\skin\datePicker.gif" />
+    <Content Include="Scripts\lib\skin\default\datepicker.css" />
+    <Content Include="Scripts\lib\skin\default\img.gif" />
+    <Content Include="Scripts\lib\skin\WdatePicker.css" />
+    <Content Include="Scripts\lib\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\lib\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\lib\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\lib\WdatePicker.js" />
     <Content Include="Scripts\menu.js" />
     <Content Include="Scripts\Script.js" />
     <Content Include="Scripts\site\batchhistory.js" />
@@ -748,6 +762,13 @@
     <Compile Include="Info\AddBlack.aspx.designer.cs">
       <DependentUpon>AddBlack.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Info\AddContact.aspx.cs">
+      <DependentUpon>AddContact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\AddContact.aspx.designer.cs">
+      <DependentUpon>AddContact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Info\AddKeyword.aspx.cs">
       <DependentUpon>AddKeyword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -782,6 +803,13 @@
     </Compile>
     <Compile Include="Info\EditBlack.aspx.designer.cs">
       <DependentUpon>EditBlack.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\EditContact.aspx.cs">
+      <DependentUpon>EditContact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\EditContact.aspx.designer.cs">
+      <DependentUpon>EditContact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Info\EditKeyword.aspx.cs">
       <DependentUpon>EditKeyword.aspx</DependentUpon>

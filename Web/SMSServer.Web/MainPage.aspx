@@ -22,7 +22,8 @@
     <link href="Styles/flexigrid.css" rel="stylesheet" type="text/css" />
     <script src="Scripts/menu.js"></script>
     <link href="Styles/common.css" rel="stylesheet" />
-
+    <script src="Scripts/lib/WdatePicker.js"></script>
+    <link href="Scripts/lib/skin/WdatePicker.css" rel="stylesheet" />
     <!--[if IE 6]>
     <script type="text/javascript" src="Scripts/lib/DD_belatedPNG.js" ></script>
     <script type="text/javascript">DD_belatedPNG.fix('div,img');</script>

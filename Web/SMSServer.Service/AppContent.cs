@@ -132,6 +132,7 @@ namespace SMSServer.Service
                 var cookie = Cookie.GetCookie("account");
                 if (cookie != null)
                     user.Account = cookie;
+                user.EnterpriseID = 1;
                 return user;
             }
             return null;

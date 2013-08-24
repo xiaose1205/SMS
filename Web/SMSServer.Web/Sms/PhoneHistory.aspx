@@ -18,10 +18,10 @@
             <input id="phone" size="16" class="input-medium" placeholder="请输入手机号码"
                 type="text" />
             <span>开始时间:</span>
-            <input id="starttime" size="16" class="input-medium" placeholder="请输入开始时间"
+            <input id="starttime" size="16" class="input-medium  Wdate"  onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"  placeholder="请输入开始时间"
                 type="text" />
             <span>结束时间:</span>
-            <input id="endtime" size="16" class="input-medium" placeholder="请输入结束时间"
+            <input id="endtime" size="16" class="input-medium   Wdate"  onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"  placeholder="请输入结束时间"
                 type="text" />
             <span>状态:</span>
             <select>

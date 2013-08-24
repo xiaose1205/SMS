@@ -21,10 +21,10 @@
             <input id="Text1" size="16" class="input-medium" placeholder="请输入短信内容"
                 type="text" />
             <span>开始时间:</span>
-            <input id="Text2" size="16" class="input-medium" placeholder="请输入短信内容"
+            <input id="Text2" size="16" class="input-medium  Wdate"  onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"  placeholder="请输入短信内容"
                 type="text" />
             <span>结束时间:</span>
-            <input id="Text3" size="16" class="input-medium" placeholder="请输入短信内容"
+            <input id="Text3" size="16" class="input-medium   Wdate"  onFocus="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"  placeholder="请输入短信内容"
                 type="text" />
         </div>
     </div>

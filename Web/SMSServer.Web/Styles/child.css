@@ -216,3 +216,8 @@ table.z-datagrid tfoot td {
 .invisible {
     visibility: hidden;
 }
+.red {
+    color: red;
+    font-size: 10px;
+    margin-left: 5px;
+}

@@ -68,8 +68,9 @@ $(document).ready(function () {
             onRename: onRename
         }
     };
+    var treeN = null;
     function beforeClick(treeId, treeNode) {
-
+        treeN = treeNode;
         var contactQuery = {
             "gid": treeNode.id,
             "phone": $("#phone").val(),
@@ -83,6 +84,16 @@ $(document).ready(function () {
             $('#grid').flexOptions(params).flexReload();
         }
     }
+
+    function getNodeId() {
+        if (treeN == null) {
+            return 0;
+        } else {
+            return treeN.id;
+        }
+
+    }
+
     function beforeRemove(treeId, treeNode) {
         return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
     }
@@ -171,6 +182,59 @@ $(document).ready(function () {
 
         zTree.removeNode(treeNode, true);
     });
+    $("#add").click(function () {
+        var id = getNodeId();
+        if (id == 0)
+            alert("请先选择一个分组");
+        else
+            $.AddAction(450, 310, '添加联系人', "info/addcontact.aspx?gid="+id, doQuery);;
+
+    });
+    $("#edit").click(function () {
+        $.AddAction(450, 310, '修改联系人', "info/editcontact.aspx", doQuery);;
+
+    });
+    $("#delete").click(function () {
+        $.DeleteAction("contact", doQuery, "是否确认删除所选的数据？");
+
+    });
+    $("#clear").click(function () {
+
+    });
+    $("#search").click(function () {
+        doQuery();
+    });
+    $("#inport").click(function () {
+
+    });
 });
 
+function add() {
+    if ($.trim($("#name").val()) == "") {
+        $.showError("姓名不能为空");
+        return;
+    }
+    if ($.trim($("#phone").val()) == "") {
+        $.showError("手机号码不能为空");
+        return;
+    }
 
+    /*下面这段代码会自动处理提交信息，并执行返回后的function*/
+    $.childAction(function () {
+        var api = art.dialog.open.api;
+        api && api.close();
+    });
+}
+function edit() {
+    if ($.trim($(".phone").val()) == "") {
+        $.showError("手机号码不能为空");
+        return;
+    }
+    $("input[name='id']").val($(".blackid").val());
+    $("input[name='phone']").val($(".phone").val());
+    /*下面这段代码会自动处理提交信息，并执行返回后的function*/
+    $.childAction(function () {
+        var api = art.dialog.open.api;
+        api && api.close();
+    });
+}
