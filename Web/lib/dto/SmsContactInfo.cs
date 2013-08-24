@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-21 23:54:05
+生成时间:2013-08-24 01:55:32
 生成机器：wangjun
 author：xiaose
 */
@@ -63,6 +63,16 @@ public partial class SmsContactInfo: BaseEntity
     /// </summary>
     public DateTime CreateTime {get; set;}
 
+    /// <summary>
+    ///    
+    /// </summary>
+    public int? GroupID {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string GroupCode {get; set;}
+
     public static class Columns 
     { 
         public const string ID = "ID";
@@ -74,5 +84,7 @@ public partial class SmsContactInfo: BaseEntity
         public const string AvailFlag = "AvailFlag";
         public const string IDCard = "IDCard";
         public const string CreateTime = "CreateTime";
+        public const string GroupID = "GroupID";
+        public const string GroupCode = "GroupCode";
     }
 }

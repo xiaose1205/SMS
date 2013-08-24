@@ -48,6 +48,8 @@
     <Compile Include="SmsBatchDetailsManage.cs" />
     <Compile Include="SmsBlackPhoneManage.cs" />
     <Compile Include="SmsChannelManage.cs" />
+    <Compile Include="SmsContactGroupManage.cs" />
+    <Compile Include="SmsContactManage.cs" />
     <Compile Include="SmsContentFilterKeyManage.cs" />
     <Compile Include="SmsDeductRecordManage.cs" />
     <Compile Include="SmsEnterpriseCfgManage.cs" />
