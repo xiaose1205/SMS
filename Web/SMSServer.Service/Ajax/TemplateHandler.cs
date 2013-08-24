@@ -52,7 +52,7 @@ namespace SMSServer.Service.Ajax
         {
             SmsTemplateInfo info = new SmsTemplateInfo();
             info.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
-            info.SmsContent = Request.Params["phone"];
+            info.SmsContent = Request.Params["template"];
             info.CreateTime = DateTime.Now;
             SmsTemplateManage.Instance.AddTemplate(info);
             return CreateHandler(1, "添加成功");
@@ -62,7 +62,7 @@ namespace SMSServer.Service.Ajax
         {
             SmsTemplateInfo info = new SmsTemplateInfo();
             info.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
-            info.SmsContent = Request.Params["phone"];
+            info.SmsContent = Request.Params["template"];
             info.CreateTime = DateTime.Now;
             info.ID = Convert.ToInt32(Request.Params["id"]);
             SmsTemplateManage.Instance.EditTemplate(info);

@@ -37,5 +37,23 @@ namespace SMSService.Logic
                 return action.QueryPage<SmsContactInfo>(pageindex);
             }
         }
+
+        public SmsContactInfo GetContact(int id)
+        {
+            using (SelectAction action = new SelectAction(this.Entity))
+            {
+                action.SqlWhere(SmsContactInfo.Columns.ID, id);
+                return action.QueryEntity<SmsContactInfo>();
+            }
+        }
+
+        public void DeleteContact(string ids)
+        {
+            using (DeleteAction action = new DeleteAction(this.Entity))
+            {
+                action.SqlWhere(SmsContactInfo.Columns.ID, ids, ConditionEnum.And, RelationEnum.In);
+                action.Excute();
+            }
+        }
     }
 }

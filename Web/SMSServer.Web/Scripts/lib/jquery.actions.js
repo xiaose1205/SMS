@@ -208,16 +208,16 @@ $.showError = function (message, func, element) {
 };
 
 $.showSuccess = function (message, func) {
-    art.dialog({
-        icon: 'succeed',
-        lock: true,
-        fixed: true,
-        content: message,
-        ok: function () {
-            if (typeof (func) != "undefined")
-                func();
-        }
-    });
+    var api = art.dialog.open.api;
+    if (api == undefined) {
+        showInf("success", message);
+    } else {
+        api.info(message, "success");
+
+    }
+    if (typeof (func) != "undefined")
+        func();
+    
 };
 $.alert = function (result, message, func) {
     art.dialog({

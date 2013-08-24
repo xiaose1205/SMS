@@ -23,7 +23,17 @@ namespace HelloData.FWCommon.Reflection
                 if (!this.m_cache.TryGetValue(key, out value))
                 {
                     value = this.Create(key);
-                    this.m_cache[key] = value;
+                    try
+                    {
+                        this.m_cache[key] = value;
+
+                    }
+                    catch (Exception)
+                    {
+                      
+                    }
+                   
+                   
                 }
             }
 

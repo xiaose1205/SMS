@@ -531,6 +531,8 @@
     <Content Include="Info\EditKeyword.aspx" />
     <Content Include="Info\EditTemplate.aspx" />
     <Content Include="Info\KeyWord.aspx" />
+    <Content Include="Info\SelectTemplate.aspx" />
+    <Content Include="Info\SelTemplate.aspx" />
     <Content Include="Info\Template.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
@@ -831,6 +833,20 @@
     </Compile>
     <Compile Include="Info\KeyWord.aspx.designer.cs">
       <DependentUpon>KeyWord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\SelectTemplate.aspx.cs">
+      <DependentUpon>SelectTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\SelectTemplate.aspx.designer.cs">
+      <DependentUpon>SelectTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Info\SelTemplate.aspx.cs">
+      <DependentUpon>SelTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Info\SelTemplate.aspx.designer.cs">
+      <DependentUpon>SelTemplate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Info\Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>

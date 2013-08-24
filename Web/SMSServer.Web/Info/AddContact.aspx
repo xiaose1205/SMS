@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ScriptHolder" runat="server">
     <script src="../Scripts/lib/WdatePicker.js"></script>
     <link href="../Scripts/lib/skin/WdatePicker.css" rel="stylesheet" />
+    <script src="../Scripts/site/contact.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <form id="form1" runat="server" class="form-horizontal" action="../ajax/contact/addcontact">

@@ -34,8 +34,9 @@ $(document).ready(function () {
         doQuery();
     }
     function doQuery() {
+        var id = getNodeId();
         var contactQuery = {
-            "gid": 0,
+            "gid": id,
             "phone": $("#phone").val(),
             "name": $("#name").val()
         };
@@ -191,7 +192,7 @@ $(document).ready(function () {
 
     });
     $("#edit").click(function () {
-        $.AddAction(450, 310, '修改联系人', "info/editcontact.aspx", doQuery);;
+        $.EditAction(450, 310, '修改联系人', "info/editcontact.aspx?id={0}", doQuery);;
 
     });
     $("#delete").click(function () {
@@ -226,12 +227,14 @@ function add() {
     });
 }
 function edit() {
-    if ($.trim($(".phone").val()) == "") {
+    if ($.trim($("#name").val()) == "") {
+        $.showError("姓名不能为空");
+        return;
+    }
+    if ($.trim($("#phone").val()) == "") {
         $.showError("手机号码不能为空");
         return;
     }
-    $("input[name='id']").val($(".blackid").val());
-    $("input[name='phone']").val($(".phone").val());
     /*下面这段代码会自动处理提交信息，并执行返回后的function*/
     $.childAction(function () {
         var api = art.dialog.open.api;

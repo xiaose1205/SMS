@@ -5,10 +5,9 @@ $(document).ready(function () {
             url: 'ajax/template/getlist',
             dataType: 'json',
             colModel: [
-                { display: 'id', name: 'id', width: 100, align: 'center', hide: false },
-                { display: '常用短语', name: 'content', width: 100, align: 'center' },
-
-                 { display: '接收时间', name: 'createtime', width: 150, align: 'center' }
+                 { display: 'id', name: 'id', width: 50, align: 'center', hide: false },
+                        { display: '常用短语', name: 'content', width: 300, align: 'center' },
+                        { display: ' 创建时间', name: 'createtime', width: 100, align: 'center' }
             ],
             minColToggle: 1,
             onrowclick: false,
@@ -70,7 +69,7 @@ $(document).ready(function () {
 
 function add() {
     if ($.trim($("#template").val()) == "") {
-        $.showError("手机号码不能为空");
+        $.showError("短语不能为空");
         return;
     }
 
@@ -89,6 +88,17 @@ function edit() {
     $("input[name='template']").val($(".template").val());
     /*下面这段代码会自动处理提交信息，并执行返回后的function*/
     $.childAction(function () {
+        var api = art.dialog.open.api;
+        api && api.close();
+    });
+
+    $("#select").click(function () {
+        var checkedRows = $("#grid").getCheckedRows();
+        if (!checkedRows || checkedRows.length <= 0) {
+            $.showError("请选择需要的数据！");
+            return false;
+        }
+        art.dialog.data("content", checkedRows[i][1]);
         var api = art.dialog.open.api;
         api && api.close();
     });

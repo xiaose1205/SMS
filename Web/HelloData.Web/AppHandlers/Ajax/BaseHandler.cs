@@ -71,6 +71,8 @@ namespace HelloData.Web.AppHandlers
         }
         public string DateTostr(DateTime date)
         {
+            if (date.ToString().Equals(DateTime.MinValue.ToString()))
+                return "";
             return date.ToString("yyyy-MM-dd HH:mm:ss");
         }
     }

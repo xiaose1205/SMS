@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -57,8 +58,17 @@ namespace SMSServer.Service.Ajax
                 row.cell.Add("phone", item.Mobile);
                 row.cell.Add("name", item.Name);
                 row.cell.Add("comment", item.Comment);
-                row.cell.Add("sex", item.Sex);
-                row.cell.Add("birthday", item.Birthday);
+                switch (item.Sex)
+                {
+                    case 1:
+                        row.cell.Add("sex", "男");
+                        break;
+                    case 2:
+                        row.cell.Add("sex", "女"); break;
+                    default:
+                        row.cell.Add("sex", "保密"); break;
+                }
+                row.cell.Add("birthday", DateTostr(item.Birthday));
                 row.cell.Add("createtime", DateTostr(item.CreateTime));
                 data.rows.Add(row);
             }
@@ -74,6 +84,8 @@ namespace SMSServer.Service.Ajax
             string phone = Request.Params["phone"];
             string sex = Request.Params["sex"];
             string birthday = Request.Params["birthday"];
+            if (string.IsNullOrEmpty(birthday))
+                birthday = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
             string remark = Request.Params["remark"];
             string gid = Request.Params["gid"];
             SmsContactInfo info = new SmsContactInfo();
@@ -82,10 +94,57 @@ namespace SMSServer.Service.Ajax
             info.GroupID = int.Parse(gid);
             info.Sex = int.Parse(sex);
             info.Comment = remark;
+            info.Birthday = DateTime.Parse(birthday);
             info.CreateTime = DateTime.Now;
             info.EnterpriseId = AppContent.Current.GetCurrentUser().EnterpriseID;
             SmsContactManage.Instance.Add(info);
             return CreateHandler(1, "添加成功");
+        }
+        public HandlerResponse editContact()
+        {
+
+            string id = Request.Params["id"];
+            int cid = 0;
+            if (string.IsNullOrEmpty(id) || !int.TryParse(id, out cid))
+            {
+
+                return CreateHandler(0, "主键不存在");
+            }
+            if(cid==0)
+                return CreateHandler(0, "主键不存在");
+            string name = Request.Params["name"];
+            string phone = Request.Params["phone"];
+            string sex = Request.Params["sex"];
+            string birthday = Request.Params["birthday"];
+          
+            if (string.IsNullOrEmpty(birthday))
+                birthday = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+            string remark = Request.Params["remark"];
+            string gid = Request.Params["gid"];
+            SmsContactInfo info = new SmsContactInfo();
+            info.ID = cid;
+            info.Mobile = phone;
+            info.Name = name; 
+            info.Sex = int.Parse(sex);
+            info.Comment = remark;
+            info.Birthday = DateTime.Parse(birthday);
+            info.CreateTime = DateTime.Now;
+            info.EnterpriseId = AppContent.Current.GetCurrentUser().EnterpriseID;
+            SmsContactManage.Instance.Save(info);
+            return CreateHandler(1, "更新成功");
+        }
+        public SmsContactInfo GetContact(int id)
+        {
+            return SmsContactManage.Instance.GetContact(id);
+        }
+        public HandlerResponse Delete()
+        {
+            string ids = Request.Params["ids"];
+            if (string.IsNullOrEmpty(ids))
+                return CreateHandler(0, "删除失败");
+            SmsContactManage.Instance.DeleteContact(ids.TrimEnd(','));
+            return CreateHandler(1, "删除成功");
+
         }
     }
 }
