@@ -51,7 +51,7 @@ public partial class SmsBatchWaitInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string MsgPack {get; set;}
+    public byte[] MsgPack {get; set;}
 
     /// <summary>
     ///    

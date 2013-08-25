@@ -100,8 +100,12 @@
                     <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icon_sms.png" />短信管理</a></h3>
                 <ul>
                     <li>
-                        <a href="#" page="sms/smssend.aspx" title="发送短信">
-                            <img src="Images/icons/email_send.gif" />发送短信</a>
+                        <a href="#" page="sms/smssend.aspx" title="联系人发送">
+                            <img src="Images/icons/email_send.gif" />联系人发送</a>
+                    </li>
+                        <li>
+                        <a href="#" page="sms/filesend.aspx" title="文件发送">
+                            <img src="Images/icons/email_send.gif" />文件发送</a>
                     </li>
                     <li>
                         <a href="#" page="sms/phonehistory.aspx" title="号码历史">

@@ -5,8 +5,8 @@ $(document).ready(function () {
             url: 'ajax/template/getlist',
             dataType: 'json',
             colModel: [
-                 { display: 'id', name: 'id', width: 50, align: 'center', hide: false },
-                        { display: '常用短语', name: 'content', width: 300, align: 'center' },
+                 { display: 'id', name: 'id', width: 30, align: 'center', hide: false },
+                        { display: '常用短语', name: 'content', width: 400, align: 'center' },
                         { display: ' 创建时间', name: 'createtime', width: 100, align: 'center' }
             ],
             minColToggle: 1,
@@ -43,10 +43,10 @@ $(document).ready(function () {
     }
 
     $("#add").click(function () {
-        $.AddAction(450, 110, '添加常用短语', "info/addtemplate.aspx", doQuery);;
+        $.AddAction(450, 160, '添加常用短语', "info/addtemplate.aspx", doQuery);;
     });
     $("#edit").click(function () {
-        $.EditAction(450, 110, '修改常用短语', "info/EditTemplate.aspx?id={0}", doQuery);;
+        $.EditAction(450, 160, '修改常用短语', "info/EditTemplate.aspx?id={0}", doQuery);;
     });
     $("#delete").click(function () {
         $.DeleteAction("template", doQuery, "是否确认删除所选的数据？");
@@ -80,13 +80,11 @@ function add() {
     });
 }
 function edit() {
-    if ($.trim($(".template").val()) == "") {
-        $.showError("手机号码不能为空");
+    if ($.trim($("#template").val()) == "") {
+        $.showError("短语不能为空");
         return;
     }
-    $("input[name='id']").val($(".templateid").val());
-    $("input[name='template']").val($(".template").val());
-    /*下面这段代码会自动处理提交信息，并执行返回后的function*/
+     /*下面这段代码会自动处理提交信息，并执行返回后的function*/
     $.childAction(function () {
         var api = art.dialog.open.api;
         api && api.close();

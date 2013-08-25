@@ -9,15 +9,14 @@
         <div class="z-legend">
             <strong>黑名单</strong>
         </div>
-        <input name="id" value="" runat="server" id="blackid" type="hidden" class="blackid" />
+        <input name="id" value="<%=bid %>" type="hidden" />
         <div class="control-group">
-            <label class="control-label" for="phone">手机号码</label>
+            <label class="control-label" for="phone">黑名单</label>
             <div class="controls">
-                <input type="text" id="phone" name="phone1" runat="server" class="phone" />
+                <input type="text" id="phone" name="phone" value="<%=phone %>" />
             </div>
         </div>
-        <input name="id" value="" type="hidden" />
-        <input name="phone" type="hidden" />
+
         <%---将button,input 放在这个容器里面就会自动处理 ----%>
         <div class="autool_buttons" id="actions">
             <input type="button" value="确认" onclick="edit();" />

@@ -10,6 +10,8 @@ namespace SMSServer.Web.Info
 {
     public partial class EditBlack : System.Web.UI.Page
     {
+        public string phone = "";
+        public string bid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -17,9 +19,9 @@ namespace SMSServer.Web.Info
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 BlackHandler handler = new BlackHandler();
                 SmsBlackphoneInfo info = handler.GetBlackInfo(id);
-                phone.Value = info.Phone;
-                blackid.Value = info.ID.ToString();
-                
+                phone  = info.Phone;
+                bid = info.ID.ToString();
+                Page.DataBind();
             }
         }
     }

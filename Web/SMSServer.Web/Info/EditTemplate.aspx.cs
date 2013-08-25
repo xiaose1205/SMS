@@ -10,6 +10,8 @@ namespace SMSServer.Web.Info
 {
     public partial class EditTemplate : System.Web.UI.Page
     {
+        public string template = "";
+        public string tid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -17,8 +19,9 @@ namespace SMSServer.Web.Info
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 TemplateHandler handler = new TemplateHandler();
                 SmsTemplateInfo info = handler.GetTemplateInfo(id);
-                template.Value = info.SmsContent;
-                templateid.Value = info.ID.ToString();
+                template = info.SmsContent;
+                tid = info.ID.ToString();
+                Page.DataBind();
 
             }
         }

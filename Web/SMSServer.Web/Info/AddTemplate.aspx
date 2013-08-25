@@ -1,9 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/ChildSite.Master" AutoEventWireup="true" CodeBehind="AddTemplate.aspx.cs" Inherits="SMSServer.Web.Info.AddTemplate" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ScriptHolder" runat="server">
     <script src="../Scripts/site/template.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-      <form id="form1" runat="server" class="form-horizontal" action="../ajax/template/addtemplate">
+    <form id="form1" runat="server" class="form-horizontal" action="../ajax/template/addtemplate">
         <div class="z-legend">
             <strong>常用短语</strong>
         </div>
@@ -11,7 +12,7 @@
         <div class="control-group">
             <label class="control-label" for="template">常用短语</label>
             <div class="controls">
-                <input type="text" id="template" name="template" />
+                <textarea id="template" name="template" style="height:80px"></textarea>
             </div>
         </div>
         <%---将button,input 放在这个容器里面就会自动处理 ----%>

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\lib\Aspose.Cells.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -51,6 +54,7 @@
     <Compile Include="AppHandlers\Ajax\IAppHandler.cs" />
     <Compile Include="AppHandlers\Ajax\ReflectedController.cs" />
     <Compile Include="AppHandlers\Ajax\TestHandler.cs" />
+    <Compile Include="FileUtily.cs" />
     <Compile Include="HttpModules\AjaxHttpModule.cs" />
     <Compile Include="HttpModules\MultiHttpModule.cs" />
     <Compile Include="HttpModules\UrlRewriterModule.cs" />

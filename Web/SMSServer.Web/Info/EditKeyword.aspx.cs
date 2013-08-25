@@ -10,6 +10,8 @@ namespace SMSServer.Web.Info
 {
     public partial class EditKeyword : System.Web.UI.Page
     {
+        public string keyword = "";
+        public string kid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -17,8 +19,9 @@ namespace SMSServer.Web.Info
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 KeyWordHandler handler = new KeyWordHandler();
                 SmsContentfilterkeyInfo info = handler.GetKeywordInfo(id);
-                keyword.Value = info.Key;
-                keywordid.Value = info.ID.ToString();
+                keyword = info.Keyword;
+                kid = info.ID.ToString();
+                Page.DataBind();
 
             }
         }

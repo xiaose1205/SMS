@@ -22,9 +22,16 @@ using System.Web;
 
 namespace HelloData.FWCommon.Utils
 {
-    
+
     public class StringPlus
     {
+
+        public static bool StrToBool(string str, bool defaultB)
+        {
+            bool.TryParse(str, out defaultB);
+            return defaultB;
+        }
+
         /// <summary>
         /// 把字符串按照分隔符转换成 List
         /// </summary>
@@ -624,10 +631,10 @@ namespace HelloData.FWCommon.Utils
         }
 
 
-   
+
         #region 删除最后一个字符之后的字符
 
-    
+
         /// <summary>
         /// 判断字符串是否是中文
         /// </summary>
@@ -653,7 +660,7 @@ namespace HelloData.FWCommon.Utils
             }
             return false;
         }
-       
+
         /// <summary>
         /// 生成指定长度的字符串,即生成strLong个str字符串
         /// </summary>

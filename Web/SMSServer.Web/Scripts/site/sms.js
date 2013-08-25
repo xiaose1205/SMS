@@ -230,9 +230,20 @@ $(document).ready(function () {
             $.showError("请输入手机号码或者选择联系人");
             return;
         }
-        $.post("ajax/template/addtemplate", { template: $("#sendcontent").val() }, function (data) {
+        if ($.trim($("#txtName").val()) == "") {
+            $.showError("批次名称不能为空");
+            return;
+        }
+        $.post("ajax/sms/smssend", {
+            content: $("#sendcontent").val(),
+            mobiles: tags, batchname: $("#txtName").val(),
+            batchremark: $("#txtRemark").val()
+                  , fkeyword: $("#IsFilterKey").attr("checked") == "checked"
+                    , fblack: $("#IsFilterBlack").attr("checked") == "checked"
+                      , frepeat: $("#cbxNoAgain").attr("checked") == "checked"
+        }, function (data) {
             if (data.Result == 1) {
-                $.showSuccess("添加成功");
+                $.showSuccess("提交成功");
             } else {
                 $.showError(data.Message);
             }

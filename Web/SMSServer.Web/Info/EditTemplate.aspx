@@ -7,15 +7,15 @@
         <div class="z-legend">
             <strong>常用短语</strong>
         </div>
-        <input name="id" value="" runat="server" id="templateid" type="hidden" class="templateid" />
+        <input name="id" value="<%=tid %>"   type="hidden"  />
         <div class="control-group">
             <label class="control-label" for="template">常用短语</label>
             <div class="controls">
-                <input type="text" id="template" name="template1" runat="server" class="template" />
+                <textarea id="template" name="template"  rows="3" style="height:80px"><%=template %></textarea>
+           
             </div>
         </div>
-        <input name="id" value="" type="hidden" />
-        <input name="template" type="hidden" />
+        
         <%---将button,input 放在这个容器里面就会自动处理 ----%>
         <div class="autool_buttons" id="actions">
             <input type="button" value="确认" onclick="edit();" />

@@ -7,15 +7,14 @@
         <div class="z-legend">
             <strong>关键词</strong>
         </div>
-        <input name="id" value="" runat="server" id="keywordid" type="hidden" class="keywordid" />
+        <input name="id" value="<%=kid %>"  id="keywordid" type="hidden"   />
         <div class="control-group">
-            <label class="control-label" for="keyword">手机号码</label>
+            <label class="control-label" for="keyword">关键词</label>
             <div class="controls">
-                <input type="text" id="keyword" name="keyword1" runat="server" class="keyword" />
+                <input type="text" id="keyword" name="keyword" value="<%=keyword %>"  />
             </div>
         </div>
-        <input name="id" value="" type="hidden" />
-        <input name="keyword" type="hidden" />
+ 
         <%---将button,input 放在这个容器里面就会自动处理 ----%>
         <div class="autool_buttons" id="actions">
             <input type="button" value="确认" onclick="edit();" />

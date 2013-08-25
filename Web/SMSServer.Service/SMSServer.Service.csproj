@@ -47,6 +47,7 @@
     <Compile Include="Ajax\KeyWordHandler.cs" />
     <Compile Include="Ajax\MoHandler.cs" />
     <Compile Include="Ajax\PhoneHistoryHandler.cs" />
+    <Compile Include="Ajax\SmsHandler.cs" />
     <Compile Include="Ajax\TemplateHandler.cs" />
     <Compile Include="Ajax\UserHandler.cs" />
     <Compile Include="AppContent.cs" />

@@ -61,21 +61,10 @@
             }
             if (result == 1) {
                 // art.dialog(message, options.EndPost);
-                art.dialog({
-                    lock: true,
-                    fixed: true,
-                    icon: 'succeed',
-                    content: message,
-                    ok: options.EndPost
-                });
+                $.showSuccess(message, options.EndPost);
             }
             else {
-                art.dialog({
-                    icon: 'error',
-                    lock: true,
-                    fixed: true,
-                    content: message
-                });
+                $.showError(message);
             }
         }
 

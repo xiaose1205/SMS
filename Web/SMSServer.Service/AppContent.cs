@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using HelloData.Util;
 using SMSService.Entity;
@@ -146,6 +147,13 @@ namespace SMSServer.Service
         {
             HttpContext.Current.Request.Cookies.Remove("userID");
             HttpContext.Current.Request.Cookies.Remove("userName");
+        }
+
+        public static bool isPhone(string phone)
+        {
+            Regex objRegExp = new Regex(@"^1(3[0-9]|5[0-9]|8[0-9])\d{8}$", RegexOptions.IgnoreCase);
+            return objRegExp.IsMatch(phone);
+
         }
     }
 }

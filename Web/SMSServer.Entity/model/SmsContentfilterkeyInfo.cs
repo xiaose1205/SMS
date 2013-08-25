@@ -31,7 +31,7 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public string Key {get; set;}
+    public string Keyword { get; set; }
 
     /// <summary>
     ///    
@@ -47,7 +47,7 @@ public partial class SmsContentfilterkeyInfo: BaseEntity
     { 
         public const string ID = "ID";
         public const string EnterpriseID = "EnterpriseID";
-        public const string Key = "Key";
+        public const string Keyword = "Keyword";
         public const string Keytype = "Keytype";
         public const string CreateTime = "CreateTime";
     }

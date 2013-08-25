@@ -188,7 +188,7 @@ $(document).ready(function () {
         if (id == 0)
             alert("请先选择一个分组");
         else
-            $.AddAction(450, 310, '添加联系人', "info/addcontact.aspx?gid="+id, doQuery);;
+            $.AddAction(450, 310, '添加联系人', "info/addcontact.aspx?gid=" + id, doQuery);;
 
     });
     $("#edit").click(function () {
@@ -206,7 +206,20 @@ $(document).ready(function () {
         doQuery();
     });
     $("#inport").click(function () {
-
+        var uploadArr = [];
+        uploadArr.push("姓名");
+        uploadArr.push("手机号码");
+        uploadArr.push("性别");
+        uploadArr.push("生日");
+        uploadArr.push("备注");
+        art.dialog.data("uploadarr", uploadArr);
+        art.dialog.data("ajaxhande", "contact");
+        art.dialog.data("otherparm", "?groupid=" + getNodeId());
+        $.AddAction(500, 300, '导入联系人', "../Master/Upload.aspx", function () {
+            var bValue = art.dialog.data('bValue'); // 读取B页面的数据
+            doQuery();
+            art.dialog.data('bValue', "");
+        });
     });
 });
 

@@ -42,7 +42,7 @@ namespace HelloData.FrameWork.Data
                     top = " limit  " + pagesize + " ";
                 //直接查询指定的数目的数据
                 if (string.IsNullOrEmpty(order))
-                    return (string.Format("SELECT  {0} from {1}  " + groupbystr + " {2}   " + top + " ;",
+                    return (string.Format("SELECT  {0} from {1}  {2}    " + groupbystr + " " + top + " ;",
                         colums, tablename, where));
                 return (string.Format("SELECT {0} from {1}   {2} " + groupbystr + " ORDER BY {3} " + top + "  ;",
                                        colums, tablename, @where, order));

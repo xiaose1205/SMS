@@ -10,8 +10,8 @@
             <a href="#" id="add" class="button button-rounded button-tiny button-primary">添加</a>
             <a href="#" id="edit" class="button button-rounded button-tiny  button-primary">修改</a>
             <a href="#" id="delete" class="button button-rounded button-tiny  button-primary">删除</a>
-            <a href="#" id="clear" class="button button-rounded button-tiny  button-primary">清空</a>
-            <a href="#" id="inport" class="button button-rounded button-tiny  button-action">导入</a>
+            <%--  <a href="#" id="clear" class="button button-rounded button-tiny  button-primary">清空</a>
+            --%>  <a href="#" id="inport" class="button button-rounded button-tiny  button-action">导入</a>
             <a href="#" id="outport" class="button button-rounded button-tiny  button-action">导出</a>
 
         </div>

@@ -15,7 +15,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -23,6 +25,7 @@ using HelloData.FWCommon;
 using HelloData.FrameWork.Data;
 using HelloData.Web;
 using HelloData.Web.AppHandlers;
+using SMSServer.Logic;
 using SMSService.Logic;
 
 namespace SMSServer.Service.Ajax
@@ -85,7 +88,7 @@ namespace SMSServer.Service.Ajax
             string sex = Request.Params["sex"];
             string birthday = Request.Params["birthday"];
             if (string.IsNullOrEmpty(birthday))
-                birthday = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+                birthday = DateTime.Parse("1970-1-1").ToString(CultureInfo.InvariantCulture);
             string remark = Request.Params["remark"];
             string gid = Request.Params["gid"];
             SmsContactInfo info = new SmsContactInfo();
@@ -110,21 +113,21 @@ namespace SMSServer.Service.Ajax
 
                 return CreateHandler(0, "主键不存在");
             }
-            if(cid==0)
+            if (cid == 0)
                 return CreateHandler(0, "主键不存在");
             string name = Request.Params["name"];
             string phone = Request.Params["phone"];
             string sex = Request.Params["sex"];
             string birthday = Request.Params["birthday"];
-          
+
             if (string.IsNullOrEmpty(birthday))
-                birthday = DateTime.MinValue.ToString(CultureInfo.InvariantCulture);
+                birthday = DateTime.Parse("1970-1-1").ToString(CultureInfo.InvariantCulture);
             string remark = Request.Params["remark"];
             string gid = Request.Params["gid"];
             SmsContactInfo info = new SmsContactInfo();
             info.ID = cid;
             info.Mobile = phone;
-            info.Name = name; 
+            info.Name = name;
             info.Sex = int.Parse(sex);
             info.Comment = remark;
             info.Birthday = DateTime.Parse(birthday);
@@ -145,6 +148,69 @@ namespace SMSServer.Service.Ajax
             SmsContactManage.Instance.DeleteContact(ids.TrimEnd(','));
             return CreateHandler(1, "删除成功");
 
+        }
+        public HandlerResponse upload()
+        {
+            string url = Request.Params["filename"].ToLower().Replace("master", "");
+            String dirPath = Path.Combine(Path.Combine(Request.PhysicalApplicationPath, "uplpod"), url);
+            bool isheader = Request.Params["header"] == "1";
+            string spilter = Request.Params["spilter"];
+            int groupid = int.Parse(Request.Params["groupid"]);
+            string[] filearr = Request.Params["filearr"].TrimEnd('|').Split('|');
+            if (string.IsNullOrEmpty(dirPath))
+            {
+                return CreateHandler(0, "导入错误");
+            }
+            else
+            {
+                if (System.IO.File.Exists(dirPath))
+                {
+                    var dt = FileUtily.ReadDataTable(dirPath, 0, spilter);
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        return CreateHandler(0, "导入错误");
+                    }
+                    else
+                    {
+                        List<SmsContactInfo> contacts = new List<SmsContactInfo>();
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            SmsContactInfo contact = new SmsContactInfo();
+                            contact.Name = dr[int.Parse(filearr[0])].ToString();
+                            contact.Mobile = dr[int.Parse(filearr[1])].ToString();
+                            if (!AppContent.isPhone(contact.Mobile))
+                                continue;
+                            int sex = 0;
+                            contact.Sex = 0;
+                            if (int.TryParse(dr[int.Parse(filearr[2])].ToString(), out sex))
+                            {
+                                if (sex == 0 || sex == 2 || sex == 1)
+                                {
+                                    contact.Sex = sex;
+                                }
+                                else
+                                {
+                                    contact.Sex = 0;
+                                }
+                            }
+                            string birthday = dr[int.Parse(filearr[3])].ToString();
+                            DateTime bir = DateTime.Parse("1970-1-1");
+                            if (DateTime.TryParse(birthday, out bir))
+                            {
+                                contact.Birthday = bir;
+                            }
+                            contact.Comment = dr[int.Parse(filearr[4])].ToString();
+                            contact.CreateTime = DateTime.Now;
+                            if (groupid != 0)
+                                contact.GroupID = groupid;
+                            contact.EnterpriseId = AppContent.Current.GetCurrentUser().EnterpriseID;
+                            contacts.Add(contact);
+                        }
+                        SmsContactManage.Instance.ImportList(contacts, groupid);
+                    }
+                }
+                return CreateHandler(1, "导入成功");
+            }
         }
     }
 }

@@ -55,5 +55,49 @@ namespace SMSService.Logic
                 action.Excute();
             }
         }
+
+        public void ImportList(List<SmsContactInfo> contacts, int groupid)
+        {
+            if (contacts.Count > 0)
+            {
+                using (TradAction action = new TradAction())
+                {
+                    List<string> sqls = new List<string>();
+                    foreach (var filterkey in contacts)
+                    {
+                        InserAction inserAction = new InserAction(filterkey);
+                        sqls.Add(inserAction.CreateSql(OperateEnum.Insert));
+
+                    }
+                    action.ExecuteSqlTran(sqls);
+
+                }
+                string ids = "";
+                using (SelectAction action = new SelectAction(this.Entity))
+                {
+                    action.SqlClomns = " min(id) as id ";
+                    action.SqlGroupBy("Mobile,EnterpriseID,GroupID HAVING COUNT(1)>1");
+                    action.SqlWhere("EnterpriseID", contacts[0].EnterpriseId);
+                    if (groupid>0)
+                        action.SqlWhere("GroupID", groupid);
+                    action.SqlPageParms(-1);
+                    List<SmsBlackphoneInfo> idlist = action.QueryPage<SmsBlackphoneInfo>(0);
+
+                    foreach (SmsBlackphoneInfo info in idlist)
+                    {
+                        ids += info.ID + ",";
+                    }
+
+                }
+                using (DeleteAction taction = new DeleteAction(this.Entity))
+                {
+                    taction.SqlWhere(SmsBlackphoneInfo.Columns.ID, ids.TrimEnd(','), ConditionEnum.And,
+                                     RelationEnum.In);
+                    taction.SqlWhere(SmsBlackphoneInfo.Columns.EnterpriseID, contacts[0].EnterpriseId);
+
+                    taction.Excute();
+                }
+            }
+        }
     }
 }

@@ -15,6 +15,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -108,6 +110,44 @@ namespace SMSServer.Service.Ajax
             data.total = infos.TotalCount;
             return CreateHandler(101, new JavaScriptSerializer().Serialize(data));
         }
-
+        public HandlerResponse upload()
+        {
+            string url = Request.Params["filename"].ToLower().Replace("master", "");
+            String dirPath = Path.Combine(Path.Combine(Request.PhysicalApplicationPath, "uplpod"), url);
+            bool isheader = Request.Params["header"] == "1";
+            string spilter = Request.Params["spilter"];
+            string[] filearr = Request.Params["filearr"].TrimEnd('|').Split('|');
+            if (string.IsNullOrEmpty(dirPath))
+            {
+                return CreateHandler(0, "导入错误");
+            }
+            else
+            {
+                if (System.IO.File.Exists(dirPath))
+                {
+                    var dt = FileUtily.ReadDataTable(dirPath, 0, spilter,isheader);
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        return CreateHandler(0, "导入错误");
+                    }
+                    else
+                    {
+                        List<SmsBlackphoneInfo> blacks = new List<SmsBlackphoneInfo>();
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            SmsBlackphoneInfo black = new SmsBlackphoneInfo();
+                            black.Phone = dr[int.Parse(filearr[0])].ToString();
+                            if(!AppContent.isPhone(black.Phone))
+                                continue; 
+                            black.CreateTime = DateTime.Now;
+                            black.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
+                            blacks.Add(black);
+                        }
+                        SmsBlackPhoneManage.Instance.ImportList(blacks);
+                    }
+                }
+                return CreateHandler(1, "导入成功");
+            }
+        }
     }
 }

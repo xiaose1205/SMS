@@ -53,5 +53,48 @@ namespace SMSServer.Logic
                 return action.QueryEntity<SmsContentfilterkeyInfo>();
             }
         }
+
+        public void ImportList(List<SmsContentfilterkeyInfo> keys)
+        {
+            if (keys.Count > 0)
+            {
+                using (TradAction action = new TradAction())
+                {
+                    List<string> sqls = new List<string>();
+                    foreach (var filterkey in keys)
+                    {
+                        InserAction inserAction = new InserAction(filterkey);
+                        sqls.Add(inserAction.CreateSql(OperateEnum.Insert));
+
+                    }
+                    action.ExecuteSqlTran(sqls);
+
+                }
+                string ids = "";
+                using (SelectAction action = new SelectAction(this.Entity))
+                {
+                    action.SqlClomns = " min(id) as id ";
+                    action.SqlGroupBy("keyword,EnterpriseID HAVING COUNT(1)>1");
+                    action.SqlWhere("EnterpriseID", keys[0].EnterpriseID);
+                    action.SqlPageParms(-1);
+                    List<SmsContentfilterkeyInfo> idlist = action.QueryPage<SmsContentfilterkeyInfo>(0);
+
+                    foreach (SmsContentfilterkeyInfo info in idlist)
+                    {
+                        ids += info.ID + ",";
+                    }
+                   
+                }
+                using (DeleteAction taction = new DeleteAction(this.Entity))
+                {
+                    taction.SqlWhere(SmsContentfilterkeyInfo.Columns.ID, ids.TrimEnd(','), ConditionEnum.And,
+                                    RelationEnum.In);
+                    taction.SqlWhere(SmsContentfilterkeyInfo.Columns.EnterpriseID, keys[0].EnterpriseID);
+
+                    taction.Excute();
+                }
+            }
+
+        }
     }
 }

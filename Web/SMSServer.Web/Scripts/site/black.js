@@ -5,7 +5,7 @@ $(document).ready(function () {
             url: 'ajax/black/getlist',
             dataType: 'json',
             colModel: [
-                { display: 'id', name: 'id', width: 100, align: 'center', hide: false },
+                { display: 'id', name: 'id', width: 30, align: 'center', hide: false },
                 { display: '手机号码', name: 'phone', width: 100, align: 'center' },
 
                  { display: '接收时间', name: 'createtime', width: 150, align: 'center' }
@@ -65,6 +65,17 @@ $(document).ready(function () {
          , function () {
          });
     });
+    $("#inport").click(function () {
+        var uploadArr = [];
+        uploadArr.push("手机号码");
+        art.dialog.data("uploadarr", uploadArr);
+        art.dialog.data("ajaxhande", "black");
+        $.AddAction(500, 300, '导入黑名单', "../Master/Upload.aspx", function () {
+            var bValue = art.dialog.data('bValue'); // 读取B页面的数据
+            doQuery();
+            art.dialog.data('bValue', "");
+        });
+    });
 });
 
 
@@ -81,13 +92,11 @@ function add() {
     });
 }
 function edit() {
-    if ($.trim($(".phone").val()) == "") {
+    if ($.trim($("#phone").val()) == "") {
         $.showError("手机号码不能为空");
         return;
     }
-    $("input[name='id']").val($(".blackid").val());
-    $("input[name='phone']").val($(".phone").val());
-    /*下面这段代码会自动处理提交信息，并执行返回后的function*/
+     /*下面这段代码会自动处理提交信息，并执行返回后的function*/
     $.childAction(function () {
         var api = art.dialog.open.api;
         api && api.close();

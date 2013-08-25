@@ -15,6 +15,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Web.Script.Serialization;
 using HelloData.FWCommon;
 using HelloData.FrameWork.Data;
@@ -50,7 +52,7 @@ namespace SMSServer.Service.Ajax
         {
             SmsContentfilterkeyInfo info = new SmsContentfilterkeyInfo();
             info.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
-            info.Key = Request.Params["phone"];
+            info.Keyword = Request.Params["keyword"];
             info.CreateTime = DateTime.Now;
             SmsContentfilterkeyManage.Instance.AddKeyword(info);
             return CreateHandler(1, "添加成功");
@@ -60,7 +62,7 @@ namespace SMSServer.Service.Ajax
         {
             SmsContentfilterkeyInfo info = new SmsContentfilterkeyInfo();
             info.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
-            info.Key = Request.Params["phone"];
+            info.Keyword = Request.Params["keyword"];
             info.CreateTime = DateTime.Now;
             info.ID = Convert.ToInt32(Request.Params["id"]);
             SmsContentfilterkeyManage.Instance.EditKeyword(info);
@@ -74,7 +76,7 @@ namespace SMSServer.Service.Ajax
                 return CreateHandler(0, "删除失败");
             SmsContentfilterkeyManage.Instance.DeleteKeyword(ids.TrimEnd(','));
             return CreateHandler(1, "删除成功");
- 
+
         }
         public HandlerResponse Clear()
         {
@@ -98,7 +100,7 @@ namespace SMSServer.Service.Ajax
                 row.id = item.ID.ToString();
                 row.cell = new Dictionary<string, object>();
                 row.cell.Add("id", item.ID);
-                row.cell.Add("keyword", item.Key);
+                row.cell.Add("keyword", item.Keyword);
                 row.cell.Add("createtime", DateTostr(item.CreateTime));
                 data.rows.Add(row);
             }
@@ -107,6 +109,43 @@ namespace SMSServer.Service.Ajax
             return CreateHandler(101, new JavaScriptSerializer().Serialize(data));
         }
 
+        public HandlerResponse upload()
+        {
+            string url = Request.Params["filename"].ToLower().Replace("master", "");
+            String dirPath = Path.Combine(Path.Combine(Request.PhysicalApplicationPath, "uplpod"), url);
+            bool isheader = Request.Params["header"] == "1";
+            string spilter = Request.Params["spilter"];
+            string[] filearr = Request.Params["filearr"].TrimEnd('|').Split('|');
+            if (string.IsNullOrEmpty(dirPath))
+            {
+                return CreateHandler(0, "导入错误");
+            }
+            else
+            {
+                if (System.IO.File.Exists(dirPath))
+                {
+                    var dt = FileUtily.ReadDataTable(dirPath, 0, spilter);
+                    if (dt == null || dt.Rows.Count == 0)
+                    {
+                        return CreateHandler(0, "导入错误");
+                    }
+                    else
+                    {
+                        List<SmsContentfilterkeyInfo> keys = new List<SmsContentfilterkeyInfo>();
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            SmsContentfilterkeyInfo key = new SmsContentfilterkeyInfo();
+                            key.Keyword = dr[int.Parse(filearr[0])].ToString();
+                            key.CreateTime = DateTime.Now;
+                            key.EnterpriseID = AppContent.Current.GetCurrentUser().EnterpriseID;
+                            keys.Add(key);
+                        }
+                        SmsContentfilterkeyManage.Instance.ImportList(keys);
+                    }
+                }
+                return CreateHandler(1, "导入成功");
+            }
+        }
     }
- 
+
 }

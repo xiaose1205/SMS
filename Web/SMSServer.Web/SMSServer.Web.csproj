@@ -135,6 +135,7 @@
     <Content Include="Images\flexigrid\uup.png" />
     <Content Include="Images\flexigrid\wbg.gif" />
     <Content Include="Images\form_title_bg.gif" />
+    <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Images\head_bg.png" />
     <Content Include="Images\head_bg1.png" />
     <Content Include="Images\head_bg22.png" />
@@ -512,6 +513,7 @@
     <Content Include="Images\navigate_bg.png" />
     <Content Include="Images\nav_samll.gif" />
     <Content Include="Images\nav_samll_over.gif" />
+    <Content Include="Images\opa-icons-gray16.png" />
     <Content Include="Images\title_A_bg.gif" />
     <Content Include="Images\title_bg.gif" />
     <Content Include="Images\title_bg.png" />
@@ -685,6 +687,7 @@
     <Content Include="Scripts\site\sms.js" />
     <Content Include="Scripts\site\template.js" />
     <Content Include="Sms\BatchHistory.aspx" />
+    <Content Include="Sms\FileSend.aspx" />
     <Content Include="Sms\PhoneHistory.aspx" />
     <Content Include="Sms\SmsSend.aspx" />
     <Content Include="Styles\bootstrap.css" />
@@ -692,6 +695,7 @@
     <Content Include="Styles\buttons.css" />
     <Content Include="Styles\child.css" />
     <Content Include="Styles\common.css" />
+    <Content Include="Styles\fineuploader.css" />
     <Content Include="Styles\flexigrid.css" />
     <Content Include="Styles\font-awesome-ie7.min.css" />
     <Content Include="Styles\img\diy\1_close.png" />
@@ -869,6 +873,9 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Master\AjaxFile.ashx.cs">
+      <DependentUpon>AjaxFile.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Master\ChildSite.Master.cs">
       <DependentUpon>ChildSite.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -912,6 +919,13 @@
     <Compile Include="Sms\BatchHistory.aspx.designer.cs">
       <DependentUpon>BatchHistory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sms\FileSend.aspx.cs">
+      <DependentUpon>FileSend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sms\FileSend.aspx.designer.cs">
+      <DependentUpon>FileSend.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sms\PhoneHistory.aspx.cs">
       <DependentUpon>PhoneHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -929,12 +943,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="uplpod\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master\MainSite.Master" />
     <Content Include="Master\ChildSite.Master" />
     <Content Include="demo\ajax.ashx" />
     <Content Include="log4net.config" />
+    <Content Include="Master\AjaxFile.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

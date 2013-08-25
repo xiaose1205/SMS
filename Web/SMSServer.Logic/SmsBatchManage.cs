@@ -64,5 +64,38 @@ namespace SMSServer.Logic
                 return action.QueryPage<BatchMoreInfo>(PageIndex);
             }
         }
+
+        public void AddBatchAmount(SmsBatchAmountInfo info)
+        {
+            using (InserAction action = new InserAction(info))
+            {
+                action.Excute();
+            }
+        }
+
+        public void AddBatchWait(List<SmsBatchWaitInfo> infos)
+        {
+            using (TradAction action = new TradAction())
+            {
+                List<string> sqls = new List<string>();
+                foreach (var info in infos)
+                {
+                    InserAction inserAction = new InserAction(info);
+                    sqls.Add(inserAction.CreateSql(OperateEnum.Insert));
+
+                }
+                action.ExecuteSqlTran(sqls);
+
+            }
+        }
+
+        public int AddBatch(SmsBatchInfo info)
+        {
+            using (InserAction action = new InserAction(info))
+            {
+                action.ExcuteIdentity();
+                return action.ReturnCode;
+            }
+        }
     }
 }
