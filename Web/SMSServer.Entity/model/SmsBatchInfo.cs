@@ -94,7 +94,7 @@ public partial class SmsBatchInfo: BaseEntity
     public DateTime? PostTime {get; set;}
 
     /// <summary>
-    /// ????	0? ????1? ????   
+    /// 批次状态 0提交中  1:检核中  2:等待中 3发送中  4完成
     /// </summary>
     public int? BatchState {get; set;}
 

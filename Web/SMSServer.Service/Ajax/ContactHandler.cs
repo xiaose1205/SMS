@@ -48,7 +48,7 @@ namespace SMSServer.Service.Ajax
             string phone = Request.Params["phone"];
             int PageIndex = int.Parse(Request.Params["PageIndex"]);
             int PageSize = int.Parse(Request.Params["PageSize"]);
-            PageList<SmsContactInfo> infos = SmsContactManage.Instance.getList(PageIndex, PageSize, gid, name, phone);
+            PageList<SmsContactInfo> infos = SmsContactManage.Instance.getList(PageIndex, PageSize, gid, name, phone,AppContent.Current.GetCurrentUser().EnterpriseID);
 
             JsonFlexiGridData data = new JsonFlexiGridData();
             data.rows = new List<FlexiGridRow>();
@@ -88,7 +88,7 @@ namespace SMSServer.Service.Ajax
             string sex = Request.Params["sex"];
             string birthday = Request.Params["birthday"];
             if (string.IsNullOrEmpty(birthday))
-                birthday = DateTime.Parse("1970-1-1").ToString(CultureInfo.InvariantCulture);
+                birthday = DateTime.Parse("1910-1-1").ToString(CultureInfo.InvariantCulture);
             string remark = Request.Params["remark"];
             string gid = Request.Params["gid"];
             SmsContactInfo info = new SmsContactInfo();
@@ -121,7 +121,7 @@ namespace SMSServer.Service.Ajax
             string birthday = Request.Params["birthday"];
 
             if (string.IsNullOrEmpty(birthday))
-                birthday = DateTime.Parse("1970-1-1").ToString(CultureInfo.InvariantCulture);
+                birthday = DateTime.Parse("1910-1-1").ToString(CultureInfo.InvariantCulture);
             string remark = Request.Params["remark"];
             string gid = Request.Params["gid"];
             SmsContactInfo info = new SmsContactInfo();
@@ -194,7 +194,7 @@ namespace SMSServer.Service.Ajax
                                 }
                             }
                             string birthday = dr[int.Parse(filearr[3])].ToString();
-                            DateTime bir = DateTime.Parse("1970-1-1");
+                            DateTime bir = DateTime.Parse("1910-1-1");
                             if (DateTime.TryParse(birthday, out bir))
                             {
                                 contact.Birthday = bir;

@@ -20,19 +20,19 @@ using System.Text;
 
 namespace SMSServer.OpenPlatform
 {
-    public class SMSGroupInfo
+    public class SMSSDKGroupInfo
     {
-        public List<GroupInfo> groupInfos { get; set; }
+        public List<SDKGroupInfo> groupInfos { get; set; }
     }
 
-    public class GroupInfo
+    public class SDKGroupInfo
     {
         public string Phone { get; set; }
         public string Content { get; set; }
     }
 
 
-    public class SMSMassInfo
+    public class SMSSDKMassInfo
     {
         public List<string> Phones { get; set; }
         public string Content { get; set; }

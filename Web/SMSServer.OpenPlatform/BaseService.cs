@@ -11,12 +11,12 @@ namespace SMSServer.OpenPlatform
         /// 发送短信
         /// </summary>
         /// <returns></returns>
-        public abstract int SendSMS(SendUser us, SMSMassInfo smsInfos);
+        public abstract int SendSMS(SendUser us, SMSSDKMassInfo smsInfos);
         /// <summary>
         /// 发送短信
         /// </summary>
         /// <returns></returns>
-        public abstract int SendSMS(SendUser us, SMSGroupInfo smsInfos);
+        public abstract int SendSMS(SendUser us, SMSSDKGroupInfo smsInfos);
         /// <summary>
         /// 获取状态报告
         /// </summary>

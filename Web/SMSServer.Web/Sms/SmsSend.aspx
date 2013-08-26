@@ -7,6 +7,7 @@
     <script src="../Scripts/site/sms.js"></script>
     <link href="../Styles/jquery.tagsinput.css" rel="stylesheet" />
     <link href="../Styles/zTreeStyle.css" rel="stylesheet" />
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div class="sendpanel">
@@ -45,7 +46,7 @@
 
         <div class="pleft formPanel">
             <h4>待发送联系人列表</h4>
-            <textarea style="width: 240px; height: 200px;" id="waitsenduser"></textarea>
+            <textarea style="width: 240px; height: 200px;" id="waitsenduser" class="waitsenduser"></textarea>
 
             <div class="cont_tools" style="width: 100%">
                 可以在输入框内直接粘贴(,分隔)  <a id="clear" class="button button-rounded button-tiny   button-highlight">清空</a>

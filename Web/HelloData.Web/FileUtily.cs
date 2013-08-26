@@ -146,6 +146,11 @@ namespace HelloData.Web
                 {
                     if (sheet.Cells[i, j].Value != null)
                     {
+                        if (isheader&&i == 0)
+                        {
+                            dt.Columns.Add(sheet.Cells[i, j].Value.ToString());
+                            continue; 
+                        }
                         if (sheet.Cells[i, j].Type == CellValueType.IsDateTime)
                         {
                             row[j] = sheet.Cells[i, j].DateTimeValue.ToString(LONG_DATETIME_FORMAT);

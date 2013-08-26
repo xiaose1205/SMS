@@ -23,7 +23,7 @@ namespace SMSServer.OpenPlatform
         /// </summary>
         /// <param name="usr"></param>
         /// <returns></returns>
-        public override int SendSMS(SendUser usr, SMSMassInfo smsInfos)
+        public override int SendSMS(SendUser usr, SMSSDKMassInfo smsInfos)
         {
             //http://61.143.160.139:8080/smshttp?act=sendmsg&unitid=826&username=DGHK&passwd=123456&msg=测试&phone=13533597705
 
@@ -99,7 +99,7 @@ namespace SMSServer.OpenPlatform
             throw new NotImplementedException();
         }
 
-        public override int SendSMS(SendUser us, SMSGroupInfo smsInfos)
+        public override int SendSMS(SendUser us, SMSSDKGroupInfo smsInfos)
         {
             throw new NotImplementedException();
         }

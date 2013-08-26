@@ -23,12 +23,16 @@ namespace SMSService.Logic
 {
     public class SmsContactManage : BaseManager<SmsContactManage, SmsContactInfo>
     {
-        public PageList<SmsContactInfo> getList(int pageindex, int pagesize, int gid, string name, string phone)
+        public PageList<SmsContactInfo> getList(int pageindex, int pagesize, int gid, string name, string phone, int enterpriseId)
         {
             using (SelectAction action = new SelectAction(this.Entity))
             {
                 if (gid != 0)
                     action.SqlWhere(SmsContactInfo.Columns.GroupID, gid);
+                else
+                {
+                    action.SqlWhere(SmsContactInfo.Columns.EnterpriseId, enterpriseId);
+                }
                 if (!string.IsNullOrEmpty(name))
                     action.SqlWhere(SmsContactInfo.Columns.Name, name, RelationEnum.Like);
                 if (!string.IsNullOrEmpty(phone))
@@ -78,7 +82,7 @@ namespace SMSService.Logic
                     action.SqlClomns = " min(id) as id ";
                     action.SqlGroupBy("Mobile,EnterpriseID,GroupID HAVING COUNT(1)>1");
                     action.SqlWhere("EnterpriseID", contacts[0].EnterpriseId);
-                    if (groupid>0)
+                    if (groupid > 0)
                         action.SqlWhere("GroupID", groupid);
                     action.SqlPageParms(-1);
                     List<SmsBlackphoneInfo> idlist = action.QueryPage<SmsBlackphoneInfo>(0);
@@ -98,6 +102,33 @@ namespace SMSService.Logic
                     taction.Excute();
                 }
             }
+        }
+
+        public List<SmsContactInfo> GetContacts(List<string> cids, int enterpriseId)
+        {
+            List<SmsContactInfo> infos = new List<SmsContactInfo>();
+            string ids = "";
+            int index = 0;
+            foreach (string id in cids)
+            {
+                index++;
+                ids += id + ",";
+                if (index % 100 == 0 || index == cids.Count)
+                {
+                    using (SelectAction action = new SelectAction(this.Entity))
+                    {
+                        action.SqlWhere(SmsContactInfo.Columns.ID, ids.TrimEnd(','), ConditionEnum.And, RelationEnum.In);
+                        action.SqlWhere(SmsContactInfo.Columns.EnterpriseId, enterpriseId);
+                        action.SqlPageParms(-1);
+                        List<SmsContactInfo> result = action.QueryPage<SmsContactInfo>(0);
+                        if (result != null && result.Count > 0)
+                            infos.AddRange(result);
+
+                    }
+                }
+
+            }
+            return infos;
         }
     }
 }

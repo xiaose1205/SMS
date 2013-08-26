@@ -46,7 +46,7 @@ namespace SMSServer.Service
             throw new NotImplementedException();
         }
 
-        public void UpdateBatchState(SMSService.Entity.BatchState batchState, int p)
+        public void UpdateBatchState( BatchState batchState, int p)
         {
             throw new NotImplementedException();
         }

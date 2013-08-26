@@ -94,9 +94,9 @@ namespace SMSServer.WcfHost.Batch
             mrg.WriteBatchDetial(phones, content);
         }
 
-        public SMSMassInfo GetFromDetails(List<string> phones, string content)
+        public SMSSDKMassInfo GetFromDetails(List<string> phones, string content)
         {
-            SMSMassInfo info = new SMSMassInfo();
+            SMSSDKMassInfo info = new SMSSDKMassInfo();
             info.Content = content;
             info.Phones = phones;
             return info;

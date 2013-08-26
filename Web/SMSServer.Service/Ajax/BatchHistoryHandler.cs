@@ -59,7 +59,20 @@ namespace SMSServer.Service.Ajax
                 row.cell.Add("id", item.ID);
                 row.cell.Add("batchname", item.BatchName);
                 row.cell.Add("content", item.SmsContent);
-                row.cell.Add("state", item.BatchState);
+                string batchstate = "提交中";
+                if (item.BatchState != null)
+                    switch (item.BatchState.Value)
+                    {
+                        case 1: batchstate = "检核中";
+                            break;
+                        case 2: batchstate = "等待中";
+                            break;
+                        case 3: batchstate = "发送中";
+                            break;
+                        case 4: batchstate = "完成";
+                            break;
+                    }
+                row.cell.Add("state", batchstate);
                 row.cell.Add("sendamount", item.SendAmount);
                 row.cell.Add("successamount", item.SuccessAmount);
                 row.cell.Add("posttime", DateTostr(item.PostTime));

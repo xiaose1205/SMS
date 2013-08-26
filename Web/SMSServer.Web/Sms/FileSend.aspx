@@ -29,6 +29,7 @@
             });
             var isheader = 1;
             var spilter = "|";
+          
             var manualuploader = new qq.FineUploader({
                 element: $('#fileupload')[0],
                 request: {
@@ -59,6 +60,7 @@
                             for (var i = 0; i < ftitle.length; i++) {
                                 html += "  <a class='smstag'>" + ftitle[i] + "</a>";
                             }
+                            $(".smstag").die("click");
                             $("#msgtag").html(html);
                             $("#filename").html(data.filename);
                             filename = data.filename;
@@ -94,7 +96,8 @@
                 var value = $(this).val();
                 $("#lblWordNum").html(value.length);
             });
-            $(".smstag").live("click", function () {
+            $("#msgtag").delegate("a", "click", function () {
+             
                 $("#sendcontent").val($("#sendcontent").val() + "@" + $(this).html());
                 $("#lblWordNum").html($("#sendcontent").val().length);
                 return false;

@@ -105,10 +105,10 @@ namespace SMSServer.Web.Master
                             for (int j = 0; j < dt.Columns.Count; j++)
                             {
                                 if (j == 0)
-                                    arr[0] = dt.Rows[0][j] + "";
+                                    arr[0] = dt.Columns[j].ColumnName + "";
                                 else
                                 {
-                                    arr[0] += "," + dt.Rows[0][j];
+                                    arr[0] += "," + dt.Columns[j].ColumnName;
                                 }
                             }
                         if (dt.Rows.Count > 1)

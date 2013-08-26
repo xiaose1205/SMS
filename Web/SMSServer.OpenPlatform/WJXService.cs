@@ -16,7 +16,7 @@ namespace SMSServer.OpenPlatform
        /// </summary>
        /// <param name="us"></param>
        /// <returns></returns>
-        public override int SendSMS(SendUser usr,SMSMassInfo smsInfos)
+        public override int SendSMS(SendUser usr,SMSSDKMassInfo smsInfos)
         {
             HttpHelper Sendhttp = new HttpHelper();
             Sendhttp.WEncoding = Encoding.UTF8;
@@ -73,7 +73,7 @@ namespace SMSServer.OpenPlatform
             throw new NotImplementedException();
         }
 
-        public override int SendSMS(SendUser us, SMSGroupInfo smsInfos)
+        public override int SendSMS(SendUser us, SMSSDKGroupInfo smsInfos)
         {
             throw new NotImplementedException();
         }

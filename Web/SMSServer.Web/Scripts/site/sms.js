@@ -70,7 +70,7 @@ $(document).ready(function () {
             url: 'ajax/contact/getlist',
             dataType: 'json',
             colModel: [
-                { display: 'id', name: 'id', width: 100, align: 'center', hide: false },
+                { display: 'id', name: 'id', width: 50, align: 'center', hide: false },
                 { display: '姓名', name: 'name', width: 100, align: 'center' },
                 { display: '手机号码', name: 'phone', width: 150, align: 'center' },
                 { display: '性别', name: 'sex', width: 80, align: 'center' },
@@ -114,7 +114,7 @@ $(document).ready(function () {
         }
     }
     /*tag显示*/
-    $('#waitsenduser').tagsInput({
+    $('.waitsenduser').tagsInput({
         width: '90%',
         "height": '210px',
         'minChars': 11, //每个标签的小最字符
@@ -137,14 +137,14 @@ $(document).ready(function () {
         var value = $(this).val();
         $("#lblWordNum").html(value.length);
     });
-    $("#waitsenduser_tag").bind('textchange', function () {
+    $(".waitsenduser_tag").bind('textchange', function () {
         var value = $(this).val();
         if (value.length > 11) {
             var arry = value.split(',');
             for (var i = 0; i < arry.length; i++) {
                 if (arry[i].length == 11)
-                    if (!$('#waitsenduser').tagExist(arry[i]))
-                        $('#waitsenduser').addTag(arry[i]);
+                    if (!$('.waitsenduser').tagExist(arry[i]))
+                        $('.waitsenduser').addTag(arry[i]);
             }
 
 
@@ -163,19 +163,21 @@ $(document).ready(function () {
         for (var i = 0; i < checkedRows.length; i++) {
             var cid = reid(parseInt(checkedRows[i][0]) + 10000000000);
 
-            if (!$('#waitsenduser').tagExist(cid))
-                $('#waitsenduser').addTag(cid);
+            if (!$('.waitsenduser').tagExist(cid))
+                $('.waitsenduser').addTag(cid);
         }
     });
     $("#addall").click(function () {
+       
         var id = getNodeId();
-        var tag = "g:" + id + "n:" + $("#name").val() + "p:" + $("#phone").val();
-        if (!$('#waitsenduser').tagExist(tag))
-            $('#waitsenduser').addTag(tag);
+        var tag = "g" + id + "|" + $("#name").val() + "|" + $("#phone").val();
+        console.log(tag);
+        if (!$('.waitsenduser').tagExist(tag))
+            $('.waitsenduser').addTag(tag);
     });
     $("#clear").click(function () {
         console.log("click");
-        $('#waitsenduser').importTags();
+        $('.waitsenduser').importTags();
     });
     function reid(id) {
 
@@ -223,7 +225,7 @@ $(document).ready(function () {
             $.showError("短信内容不能为空");
             return;
         }
-        var tags = $('#waitsenduser').getTags();
+        var tags = $('.waitsenduser').getTags();
         console.log(tags.length);
         if(tags.length<=1&&tags[0]=="")
         {
@@ -236,7 +238,7 @@ $(document).ready(function () {
         }
         $.post("ajax/sms/smssend", {
             content: $("#sendcontent").val(),
-            mobiles: tags, batchname: $("#txtName").val(),
+            mobiles: tags.toString(), batchname: $("#txtName").val(),
             batchremark: $("#txtRemark").val()
                   , fkeyword: $("#IsFilterKey").attr("checked") == "checked"
                     , fblack: $("#IsFilterBlack").attr("checked") == "checked"

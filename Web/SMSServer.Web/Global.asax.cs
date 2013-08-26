@@ -46,6 +46,7 @@ namespace SMSServer.Web
             AppHandlerManager.RegisterAppHandler(new UserHandler());
             AppHandlerManager.RegisterAppHandler(new ContactGroupHandler());
             AppHandlerManager.RegisterAppHandler(new ContactHandler());
+            AppHandlerManager.RegisterAppHandler(new SmsHandler());
         }
 
         protected void Session_Start(object sender, EventArgs e)

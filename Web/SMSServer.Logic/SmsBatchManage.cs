@@ -47,7 +47,7 @@ namespace SMSServer.Logic
                         Condition = ConditionEnum.And,
                         FiledName = SmsBatchInfo.Columns.ID
                     });
-                    action.AddJoin(ViewJoinEnum.innerjoin, "sms_batch", "sms_batch_amount", field);
+                    action.AddJoin(ViewJoinEnum.leftjoin, "sms_batch", "sms_batch_amount", field);
                 }
                 if (!string.IsNullOrEmpty(batchname))
                     action.SqlWhere(SmsBatchInfo.Columns.BatchName, batchname, ConditionEnum.And, RelationEnum.Like);
@@ -59,7 +59,7 @@ namespace SMSServer.Logic
                     action.SqlWhere(SmsBatchInfo.Columns.PostTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
                 if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
                     action.SqlWhere(SmsBatchInfo.Columns.PostTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
-
+                action.SqlOrderBy("_sms_batch.Createtime", OrderByEnum.Desc);
                 action.PageSize = PageSize;
                 return action.QueryPage<BatchMoreInfo>(PageIndex);
             }
@@ -95,6 +95,15 @@ namespace SMSServer.Logic
             {
                 action.ExcuteIdentity();
                 return action.ReturnCode;
+            }
+        }
+
+        public void UpdateState(int batchId, BatchState batchState)
+        {
+            string sql = "update sms_batch set batchstate=" + (int)batchState + " where id=" + batchId + "";
+            using (TradAction acion = new TradAction())
+            {
+                acion.Excute(sql);
             }
         }
     }
