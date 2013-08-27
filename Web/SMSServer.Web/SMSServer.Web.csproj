@@ -62,6 +62,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\Account.aspx" />
+    <Content Include="Account\AddAccount.aspx" />
+    <Content Include="Account\AddEnterprise.aspx" />
+    <Content Include="Account\EditAccount.aspx" />
+    <Content Include="Account\EditEnterprise.aspx" />
+    <Content Include="Account\Enterprise.aspx" />
     <Content Include="aspxTest.aspx" />
     <Content Include="demo\add.aspx" />
     <Content Include="demo\addIndex.aspx" />
@@ -539,6 +545,7 @@
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="Master\main.aspx" />
+    <Content Include="Master\Sysinfo.aspx" />
     <Content Include="Master\Upload.aspx" />
     <Content Include="Mo\moindex.aspx" />
     <Content Include="pageTest.html" />
@@ -676,10 +683,12 @@
     <Content Include="Scripts\lib\WdatePicker.js" />
     <Content Include="Scripts\menu.js" />
     <Content Include="Scripts\Script.js" />
+    <Content Include="Scripts\site\account.js" />
     <Content Include="Scripts\site\batchhistory.js" />
     <Content Include="Scripts\site\black.js" />
     <Content Include="Scripts\site\contact.js" />
     <Content Include="Scripts\site\demo.js" />
+    <Content Include="Scripts\site\enterprise.js" />
     <Content Include="Scripts\site\keyword.js" />
     <Content Include="Scripts\site\login.js" />
     <Content Include="Scripts\site\mo.js" />
@@ -720,6 +729,48 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\AddAccount.aspx.cs">
+      <DependentUpon>AddAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\AddAccount.aspx.designer.cs">
+      <DependentUpon>AddAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\AddEnterprise.aspx.cs">
+      <DependentUpon>AddEnterprise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\AddEnterprise.aspx.designer.cs">
+      <DependentUpon>AddEnterprise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditAccount.aspx.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditAccount.aspx.designer.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditEnterprise.aspx.cs">
+      <DependentUpon>EditEnterprise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditEnterprise.aspx.designer.cs">
+      <DependentUpon>EditEnterprise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Enterprise.aspx.cs">
+      <DependentUpon>Enterprise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Enterprise.aspx.designer.cs">
+      <DependentUpon>Enterprise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="aspxTest.aspx.cs">
       <DependentUpon>aspxTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -896,6 +947,13 @@
     </Compile>
     <Compile Include="Master\MainSite.Master.designer.cs">
       <DependentUpon>MainSite.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Sysinfo.aspx.cs">
+      <DependentUpon>Sysinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Sysinfo.aspx.designer.cs">
+      <DependentUpon>Sysinfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master\Upload.aspx.cs">
       <DependentUpon>Upload.aspx</DependentUpon>

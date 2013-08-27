@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-24 16:47:10
+生成时间:2013-08-27 23:40:27
 生成机器：wangjun
 author：xiaose
 */
@@ -56,17 +56,12 @@ public partial class SmsAccountInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public float? WappushPrice {get; set;}
+    public DateTime? Createtime {get; set;}
 
     /// <summary>
     ///    
     /// </summary>
-    public float SmsPrice {get; set;}
-
-    /// <summary>
-    ///    
-    /// </summary>
-    public float? MmsPrice {get; set;}
+    public DateTime? LoginTime {get; set;}
 
     public static class Columns 
     { 
@@ -77,8 +72,7 @@ public partial class SmsAccountInfo: BaseEntity
         public const string Signature = "Signature";
         public const string Level = "Level";
         public const string State = "State";
-        public const string WappushPrice = "wappush_price";
-        public const string SmsPrice = "sms_price";
-        public const string MmsPrice = "mms_price";
+        public const string Createtime = "Createtime";
+        public const string LoginTime = "LoginTime";
     }
 }

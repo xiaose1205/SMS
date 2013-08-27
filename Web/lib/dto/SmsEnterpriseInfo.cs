@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-24 16:47:10
+生成时间:2013-08-27 23:40:27
 生成机器：wangjun
 author：xiaose
 */
@@ -43,6 +43,26 @@ public partial class SmsEnterpriseInfo: BaseEntity
     /// </summary>
     public DateTime? CreateTime {get; set;}
 
+    /// <summary>
+    ///    
+    /// </summary>
+    public float? SmsPrice {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string ChinaMobile {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string Union {get; set;}
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string Cdma {get; set;}
+
     public static class Columns 
     { 
         public const string ID = "ID";
@@ -50,5 +70,9 @@ public partial class SmsEnterpriseInfo: BaseEntity
         public const string Introduction = "Introduction";
         public const string AvailFlag = "AvailFlag";
         public const string CreateTime = "CreateTime";
+        public const string SmsPrice = "SmsPrice";
+        public const string ChinaMobile = "ChinaMobile";
+        public const string Union = "Union";
+        public const string Cdma = "Cdma";
     }
 }

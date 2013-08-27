@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajax\AccountHandler.cs" />
     <Compile Include="Ajax\BatchHistoryHandler.cs" />
     <Compile Include="Ajax\BlackHandler.cs" />
     <Compile Include="Ajax\ContactGroupHandler.cs" />
     <Compile Include="Ajax\ContactHandler.cs" />
+    <Compile Include="Ajax\Enterprisehandler.cs" />
     <Compile Include="Ajax\KeyWordHandler.cs" />
     <Compile Include="Ajax\MoHandler.cs" />
     <Compile Include="Ajax\PhoneHistoryHandler.cs" />

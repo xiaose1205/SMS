@@ -1,6 +1,6 @@
 /*
 以下代码为python3.0自动生成的代码，请不要擅自修改
-生成时间:2013-08-24 16:47:10
+生成时间:2013-08-27 23:40:27
 生成机器：wangjun
 author：xiaose
 */
@@ -56,7 +56,7 @@ public partial class SmsBatchInfo: BaseEntity
     /// <summary>
     /// ????	??: 1??: 2WAPPUSH: 3   
     /// </summary>
-    public int? MsgType {get; set;}
+    public int? Msgtype {get; set;}
 
     /// <summary>
     /// ???	1???5??   
@@ -66,32 +66,32 @@ public partial class SmsBatchInfo: BaseEntity
     /// <summary>
     /// ????????   
     /// </summary>
-    public bool? StateReport {get; set;}
+    public bool? Statereport {get; set;}
 
     /// <summary>
     /// ?????   
     /// </summary>
-    public string CustomNum {get; set;}
+    public string Customnum {get; set;}
 
     /// <summary>
     /// ????? ????   
     /// </summary>
-    public DateTime? BeginTime {get; set;}
+    public DateTime? Begintime {get; set;}
 
     /// <summary>
     /// ????? ????   
     /// </summary>
-    public DateTime? EndTime {get; set;}
+    public DateTime? Endtime {get; set;}
 
     /// <summary>
     /// ??????   
     /// </summary>
-    public DateTime? CommitTime {get; set;}
+    public DateTime? Committime {get; set;}
 
     /// <summary>
     /// ????   
     /// </summary>
-    public DateTime? PostTime {get; set;}
+    public DateTime? Posttime {get; set;}
 
     /// <summary>
     /// ????	0? ????1? ????   
@@ -111,7 +111,7 @@ public partial class SmsBatchInfo: BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public DateTime? CreateTime {get; set;}
+    public DateTime? Createtime {get; set;}
 
     public static class Columns 
     { 
@@ -122,17 +122,17 @@ public partial class SmsBatchInfo: BaseEntity
         public const string Remark = "Remark";
         public const string SmsContent = "SmsContent";
         public const string Msgcount = "Msgcount";
-        public const string MsgType = "Msg_type";
+        public const string Msgtype = "Msgtype";
         public const string Level = "Level";
-        public const string StateReport = "State_report";
-        public const string CustomNum = "Custom_num";
-        public const string BeginTime = "Begin_time";
-        public const string EndTime = "End_time";
-        public const string CommitTime = "Commit_time";
-        public const string PostTime = "Post_time";
+        public const string Statereport = "Statereport";
+        public const string Customnum = "Customnum";
+        public const string Begintime = "Begintime";
+        public const string Endtime = "Endtime";
+        public const string Committime = "Committime";
+        public const string Posttime = "Posttime";
         public const string BatchState = "BatchState";
         public const string MtCount = "MtCount";
         public const string EnterPriseID = "EnterPriseID";
-        public const string CreateTime = "Create_time";
+        public const string Createtime = "Createtime";
     }
 }

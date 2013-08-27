@@ -39,6 +39,7 @@
             });
 
         });
+        // loadPage("master/sysinfo.aspx");
     </script>
 </head>
 <body>
@@ -103,7 +104,7 @@
                         <a href="#" page="sms/smssend.aspx" title="联系人发送">
                             <img src="Images/icons/email_send.gif" />联系人发送</a>
                     </li>
-                        <li>
+                    <li>
                         <a href="#" page="sms/filesend.aspx" title="文件发送">
                             <img src="Images/icons/email_send.gif" />文件发送</a>
                     </li>
@@ -142,13 +143,21 @@
                             <img src="Images/icons/permission.gif " />关键词</a>
                     </li>
                     <li>
-                        <a href="#" title="常用短语"  page="info/template.aspx">
+                        <a href="#" title="常用短语" page="info/template.aspx">
                             <img src="Images/icons/topic.gif " />常用短语</a>
                     </li>
                 </ul>
                 <h3><a href="javascript:void(0)">
                     <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icons/setting.gif" />账号管理</a></h3>
                 <ul>
+                     <li>
+                        <a href="#" page="account/account.aspx" title="企业账号">
+                            <img src="Images/icons/vcard.gif " />企业账号</a>
+                    </li>
+                     <li>
+                        <a href="#" page="account/enterprise.aspx" title="企业信息">
+                            <img src="Images/icons/vcard.gif " />企业信息</a>
+                    </li>
                     <li>
                         <a href="#" page="aspxTest.aspx" title="修改信息">
                             <img src="Images/icons/vcard.gif " />修改信息</a>
@@ -166,6 +175,40 @@
 
             <div id="content">
                 <div class="contentbody">
+                    <div class="form">
+                        <div class="title">
+                            <h3>表单</h3>
+                        </div>
+                        <div class="body">
+                            <div class="formPanel">
+
+                                <h4>基本资料</h4>
+                                <form class="form-horizontal">
+                                    <ul class="form">
+                                        <li>
+                                            <label>用户账号：</label>
+                                            <label runat="server" id="account"></label>
+                                        </li>
+                                        <li>
+                                            <label>所属企业：</label>
+                                            <label runat="server" id="enterprise"></label>
+                                        </li>
+                                        <li>
+                                            <label>短信单价：</label>
+                                            <label runat="server" id="smsprice"></label>
+                                        </li>
+                                        <li>
+                                            <label>状态：</label>
+                                            <label runat="server" id="state"></label>
+                                        </li>
+
+                                    </ul>
+                                 
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
