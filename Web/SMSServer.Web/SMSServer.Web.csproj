@@ -68,6 +68,7 @@
     <Content Include="Account\EditAccount.aspx" />
     <Content Include="Account\EditEnterprise.aspx" />
     <Content Include="Account\Enterprise.aspx" />
+    <Content Include="Account\EnterpriseCfg.aspx" />
     <Content Include="aspxTest.aspx" />
     <Content Include="demo\add.aspx" />
     <Content Include="demo\addIndex.aspx" />
@@ -770,6 +771,13 @@
     </Compile>
     <Compile Include="Account\Enterprise.aspx.designer.cs">
       <DependentUpon>Enterprise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EnterpriseCfg.aspx.cs">
+      <DependentUpon>EnterpriseCfg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EnterpriseCfg.aspx.designer.cs">
+      <DependentUpon>EnterpriseCfg.aspx</DependentUpon>
     </Compile>
     <Compile Include="aspxTest.aspx.cs">
       <DependentUpon>aspxTest.aspx</DependentUpon>

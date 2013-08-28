@@ -48,5 +48,30 @@ namespace SMSService.Logic
             }
             return null;
         }
+
+        public void AddList(List<SmsEnterpriseCfgInfo> infos)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (SmsEnterpriseCfgInfo smsEnterpriseCfgInfo in infos)
+            {
+                stringBuilder.AppendLine("delete from sms_enterprise_cfg where EnterpriseID=" + smsEnterpriseCfgInfo.EnterpriseID + " and CfgKey='" + smsEnterpriseCfgInfo.CfgKey + "';");
+                using (InserAction action = new InserAction(smsEnterpriseCfgInfo))
+                {
+                    stringBuilder.AppendLine(action.CreateSql(OperateEnum.Insert));
+                }
+            }
+            TradAction taction = new TradAction();
+            taction.Excute(stringBuilder.ToString());
+        }
+
+        public List<SmsEnterpriseCfgInfo> getCfgInfos(int enterpriseid)
+        {
+            using (SelectAction action = new SelectAction(this.Entity))
+            {
+                action.SqlWhere(SmsEnterpriseCfgInfo.Columns.EnterpriseID, enterpriseid);
+                action.SqlPageParms(-1);
+                return action.QueryPage<SmsEnterpriseCfgInfo>(0);
+            }
+        }
     }
 }
