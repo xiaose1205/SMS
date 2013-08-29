@@ -47,7 +47,7 @@ public partial class SmsEnterpriseInfo : BaseEntity
     /// <summary>
     ///    
     /// </summary>
-    public float? SmsPrice { get; set; }
+    public string SmsPrice { get; set; }
 
     /// <summary>
     ///    
@@ -63,6 +63,11 @@ public partial class SmsEnterpriseInfo : BaseEntity
     ///    
     /// </summary>
     public string Cdma { get; set; }
+
+    /// <summary>
+    ///    
+    /// </summary>
+    public string SmsLength { get; set; }
 
     public static class Columns
     {

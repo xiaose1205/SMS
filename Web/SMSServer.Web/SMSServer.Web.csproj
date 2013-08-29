@@ -67,6 +67,7 @@
     <Content Include="Account\AddEnterprise.aspx" />
     <Content Include="Account\EditAccount.aspx" />
     <Content Include="Account\EditEnterprise.aspx" />
+    <Content Include="Account\EditPassword.aspx" />
     <Content Include="Account\Enterprise.aspx" />
     <Content Include="Account\EnterpriseCfg.aspx" />
     <Content Include="aspxTest.aspx" />
@@ -764,6 +765,13 @@
     </Compile>
     <Compile Include="Account\EditEnterprise.aspx.designer.cs">
       <DependentUpon>EditEnterprise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\EditPassword.aspx.cs">
+      <DependentUpon>EditPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditPassword.aspx.designer.cs">
+      <DependentUpon>EditPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Enterprise.aspx.cs">
       <DependentUpon>Enterprise.aspx</DependentUpon>

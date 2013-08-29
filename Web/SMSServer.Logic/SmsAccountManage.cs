@@ -43,7 +43,7 @@ namespace SMSServer.Logic
 
         public void AddAccount(SmsAccountInfo info)
         {
-            info.Password=md5.Encrypt(info.Password);
+            info.Password = md5.Encrypt(info.Password);
             base.Add(info);
         }
 
@@ -67,6 +67,33 @@ namespace SMSServer.Logic
             {
                 action.SqlPageParms(PageSize);
                 return action.QueryPage<SmsAccountInfo>(PageIndex);
+            }
+        }
+
+        public void UpdatePwd(string pwd, string accountid)
+        {
+            using (TradAction action = new TradAction())
+            {
+                string sql = "update sms_account set `PASSWORD`='" + md5.Encrypt(pwd) + "' where id=" + accountid + "";
+                action.Excute(sql);
+            }
+        }
+
+        public void SetStae(string ids, int state)
+        {
+            using (TradAction action = new TradAction())
+            {
+                string sql = "update sms_account set `state`='" + state + "' where id in (" + ids + ")";
+                action.Excute(sql);
+            }
+        }
+
+        public SmsAccountInfo GetAccount(int id)
+        {
+            using (SelectAction action = new SelectAction(this.Entity))
+            {
+                action.SqlWhere(SmsAccountInfo.Columns.ID, id);
+                return action.QueryEntity<SmsAccountInfo>();
             }
         }
     }

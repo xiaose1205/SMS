@@ -29,8 +29,14 @@ namespace SMSServer.Logic
 
         public PageList<SmsEnterpriseInfo> GetList(int PageIndex, int PageSize)
         {
-            using (SelectAction action = new SelectAction(this.Entity))
+            using (SelectAction action = new SelectAction("`sms_enterprise` AS e"))
             {
+                action.SqlClomns = "e.*,(select CfgValue from sms_enterprise_cfg WHERE CfgKey='smsprice' AND enterpriseid=e.`ID`) AS SmsPrice," +
+                                   "(select CfgValue from sms_enterprise_cfg WHERE CfgKey='chinamobile' AND enterpriseid=e.`ID`) AS chinamobile," +
+                                     "(select CfgValue from sms_enterprise_cfg WHERE CfgKey='union' AND enterpriseid=e.`ID`) AS `union`," +
+                                       "(select CfgValue from sms_enterprise_cfg WHERE CfgKey='cdma' AND enterpriseid=e.`ID`) AS cdma," +
+                                         "(select CfgValue from sms_enterprise_cfg WHERE CfgKey='smslength' AND enterpriseid=e.`ID`) AS smslength" +
+                                   "";
                 action.SqlPageParms(PageSize);
                 return action.QueryPage<SmsEnterpriseInfo>(PageIndex);
             }
