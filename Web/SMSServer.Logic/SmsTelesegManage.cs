@@ -8,5 +8,6 @@ namespace SMSServer.Logic
 {
     public class SmsTelesegManage : BaseManager<SmsTelesegManage, SmsTelesegInfo>
     {
+        
     }
 }

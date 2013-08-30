@@ -131,11 +131,29 @@ $(document).ready(function () {
     });
     $("#sendcontent").change(function () {
         var value = $(this).val();
-        $("#lblWordNum").html(value.length);
+        var len = parseInt($("#lblWord").val());
+        var signature = $("#signature").val();
+        var totallen = value.length + signature.length;
+
+        if (totallen <= 70)
+            $("#lblGroupNum").val(1);
+        else {
+            $("#lblGroupNum").val(totallen / len + (totallen % len > 0 ? 1 : 0));
+        }
+        $("#lblWordNum").html(totallen);
     });
     $("#sendcontent").bind('textchange', function () {
         var value = $(this).val();
-        $("#lblWordNum").html(value.length);
+        var len = parseInt($("#lblWord").html());
+        var signature = $("#signature").html();
+        var totallen = value.length + signature.length;
+         
+        if (totallen <= 70)
+            $("#lblGroupNum").html(1);
+        else {
+            $("#lblGroupNum").html(Math.ceil(totallen / len ));
+        }
+        $("#lblWordNum").html(totallen);
     });
     $(".waitsenduser_tag").bind('textchange', function () {
         var value = $(this).val();
@@ -168,7 +186,7 @@ $(document).ready(function () {
         }
     });
     $("#addall").click(function () {
-       
+
         var id = getNodeId();
         var tag = "g" + id + "|" + $("#name").val() + "|" + $("#phone").val();
         console.log(tag);
@@ -219,7 +237,7 @@ $(document).ready(function () {
             }
         }, "json");
     });
-    
+
     $("#btnSend").click(function () {
         if ($.trim($("#sendcontent").val()) == "") {
             $.showError("短信内容不能为空");
@@ -227,8 +245,7 @@ $(document).ready(function () {
         }
         var tags = $('.waitsenduser').getTags();
         console.log(tags.length);
-        if(tags.length<=1&&tags[0]=="")
-        {
+        if (tags.length <= 1 && tags[0] == "") {
             $.showError("请输入手机号码或者选择联系人");
             return;
         }
@@ -250,7 +267,7 @@ $(document).ready(function () {
                 $.showError(data.Message);
             }
         }, "json");
-       
+
     });
 });
 

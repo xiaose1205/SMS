@@ -86,12 +86,12 @@
                 <a class="smstag">备注</a>
             </div>
             <div style="margin: 5px;">
-                含签名共&nbsp;<label class="red" id="lblWordNum">
+                签名：<span id="signature"><%=signature %></span>含签名共&nbsp;<label class="red" id="lblWordNum">
                     0</label>&nbsp;个字。[移动、联通、电信分&nbsp;<label class="red" id="lblGroupNum">
                         0
                     </label>
-                &nbsp; 段，每条&nbsp;<label class="red" id="lblWord">
-                    70</label>&nbsp; 个字]
+                &nbsp; 段，每条&nbsp;<span class="red" id="lblWord">
+                    <%=smslength %></span>&nbsp; 个字]
             
                <input class="button button-rounded button-tiny button-primary" id="btnSend" type="button" value="发送短信" />
             </div>
