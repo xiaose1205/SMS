@@ -22,42 +22,46 @@ namespace SMSService.Entity
 {
     public enum SendResultEnum
     {
+        Error=0,
         /// <summary>
         /// 成功
         /// </summary>
-        SUCCESS = 0,
+        SUCCESS = 1,
         /// <summary>
         ///  账号无效
         /// </summary>
-        INVALID_ACCOUNT = 1,
+        INVALID_ACCOUNT = 2,
         /// <summary>
         /// 余额不足
         /// </summary>
-        NO_SAVE_ACCOUNT = 2,
+        NO_SAVE_ACCOUNT = 3,
         /// <summary>
         /// 用户名密码错误
         /// </summary>
-        ACCOUNT_OR_PIN_WRONG = 3,
+        ACCOUNT_OR_PIN_WRONG = 4,
         /// <summary>
         /// 资金账户不存在
         /// </summary>
-        CAPITAL_ACCOUNT_NOT_EXIST = 4,
+        CAPITAL_ACCOUNT_NOT_EXIST = 5,
         /// <summary>
         /// 包号码数量超过最大限制
         /// </summary>
-        TOO_LARGE_PACK = 5,
+        TOO_LARGE_PACK = 6,
         /// <summary>
         /// 参数无效
         /// </summary>
-        INVALID_PARAM = 6,
+        INVALID_PARAM = 7,
         /// <summary>
         /// 系统内部错误
         /// </summary>
-        INNER_ERROR = 7,
+        INNER_ERROR = 8,
         /// <summary>
         /// 手机或者内容错误
         /// </summary>
-        MOBILE_MSG_ERROT = 8
-        , CONTACT_ERROR = 9
+        MOBILE_MSG_ERROT = 9 ,
+        /// <summary>
+        /// 网络连接错误
+        /// </summary>
+        CONTACT_ERROR = 10
     }
 }

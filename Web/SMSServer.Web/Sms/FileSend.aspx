@@ -173,6 +173,9 @@
                 }, function (data) {
                     if (data.Result == 1) {
                         $.showSuccess("提交成功");
+                        $("#sendcontent").val("");
+                        $("#txtName").val("");
+                        $("#filename").html("");
                     } else {
                         $.showError(data.Message);
                     }
@@ -284,7 +287,7 @@
                 </div>
             </div>
             <div style="margin: 5px;">
-                <input class="button button-rounded button-tiny button-primary" id="btnPreview" type="button" value="内容预览" />
+                <%--<input class="button button-rounded button-tiny button-primary" id="btnPreview" type="button" value="内容预览" />--%>
                 <input class="button button-rounded button-tiny button-primary" id="btnSelect" type="button" value="选择短语" />
                 <input class="button button-rounded button-tiny button-primary" id="btnSave" type="button" value="保存短语" />
                 <input class="txt" style="margin-right: 2px" id="IsFilterKey" type="checkbox" value="1"

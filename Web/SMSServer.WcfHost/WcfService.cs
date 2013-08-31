@@ -2,7 +2,8 @@
 using System.ServiceProcess;
 using System.ServiceModel.Channels;
 using HelloData.FWCommon.Logging;
-using SMSServer.Wcf;
+ 
+using SMSServer.WcfHost.Batch;
 
 namespace SMSServer.WcfHost
 {
@@ -12,25 +13,22 @@ namespace SMSServer.WcfHost
         {
             InitializeComponent();
         }
-        ServiceHost host = new ServiceHost(typeof(SMSServerWcf));
-        
+
+        BatchReadService readService = new BatchReadService();
+        BatchSendService sendService = new BatchSendService();
         protected override void OnStart(string[] args)
         {
-             if (host.Description.Behaviors.Find<System.ServiceModel.Description.ServiceMetadataBehavior>() == null)
-            {
-                BindingElement metaElement = new TcpTransportBindingElement();
-                CustomBinding metaBind = new CustomBinding(metaElement);
-                host.Description.Behaviors.Add(new System.ServiceModel.Description.ServiceMetadataBehavior());
-                host.AddServiceEndpoint(typeof(System.ServiceModel.Description.IMetadataExchange), metaBind, "MEX");
-            }
-            host.Open();
+        
+            readService.Star();
+           
+            sendService.Star();
             Logger.CurrentLog.Info("ServiceHost Opening!");
         }
 
         protected override void OnStop()
         {
-            host.Abort();
-            host.Close();
+            readService.Stop();
+            sendService.Stop();
             Logger.CurrentLog.Info("ServiceHost Closing!");
         }
     }

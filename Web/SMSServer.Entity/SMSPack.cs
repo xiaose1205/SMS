@@ -21,21 +21,21 @@ using System.Text;
 namespace SMSService.Entity
 {
 
-    public class SMSDetial
+    public class GroupInfo
     {
-        public string phone { get; set; }
-        public string content { get; set; }
+        public string Phone { get; set; }
+        public string Content { get; set; }
     }
 
-    public class SMSGroup
+    public class SMSGroupInfo
     {
-        public List<SMSDetial> detials { get; set; }
+        public List<GroupInfo> groupInfos { get; set; }
     }
 
-    public class SMSMass
+    public class SMSMassInfo
     {
-        public string content { get; set; }
-        public List<string> phones { get; set; }
+        public string Content { get; set; }
+        public List<string> Phones { get; set; }
     }
 
     public enum SMSEnum

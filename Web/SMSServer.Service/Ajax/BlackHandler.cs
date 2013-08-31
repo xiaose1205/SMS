@@ -92,7 +92,7 @@ namespace SMSServer.Service.Ajax
         {
             int PageIndex = int.Parse(Request.Params["PageIndex"]);
             int PageSize = int.Parse(Request.Params["PageSize"]);
-            PageList<SmsBlackphoneInfo> infos = SmsBlackPhoneManage.Instance.GetList(PageIndex, PageSize);
+            PageList<SmsBlackphoneInfo> infos = SmsBlackPhoneManage.Instance.GetList(PageIndex, PageSize,AppContent.Current.GetCurrentUser().EnterpriseID);
 
             JsonFlexiGridData data = new JsonFlexiGridData();
             data.rows = new List<FlexiGridRow>();

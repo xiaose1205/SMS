@@ -8,10 +8,11 @@ namespace SMSServer.Logic
 {
     public class SmsContentfilterkeyManage : BaseManager<SmsContentfilterkeyManage, SmsContentfilterkeyInfo>
     {
-        public PageList<SmsContentfilterkeyInfo> GetList(int PageIndex, int PageSize)
+        public PageList<SmsContentfilterkeyInfo> GetList(int PageIndex, int PageSize,int enterpriseID)
         {
             using (SelectAction action = new SelectAction(this.Entity))
             {
+                action.SqlWhere(SmsContentfilterkeyInfo.Columns.EnterpriseID, enterpriseID);
                 action.SqlPageParms(PageSize);
                 return action.QueryPage<SmsContentfilterkeyInfo>(PageIndex);
             }

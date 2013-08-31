@@ -16,7 +16,7 @@ namespace SMSServer.OpenPlatform
         /// 发送短信
         /// </summary>
         /// <returns></returns>
-        public abstract int SendSMS(SendUser us, SMSSDKGroupInfo smsInfos);
+        public abstract int SendSMS(SendUser us, List<SDKGroupInfo> smsInfos);
         /// <summary>
         /// 获取状态报告
         /// </summary>

@@ -20,21 +20,21 @@ using System.Text;
 
 namespace SMSServer.Service
 {
-    public class SMSGroupInfo
-    {
-        public List<GroupInfo> groupInfos { get; set; }
-    }
+    //public class SMSGroupInfo
+    //{
+    //    public List<GroupInfo> groupInfos { get; set; }
+    //}
 
-    public class GroupInfo
-    {
-        public string Phone { get; set; }
-        public string Content { get; set; }
-    }
+    //public class GroupInfo
+    //{
+    //    public string Phone { get; set; }
+    //    public string Content { get; set; }
+    //}
 
 
-    public class SMSMassInfo
-    {
-        public List<string> Phones { get; set; }
-        public string Content { get; set; }
-    }
+    //public class SMSMassInfo
+    //{
+    //    public List<string> Phones { get; set; }
+    //    public string Content { get; set; }
+    //}
 }

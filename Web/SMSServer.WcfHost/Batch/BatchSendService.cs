@@ -53,33 +53,69 @@ namespace SMSServer.WcfHost.Batch
                 }
                 if ((SMSEnum)model.MsgType == SMSEnum.Group)
                 {//群发
-                    SMSGroup gGroup = JsonConvert.DeserializeObject<SMSGroup>(model.MsgPack);
-
-                }
-                else
-                {//组发
-                    SMSMass mMass = JsonConvert.DeserializeObject<SMSMass>(model.MsgPack);
+                    SMSGroupInfo gGroup = JsonConvert.DeserializeObject<SMSGroupInfo>(model.MsgPack);
                     foreach (string chanelid in model.Channels)
                     {
                         BaseService service = ServicesFactory.Execute(int.Parse(chanelid));
                         int count = service.MassCount();
-                        for (int i = 0; i < (mMass.phones.Count / count + (mMass.phones.Count % count > 0 ? 1 : 0)); i++)
+                        for (int i = 0; i < (gGroup.groupInfos.Count / count + (gGroup.groupInfos.Count % count > 0 ? 1 : 0)); i++)
                         {
-                            List<string> readyphones = new List<string>();
-                            if (mMass.phones.Count - i * count >= count)
-                                readyphones = mMass.phones.GetRange(i * count, count);
-                            else
-                                readyphones = mMass.phones.GetRange(i * count, mMass.phones.Count - i * count);
+                            List<SDKGroupInfo> readyphones = new List<SDKGroupInfo>();
+                            if (gGroup.groupInfos.Count - i * count >= count)
+                            {
+                                List<GroupInfo> groupInfos = gGroup.groupInfos.GetRange(i * count, count);
+                                foreach (GroupInfo smsDetial in groupInfos)
+                                {
+                                    readyphones.Add(new SDKGroupInfo()
+                                        {
+                                            Phone = smsDetial.Phone,
+                                            Content = smsDetial.Content
+                                        });
+                                }
 
-                            int result = service.SendSMS(service.GetUser(), GetFromDetails(readyphones, mMass.content));
-                            WriteBatchDetial(readyphones, mMass.content, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result));
+                            }
+                            else
+                            {
+                                List<GroupInfo> groupInfos = gGroup.groupInfos.GetRange(i * count, gGroup.groupInfos.Count - i * count);
+                                foreach (GroupInfo smsDetial in groupInfos)
+                                {
+                                    readyphones.Add(new SDKGroupInfo()
+                                  {
+                                      Phone = smsDetial.Phone,
+                                      Content = smsDetial.Content
+                                  });
+                                }
+                            }
+
+                            int result = service.SendSMS(service.GetUser(), readyphones);
+                            WriteBatchDetial(readyphones, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);
 
                         }
                     }
-                    CompleteMt(model);
+                }
+                else
+                {//组发
+                    SMSMassInfo mMass = JsonConvert.DeserializeObject<SMSMassInfo>(model.MsgPack);
+                    foreach (string chanelid in model.Channels)
+                    {
+                        BaseService service = ServicesFactory.Execute(int.Parse(chanelid));
+                        int count = service.MassCount();
+                        for (int i = 0; i < (mMass.Phones.Count / count + (mMass.Phones.Count % count > 0 ? 1 : 0)); i++)
+                        {
+                            List<string> readyphones = new List<string>();
+                            if (mMass.Phones.Count - i * count >= count)
+                                readyphones = mMass.Phones.GetRange(i * count, count);
+                            else
+                                readyphones = mMass.Phones.GetRange(i * count, mMass.Phones.Count - i * count);
+
+                            int result = service.SendSMS(service.GetUser(), GetFromDetails(readyphones, mMass.Content));
+                            WriteBatchDetial(readyphones, mMass.Content, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);
+
+                        }
+                    } 
 
                 }
-
+                CompleteMt(model);
                 lock (lockobj)
                     SendingMtCount--;
             }
@@ -89,11 +125,52 @@ namespace SMSServer.WcfHost.Batch
         /// </summary>
         /// <param name="phones"></param>
         /// <param name="content"></param>
-        public void WriteBatchDetial(List<string> phones, string content, SendResultEnum eEnum)
+        public void WriteBatchDetial(List<SDKGroupInfo> groupInfos, SendResultEnum eEnum, SmsBatchWaitInfo info, string channelId)
         {
-            mrg.WriteBatchDetial(phones, content);
-        }
+            List<SmsBatchDetailsInfo> infos = new List<SmsBatchDetailsInfo>();
+            foreach (SDKGroupInfo sdkGroupInfo in groupInfos)
+            {
+                infos.Add(new SmsBatchDetailsInfo()
+                    {
+                        AccountID = info.AccountID,
+                        BatchID = info.BatchID.Value,
+                        ChannelID = int.Parse(channelId),
+                        Content = sdkGroupInfo.Content,
+                        Phone = sdkGroupInfo.Phone,
+                        SmsType = info.MsgType,
+                        State = (int)eEnum,
+                        SubmitTime = DateTime.Now
 
+                    });
+            }
+            mrg.WriteBatchDetial(infos);
+        }
+        /// <summary>
+        /// 写入号码详情表
+        /// </summary>
+        /// <param name="phones"></param>
+        /// <param name="content"></param>
+        public void WriteBatchDetial(List<string> phones, string content, SendResultEnum eEnum, SmsBatchWaitInfo info, string channelId)
+        {
+            List<SmsBatchDetailsInfo> infos = new List<SmsBatchDetailsInfo>();
+
+            foreach (string phone in phones)
+            {
+                infos.Add(new SmsBatchDetailsInfo()
+                {
+                    AccountID = info.AccountID,
+                    BatchID = info.BatchID.Value,
+                    ChannelID = int.Parse(channelId),
+                    Content = content,
+                    Phone = phone,
+                    SmsType = info.MsgType,
+                    State = (int)eEnum,
+                    SubmitTime = DateTime.Now
+
+                });
+            }
+            mrg.WriteBatchDetial(infos);
+        }
         public SMSSDKMassInfo GetFromDetails(List<string> phones, string content)
         {
             SMSSDKMassInfo info = new SMSSDKMassInfo();
@@ -130,9 +207,8 @@ namespace SMSServer.WcfHost.Batch
                     }
                     break;
                 }
-
             }
-            // mrg.RemoveToMt(model, sendingmodel, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result));
+            mrg.RemoveToMt(model);
         }
     }
 }

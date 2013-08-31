@@ -38,6 +38,16 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity">
+      <HintPath>..\lib\MySql.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
@@ -102,10 +112,6 @@
     <ProjectReference Include="..\SMSServer.Service\SMSServer.Service.csproj">
       <Project>{d59ab992-2bc3-414d-997c-51a687bd1983}</Project>
       <Name>SMSServer.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SMSServer.Wcf\SMSServer.Wcf.csproj">
-      <Project>{CDF6945E-E268-4DDE-A97B-2A47DD82C580}</Project>
-      <Name>SMSServer.Wcf</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

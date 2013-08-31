@@ -60,7 +60,44 @@ namespace SMSServer.Service.Ajax
                 row.cell.Add("phone", item.Phone);
                 row.cell.Add("content", item.Content);
                 row.cell.Add("batchname",item.BatchName);
-                row.cell.Add("state", item.State);
+                string result = "";
+                switch (item.State.Value)
+                {
+                    case 0:
+                        result = "失败";
+                        break;
+                    case 1:
+                        result = "成功";
+                        break;
+                    case 2:
+                        result = "账号无效";
+                        break;
+                    case 3:
+                        result = "余额不足";
+                        break;
+                    case 4:
+                        result = "用户名密码错误";
+                        break;
+                    case 5:
+                        result = "资金账户不存在";
+                        break;
+                    case 6:
+                        result = "包号码数量超过最大限制";
+                        break;
+                    case 7:
+                        result = "参数无效";
+                        break;
+                    case 8:
+                        result = "系统内部错误";
+                        break;
+                    case 9:
+                        result = "手机或者内容错误";
+                        break;
+                    case 10:
+                        result = "网络连接错误";
+                        break; 
+                }
+                row.cell.Add("state", result);
                 row.cell.Add("stateremark", item.StateReport);
                 row.cell.Add("posttime", DateTostr(item.SubmitTime));
                 data.rows.Add(row);

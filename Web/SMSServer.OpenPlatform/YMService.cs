@@ -29,7 +29,7 @@ namespace SMSServer.OpenPlatform
 
         [DllImport("EUCPComm.dll", EntryPoint = "ReceiveSMSEx")]  // 接收短信
         public static extern int ReceiveSMSEx(string sn, deleSQF mySmsContent);
- 
+
 
         [DllImport("EUCPComm.dll", EntryPoint = "Register")]   // 注册 
         public static extern int Register(string sn, string pwd, string EntName, string LinkMan, string Phone, string Mobile, string Email, string Fax, string sAddress, string Postcode);
@@ -59,7 +59,7 @@ namespace SMSServer.OpenPlatform
         [DllImport("EUCPComm.dll", EntryPoint = "RegistryPwdUpd")]  // 修改序列号密码
         public static extern int RegistryPwdUpd(string sn, string oldPWD, string newPWD);
 
-      
+
         static void getSMSContent(string mobile, string senderaddi, string recvaddi, string ct, string sd, ref int flag)
         {
             string mob = mobile;
@@ -81,7 +81,29 @@ namespace SMSServer.OpenPlatform
         {
             //即时发送      这里是软件序列号    手机号       短信内容     优先级
             int result = SendSMS(us.serialNumber, us.phone, us.msg, us.priority);
-            return result;
+            
+            if (result == 1)
+                return 1;
+            else if (result == 101)
+                return 10;
+            else if (result == 102)
+                return 8;
+            else if (result == 0)
+                return 0;
+            else if (result == 100)
+                return 7;
+            else if (result == 107)
+                return 6;
+            else if (result == 108)
+                return 7;
+            else if (result == 109)
+                return 1;
+            else if (result == 110)
+                return 9;
+            else if (result == 201)
+                return 3;
+            else
+                return 8;
             //if (result == 1)
             //    return "发送成功";
             //else if (result == 101)
@@ -103,7 +125,7 @@ namespace SMSServer.OpenPlatform
             //else if (result == 201)
             //    return "计费失败，请充值";
             //else
-            //    return "其他故障值：" + result.ToString();
+            ////    return "其他故障值：" + result.ToString();
         }
 
         public override string GetStatusreport(SendUser us)
@@ -117,22 +139,22 @@ namespace SMSServer.OpenPlatform
         /// <returns></returns>
         public override string Getbalance(SendUser us)
         {
-           StringBuilder balance = new StringBuilder(0, 20);
+            StringBuilder balance = new StringBuilder(0, 20);
             //得到余额            注册号         余额
-           int result = GetBalance(us.serialNumber, balance);
+            int result = GetBalance(us.serialNumber, balance);
             string mybalance = balance.ToString(0, balance.Length - 1);
             if (result == 1)
-                return  mybalance + " 元";
+                return mybalance + " 元";
             else if (result == 101)
                 return "网络故障";
             else if (result == 102)
                 return "其它故障";
             else if (result == 100)
-               return "序列号码为空或无效";
+                return "序列号码为空或无效";
             else if (result == 105)
                 return "参数balance指针为空";
             else if (result == 0)
-               return "失败:";
+                return "失败:";
             else
                 return "其他故障值:" + result.ToString();
         }
@@ -151,7 +173,7 @@ namespace SMSServer.OpenPlatform
             {
                 result = ReceiveSMS(us.serialNumber, mySmsContent);
                 if (result == 1)
-                    resultString= "接收短信成功";
+                    resultString = "接收短信成功";
                 else if (result == 101)
                     resultString = "网络故障";
                 else if (result == 102)
@@ -173,7 +195,7 @@ namespace SMSServer.OpenPlatform
 
         public override int GetSignNum()
         {
-            throw new NotImplementedException();
+            return 10001;
         }
 
         public override List<MoInfo> GetMo()
@@ -183,16 +205,15 @@ namespace SMSServer.OpenPlatform
 
         public override int MassCount()
         {
-            throw new NotImplementedException();
+            return 50;
         }
 
         public override int GroupCount()
         {
-            throw new NotImplementedException();
-        }
+            return 1;
+        } 
 
-
-        public override int SendSMS(SendUser us, SMSSDKGroupInfo smsInfos)
+        public override int SendSMS(SendUser us, List<SDKGroupInfo> smsInfos)
         {
             throw new NotImplementedException();
         }

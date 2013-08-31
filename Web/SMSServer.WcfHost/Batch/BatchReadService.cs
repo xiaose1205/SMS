@@ -49,25 +49,25 @@ namespace SMSServer.WcfHost.Batch
                     {
                         #region 获取当前账号发送所走的信道
                         EnterpriseService config = new EnterpriseService();
-                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.EnterPriseID);
+                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("chinamobile", item.EnterPriseID);
+
+                        if (item.MsgCarrier == 2)
+                            configmodel = config.GetModelWithKey("union", item.EnterPriseID);
+                        if (item.MsgCarrier == 2)
+                            configmodel = config.GetModelWithKey("cdma", item.EnterPriseID);
 
                         string[] channels;
                         if (configmodel == null)
                         {
                             Print("当前企业的没有选择信道为空：" + item.EnterPriseID + "");
-
+                            batchmrg.UpdateBatchState(BatchState.Complete, item.ID);
+                            continue;
                         }
                         else
                         {
-                            channels = configmodel.CfgValue.Split(',');   
+                            channels = configmodel.CfgValue.Split(',');
                             Print("加入队列：" + item.BatchID + "");
-                            foreach (var batch in AppContent.SendingBatchs)
-                            {
-                                if (batch.ID == item.BatchID)
-                                {
-                                    item.Channels = channels;
-                                }
-                            }
+                            item.Channels = channels; 
                         }
                         AppContent.SendingMts.Enqueue(item);
                         #endregion

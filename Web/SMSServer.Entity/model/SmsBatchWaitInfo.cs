@@ -62,6 +62,10 @@ public partial class SmsBatchWaitInfo: BaseEntity
     ///    
     /// </summary>
     public int EnterPriseID {get; set;}
+    /// <summary>
+    /// 1：移动，2：联通，3：电信
+    /// </summary>
+    public int MsgCarrier { get; set; }
 
     public static class Columns 
     { 
@@ -74,5 +78,6 @@ public partial class SmsBatchWaitInfo: BaseEntity
         public const string MsgPack = "MsgPack";
         public const string MsgType = "MsgType";
         public const string EnterPriseID = "EnterPriseID";
+        public const string MsgCarrier = "MsgCarrier";
     }
 }

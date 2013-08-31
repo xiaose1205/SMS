@@ -24,7 +24,7 @@ namespace SMSServer.Service
 {
     public class BatchService
     {
-        public List< SendingBatchModel> GetReadyBatch(int batchCount)
+        public List<SendingBatchModel> GetReadyBatch(int batchCount)
         {
             List<SendingBatchModel> infos = SmsBatchManage.Instance.GetReadyBatch(batchCount);
             return infos;
@@ -36,29 +36,34 @@ namespace SMSServer.Service
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
-        public List<SmsBatchWaitInfo> GetReadyMt(int p1, string p2)
+        public List<SmsBatchWaitInfo> GetReadyMt(int batchWaitCount, string batchids)
         {
-            throw new NotImplementedException();
+            return SmsBatchManage.Instance.GetReadyMt(batchWaitCount, batchids);
         }
 
-        public bool CheckUser(int p)
+        public bool CheckUser(int accountId)
         {
-            throw new NotImplementedException();
+            SmsAccountInfo info = SmsAccountManage.Instance.FindById(accountId);
+            if (info == null || info.State == 0)
+                return false;
+            return true;
         }
 
-        public void UpdateBatchState( BatchState batchState, int p)
+        public void UpdateBatchState(BatchState batchState, int batchid)
         {
-            throw new NotImplementedException();
+            SmsBatchManage.Instance.UpdateState(batchid, batchState,-1);
         }
 
-        public void RemoveToMt(SmsBatchWaitInfo model, SMSService.Entity.SendingBatchModel sendingmodel, SMSService.Entity.SendResultEnum sendResultEnum)
+        public void RemoveToMt(SmsBatchWaitInfo model)
         {
-            throw new NotImplementedException();
+            SmsBatchManage.Instance.deleteMt(model.ID);
         }
 
-        public void WriteBatchDetial(List<string> phones, string content)
+
+
+        public void WriteBatchDetial(List<SmsBatchDetailsInfo> infos)
         {
-            throw new NotImplementedException();
+            SmsBatchDetailsManage.Instance.AddList(infos);
         }
     }
 }

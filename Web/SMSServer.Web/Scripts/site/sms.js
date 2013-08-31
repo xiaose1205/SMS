@@ -147,11 +147,11 @@ $(document).ready(function () {
         var len = parseInt($("#lblWord").html());
         var signature = $("#signature").html();
         var totallen = value.length + signature.length;
-         
+
         if (totallen <= 70)
             $("#lblGroupNum").html(1);
         else {
-            $("#lblGroupNum").html(Math.ceil(totallen / len ));
+            $("#lblGroupNum").html(Math.ceil(totallen / len));
         }
         $("#lblWordNum").html(totallen);
     });
@@ -263,6 +263,10 @@ $(document).ready(function () {
         }, function (data) {
             if (data.Result == 1) {
                 $.showSuccess("提交成功");
+                $("#sendcontent").val("");
+                $("#txtName").val("");
+                $('.waitsenduser').importTags('');
+
             } else {
                 $.showError(data.Message);
             }

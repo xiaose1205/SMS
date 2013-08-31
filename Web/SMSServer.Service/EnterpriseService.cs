@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HelloData.FWCommon.Cache;
+using SMSServer.Logic;
 using SMSService.Logic;
 
 namespace SMSServer.Service
@@ -33,7 +34,7 @@ namespace SMSServer.Service
 
         public List<SmsEnterpriseInfo> GetEnterprise()
         {
-            throw new NotImplementedException();
+            return SmsEnterpriseManage.Instance.GetList(0, -1);
         }
 
         public int[] GetChannels(SmsEnterpriseCfgInfo cfg)
@@ -51,8 +52,8 @@ namespace SMSServer.Service
                     iArray[a] = int.Parse(array[a]);
                 }
                 catch (Exception)
-                { 
-                } 
+                {
+                }
             }
             return iArray;
 

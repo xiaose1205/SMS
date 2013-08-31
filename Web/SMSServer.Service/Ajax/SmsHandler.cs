@@ -150,10 +150,10 @@ namespace SMSServer.Service.Ajax
         {
             foreach (SmsContentfilterkeyInfo smsContentfilterkeyInfo in keys)
             {
-                if (content.Contains(smsContentfilterkeyInfo.Keyword))
-                    return false;
+                if (!string.IsNullOrEmpty(smsContentfilterkeyInfo.Keyword) && content.Contains(smsContentfilterkeyInfo.Keyword))
+                    return true;
             }
-            return true;
+            return false;
         }
         /// <summary>
         /// 过滤黑名单
@@ -166,9 +166,9 @@ namespace SMSServer.Service.Ajax
             foreach (SmsBlackphoneInfo smsBlackphoneInfo in blackphone)
             {
                 if (phone.Trim() == smsBlackphoneInfo.Phone.Trim())
-                    return false;
+                    return true;
             }
-            return true;
+            return false;
         }
 
         public void SendPool(object sender)
@@ -183,7 +183,10 @@ namespace SMSServer.Service.Ajax
 
             batchInfo.CommitTime = DateTime.Now;
             List<SmsTelesegInfo> telesegInfos = SmsTelesegManage.Instance.FindList(0, -1);
-
+            List<SmsBlackphoneInfo> blackphoneInfos = SmsBlackPhoneManage.Instance.GetList(0, -1, info.EnterpriseID);
+            List<SmsContentfilterkeyInfo> contentfilterkeyInfos = SmsContentfilterkeyManage.Instance.GetList(0, -1,
+                                                                                                             info
+                                                                                                                 .EnterpriseID);
             batchInfo.MsgType = 1;
             batchInfo.CreateTime = DateTime.Now.AddSeconds(-5);
             batchInfo.MessageState = 0;
@@ -226,67 +229,102 @@ namespace SMSServer.Service.Ajax
                     {
                         if (!AppContent.isPhone(dt.Rows[i][0].ToString()))
                             continue;
-                        int phonetel = getPhone(dt.Rows[i][0].ToString(), telesegInfos);
 
+                        if (info.FBlack && blackphoneInfos.Count > 0)
+                        {
+                            if (filterBlack(dt.Rows[i][0].ToString(), blackphoneInfos))
+                                continue;
+                        }
+                        string content = ComparContent(info.Content, dt.Columns, dt.Rows[i]);
+                        if (info.FKeyword && contentfilterkeyInfos.Count > 0)
+                        {
+                            if (filterContent(content, contentfilterkeyInfos))
+                                continue;
+                        }
+                        int phonetel = getPhone(dt.Rows[i][0].ToString(), telesegInfos);
                         groupInfo[phonetel].groupInfos.Add(new GroupInfo()
                         {
-                            Content = ComparContent(info.Content, dt.Columns, dt.Rows[i]),
+                            Content = content,
                             Phone = dt.Rows[i][0].ToString()
                         });
 
-                        if ((groupInfo[phonetel].groupInfos.Count % mtpackLength == 0 && i != 0) || i == dt.Rows.Count - 1)
-                        {
-                            waitinfoarray[phonetel].AccountID = info.AccountID;
-                            waitinfoarray[phonetel].EnterPriseID = info.EnterpriseID;
-                            waitinfoarray[phonetel].CreateTime = DateTime.Now;
-                            waitinfoarray[phonetel].MsgCount = mtpackLength;
-                            waitinfoarray[phonetel].MsgType = 1;
-                            waitinfoarray[phonetel].BatchID = batchId;
-                            waitinfoarray[phonetel].MsgPack = JsonHelper.SerializeObject(groupInfo);
-                            waitInfos.Add(waitinfoarray[phonetel]);
-                            groupInfo[phonetel] = new SMSGroupInfo();
-                            groupInfo[phonetel].groupInfos = new List<GroupInfo>();
-                            waitinfoarray[phonetel] = new SmsBatchWaitInfo();
-                        }
+
                         readCount++;
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (groupInfo[i].groupInfos.Count > 0)
+                        {
+                            waitinfoarray[i].AccountID = info.AccountID;
+                            waitinfoarray[i].EnterPriseID = info.EnterpriseID;
+                            waitinfoarray[i].CreateTime = DateTime.Now;
+                            waitinfoarray[i].MsgCount = mtpackLength;
+                            waitinfoarray[i].MsgType = 0;
+                            waitinfoarray[i].MsgCarrier = i;
+                            waitinfoarray[i].BatchID = batchId;
+                            waitinfoarray[i].MsgPack = JsonHelper.SerializeObject(groupInfo[i]);
+                            waitInfos.Add(waitinfoarray[i]);
+                            groupInfo[i] = new SMSGroupInfo();
+                            groupInfo[i].groupInfos = new List<GroupInfo>();
+                            waitinfoarray[i] = new SmsBatchWaitInfo();
+                        }
                     }
                 }
                 else
                 {
-                    SMSMassInfo[] massInfo = new SMSMassInfo[3];
-                    massInfo[0] = new SMSMassInfo();
-                    massInfo[0].Content = info.Content;
-                    massInfo[0].Phones = new List<string>();
-                    massInfo[1] = new SMSMassInfo();
-                    massInfo[1].Content = info.Content;
-                    massInfo[1].Phones = new List<string>();
-                    massInfo[2] = new SMSMassInfo();
-                    massInfo[2].Content = info.Content;
-                    massInfo[2].Phones = new List<string>();
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    bool isFContent = false;
+                    if (info.FKeyword && contentfilterkeyInfos.Count > 0)
                     {
-                        if (!AppContent.isPhone(dt.Rows[i][0].ToString()))
-                            continue;
-                        int phonetel = getPhone(dt.Rows[i][0].ToString(), telesegInfos);
-                        massInfo[phonetel].Phones.Add(
-                            dt.Rows[i][0].ToString()
-                            );
-
-                        if ((massInfo[phonetel].Phones.Count % mtpackLength == 0 && i != 0) || i == dt.Rows.Count - 1)
+                        if (filterContent(info.Content, contentfilterkeyInfos))
+                            isFContent = true;
+                    }
+                    if (!isFContent)
+                    {
+                        SMSMassInfo[] massInfo = new SMSMassInfo[3];
+                        massInfo[0] = new SMSMassInfo();
+                        massInfo[0].Content = info.Content;
+                        massInfo[0].Phones = new List<string>();
+                        massInfo[1] = new SMSMassInfo();
+                        massInfo[1].Content = info.Content;
+                        massInfo[1].Phones = new List<string>();
+                        massInfo[2] = new SMSMassInfo();
+                        massInfo[2].Content = info.Content;
+                        massInfo[2].Phones = new List<string>();
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            waitinfoarray[phonetel].AccountID = info.AccountID;
-                            waitinfoarray[phonetel].EnterPriseID = info.EnterpriseID;
-                            waitinfoarray[phonetel].CreateTime = DateTime.Now;
-                            waitinfoarray[phonetel].MsgCount = mtpackLength;
-                            waitinfoarray[phonetel].MsgType = 1;
-                            waitinfoarray[phonetel].MsgPack = JsonHelper.SerializeObject(massInfo);
-                            waitInfos.Add(waitinfoarray[phonetel]);
-                            massInfo[phonetel] = new SMSMassInfo();
-                            massInfo[phonetel].Content = info.Content;
-                            massInfo[phonetel].Phones = new List<string>();
-                            waitinfoarray[phonetel] = new SmsBatchWaitInfo();
+                            if (!AppContent.isPhone(dt.Rows[i][0].ToString()))
+                                continue;
+                            if (info.FBlack && blackphoneInfos.Count > 0)
+                            {
+                                if (filterBlack(dt.Rows[i][0].ToString(), blackphoneInfos))
+                                    continue;
+                            }
+                            int phonetel = getPhone(dt.Rows[i][0].ToString(), telesegInfos);
+                            massInfo[phonetel].Phones.Add(
+                                dt.Rows[i][0].ToString()
+                                );
+
+                            readCount++;
                         }
-                        readCount++;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (massInfo[i].Phones.Count > 0)
+                            {
+                                waitinfoarray[i].AccountID = info.AccountID;
+                                waitinfoarray[i].EnterPriseID = info.EnterpriseID;
+                                waitinfoarray[i].CreateTime = DateTime.Now;
+                                waitinfoarray[i].MsgCount = mtpackLength;
+                                waitinfoarray[i].MsgType = 1;
+                                waitinfoarray[i].BatchID = batchId;
+                                waitinfoarray[i].MsgCarrier = i;
+                                waitinfoarray[i].MsgPack = JsonHelper.SerializeObject(massInfo[i]);
+                                waitInfos.Add(waitinfoarray[i]);
+                                massInfo[i] = new SMSMassInfo();
+                                massInfo[i].Content = info.Content;
+                                massInfo[i].Phones = new List<string>();
+                                waitinfoarray[i] = new SmsBatchWaitInfo();
+                            }
+                        }
                     }
                 }
 
@@ -343,6 +381,18 @@ namespace SMSServer.Service.Ajax
                         SmsContactInfo contactInfo = smsContactInfos[i];
                         if (!AppContent.isPhone(contactInfo.Mobile))
                             continue;
+
+                        if (info.FBlack && blackphoneInfos.Count > 0)
+                        {
+                            if (filterBlack(contactInfo.Mobile, blackphoneInfos))
+                                continue;
+                        }
+                        string content = ComparContent(info.Content, contactInfo);
+                        if (info.FKeyword && contentfilterkeyInfos.Count > 0)
+                        {
+                            if (filterContent(content, contentfilterkeyInfos))
+                                continue;
+                        }
                         int phonetel = getPhone(contactInfo.Mobile, telesegInfos);
                         groupInfo[phonetel].groupInfos.Add(new GroupInfo()
                         {
@@ -350,72 +400,102 @@ namespace SMSServer.Service.Ajax
                             Phone = contactInfo.Mobile
                         });
 
-                        if ((groupInfo[phonetel].groupInfos.Count % mtpackLength == 0 && i != 0) || i == smsContactInfos.Count - 1)
-                        {
-                            waitinfoarray[phonetel].AccountID = info.AccountID;
-                            waitinfoarray[phonetel].EnterPriseID = info.EnterpriseID;
-                            waitinfoarray[phonetel].CreateTime = DateTime.Now;
-                            waitinfoarray[phonetel].MsgCount = mtpackLength;
-                            waitinfoarray[phonetel].MsgType = 1;
-                            waitinfoarray[phonetel].BatchID = batchId;
-                            waitinfoarray[phonetel].MsgPack = JsonHelper.SerializeObject(groupInfo);
-                            waitInfos.Add(waitinfoarray[phonetel]);
-                            groupInfo[phonetel] = new SMSGroupInfo();
-                            groupInfo[phonetel].groupInfos = new List<GroupInfo>();
-                            waitinfoarray[phonetel] = new SmsBatchWaitInfo();
-                        }
+
                         readCount++;
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (groupInfo[i].groupInfos.Count > 0)
+                        {
+                            waitinfoarray[i].AccountID = info.AccountID;
+                            waitinfoarray[i].EnterPriseID = info.EnterpriseID;
+                            waitinfoarray[i].CreateTime = DateTime.Now;
+                            waitinfoarray[i].MsgCount = mtpackLength;
+                            waitinfoarray[i].MsgType = 0;
+                            waitinfoarray[i].MsgCarrier = i;
+                            waitinfoarray[i].BatchID = batchId;
+                            waitinfoarray[i].MsgPack = JsonHelper.SerializeObject(groupInfo[i]);
+                            waitInfos.Add(waitinfoarray[i]);
+                            groupInfo[i] = new SMSGroupInfo();
+                            groupInfo[i].groupInfos = new List<GroupInfo>();
+                            waitinfoarray[i] = new SmsBatchWaitInfo();
+                        }
                     }
                 }
                 else
                 {
-                    SMSMassInfo[] massInfo = new SMSMassInfo[3];
-                    massInfo[0] = new SMSMassInfo();
-                    massInfo[0].Content = info.Content;
-                    massInfo[0].Phones = new List<string>();
-                    massInfo[1] = new SMSMassInfo();
-                    massInfo[1].Content = info.Content;
-                    massInfo[1].Phones = new List<string>();
-                    massInfo[2] = new SMSMassInfo();
-                    massInfo[2].Content = info.Content;
-                    massInfo[2].Phones = new List<string>();
-                    for (int i = 0; i < smsContactInfos.Count; i++)
+                    bool isFContent = false;
+                    if (info.FKeyword && contentfilterkeyInfos.Count > 0)
                     {
-                        SmsContactInfo contactInfo = smsContactInfos[i];
-                        if (!AppContent.isPhone(contactInfo.Mobile))
-                            continue;
-                        int phonetel = getPhone(contactInfo.Mobile, telesegInfos);
-                        massInfo[phonetel].Phones.Add(
-                          contactInfo.Mobile
-                            );
-
-                        if ((massInfo[phonetel].Phones.Count % mtpackLength == 0 && i != 0) || i == smsContactInfos.Count - 1)
+                        if (filterContent(info.Content, contentfilterkeyInfos))
+                            isFContent = true;
+                    }
+                    if (!isFContent)
+                    {
+                        SMSMassInfo[] massInfo = new SMSMassInfo[3];
+                        massInfo[0] = new SMSMassInfo();
+                        massInfo[0].Content = info.Content;
+                        massInfo[0].Phones = new List<string>();
+                        massInfo[1] = new SMSMassInfo();
+                        massInfo[1].Content = info.Content;
+                        massInfo[1].Phones = new List<string>();
+                        massInfo[2] = new SMSMassInfo();
+                        massInfo[2].Content = info.Content;
+                        massInfo[2].Phones = new List<string>();
+                        for (int i = 0; i < smsContactInfos.Count; i++)
                         {
-                            waitinfoarray[phonetel].AccountID = info.AccountID;
-                            waitinfoarray[phonetel].EnterPriseID = info.EnterpriseID;
-                            waitinfoarray[phonetel].CreateTime = DateTime.Now;
-                            waitinfoarray[phonetel].MsgCount = mtpackLength;
-                            waitinfoarray[phonetel].MsgType = 1;
-                            waitinfoarray[phonetel].MsgPack = JsonHelper.SerializeObject(massInfo);
-                            waitInfos.Add(waitinfoarray[phonetel]);
-                            massInfo[phonetel] = new SMSMassInfo();
-                            massInfo[phonetel].Content = info.Content;
-                            massInfo[phonetel].Phones = new List<string>();
-                            waitinfoarray[phonetel] = new SmsBatchWaitInfo();
+                            SmsContactInfo contactInfo = smsContactInfos[i];
+                            if (!AppContent.isPhone(contactInfo.Mobile))
+                                continue;
+                            if (info.FBlack && blackphoneInfos.Count > 0)
+                            {
+                                if (filterBlack(contactInfo.Mobile, blackphoneInfos))
+                                    continue;
+                            }
+                            int phonetel = getPhone(contactInfo.Mobile, telesegInfos);
+                            massInfo[phonetel].Phones.Add(
+                                contactInfo.Mobile
+                                );
+
+
+                            readCount++;
                         }
-                        readCount++;
+                        for (int i = 0; i < 3; i++)
+                        {
+                            if (massInfo[i].Phones.Count > 0)
+                            {
+                                waitinfoarray[i].AccountID = info.AccountID;
+                                waitinfoarray[i].EnterPriseID = info.EnterpriseID;
+                                waitinfoarray[i].CreateTime = DateTime.Now;
+                                waitinfoarray[i].MsgCount = mtpackLength;
+                                waitinfoarray[i].MsgType = 1;
+                                waitinfoarray[i].BatchID = batchId;
+                                waitinfoarray[i].MsgCarrier = i;
+                                waitinfoarray[i].MsgPack = JsonHelper.SerializeObject(massInfo[i]);
+                                waitInfos.Add(waitinfoarray[i]);
+                                massInfo[i] = new SMSMassInfo();
+                                massInfo[i].Content = info.Content;
+                                massInfo[i].Phones = new List<string>();
+                                waitinfoarray[i] = new SmsBatchWaitInfo();
+                            }
+                        }
                     }
                 }
-            } SmsBatchAmountInfo amountInfo = new SmsBatchAmountInfo();
+            }
+            SmsBatchAmountInfo amountInfo = new SmsBatchAmountInfo();
             amountInfo.BatchID = batchId;
-            amountInfo.SendAmount = 0;
+            amountInfo.SendAmount = readCount;
             amountInfo.PlanSendCount = totalCount;
             amountInfo.RealAmount = readCount;
             amountInfo.SuccessAmount = 0;
             amountInfo.CreateTime = DateTime.Now;
             SmsBatchManage.Instance.AddBatchAmount(amountInfo);
             SmsBatchManage.Instance.AddBatchWait(waitInfos);
-            SmsBatchManage.Instance.UpdateState(batchId, BatchState.Waiting);
+            if (readCount > 0)
+                SmsBatchManage.Instance.UpdateState(batchId, BatchState.Waiting, waitInfos.Count);
+            else
+                SmsBatchManage.Instance.UpdateState(batchId, BatchState.Complete, waitInfos.Count);
+
         }
 
         private string ComparContent(string content, DataColumnCollection dataColumn, DataRow dataRow)

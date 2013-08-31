@@ -41,5 +41,20 @@ namespace SMSServer.Logic
                 return action.QueryPage<SmsBatchDetailsMoreInfo>(PageIndex);
             }
         }
+
+        public void AddList(List<SmsBatchDetailsInfo> infos)
+        {
+            using (TradAction action = new TradAction())
+            {
+                List<string> sqls = new List<string>();
+                foreach (var info in infos)
+                {
+                    InserAction inserAction = new InserAction(info);
+                    sqls.Add(inserAction.CreateSql(OperateEnum.Insert));
+
+                }
+                action.ExecuteSqlTran(sqls); 
+            }
+        }
     }
 }

@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DemoService.cs" />
     <Compile Include="MoInfo.cs" />
     <Compile Include="ServicesFactory.cs" />
     <Compile Include="CookiesModel.cs" />

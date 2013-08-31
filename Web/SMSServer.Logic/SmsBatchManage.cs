@@ -24,12 +24,13 @@ namespace SMSServer.Logic
             {
                 ids += sendingBatchModel.ID + ",";
             }
-            using (UpdateAction update = new UpdateAction(this.Entity))
-            {
-                update.SqlWhere(SmsBatchInfo.Columns.ID, ids.TrimEnd(','), ConditionEnum.And, RelationEnum.In);
-                update.SqlKeyValue(SmsBatchInfo.Columns.BatchState, (int)BatchState.Sending);
-                update.Excute();
-            }
+            if (ids.Length > 0)
+                using (UpdateAction update = new UpdateAction(this.Entity))
+                {
+                    update.SqlWhere(SmsBatchInfo.Columns.ID, ids.TrimEnd(','), ConditionEnum.And, RelationEnum.In);
+                    update.SqlKeyValue(SmsBatchInfo.Columns.BatchState, (int)BatchState.Sending);
+                    update.Excute();
+                }
             return models;
         }
 
@@ -98,12 +99,39 @@ namespace SMSServer.Logic
             }
         }
 
-        public void UpdateState(int batchId, BatchState batchState)
+        public void UpdateState(int batchId, BatchState batchState, int waitCount)
         {
-            string sql = "update sms_batch set batchstate=" + (int)batchState + " where id=" + batchId + "";
+            string sql = "";
+            if(waitCount>-1) 
+             sql = "update sms_batch set batchstate=" + (int)batchState + ",mtcount=" + waitCount + " where id=" + batchId + "";
+
+            else
+            {
+                sql = "update sms_batch set batchstate=" + (int)batchState + "  where id=" + batchId + ""; 
+                
+            }
             using (TradAction acion = new TradAction())
             {
                 acion.Excute(sql);
+            }
+        }
+
+        public void deleteMt(int mtid)
+        {
+            using (DeleteAction action = new DeleteAction(new SmsBatchWaitInfo()))
+            {
+                action.SqlWhere(SmsBatchWaitInfo.Columns.ID, mtid);
+                action.Excute();
+            }
+        }
+
+        public PageList<SmsBatchWaitInfo> GetReadyMt(int batchWaitCount, string batchids)
+        {
+            using (SelectAction action = new SelectAction(new SmsBatchWaitInfo()))
+            {
+                action.SqlPageParms(batchWaitCount);
+                action.SqlWhere(SmsBatchWaitInfo.Columns.BatchID, batchids, RelationEnum.In);
+                return action.QueryPage<SmsBatchWaitInfo>(0);
             }
         }
     }

@@ -8,7 +8,7 @@ using HelloData.FrameWork;
 using HelloData.FrameWork.Data;
 using System.Configuration;
 using SMSServer.OpenPlatform;
-using SMSServer.Wcf;
+using SMSServer.Service;
 using SMSServer.WcfHost.Batch;
 
 namespace SMSServer.WcfHost
@@ -24,7 +24,7 @@ namespace SMSServer.WcfHost
             if (debugLog)
             {
                 //启动日志模块
-                Logger.Current.SetLogger = new ConsoleLog();
+                Logger.Current.SetLogger = new LogNet();
                 Logger.Current.IsOpenLog = true;
                 Logger.CurrentLog.Info("INSTALLING");
             }
@@ -38,17 +38,25 @@ namespace SMSServer.WcfHost
             //设置数据库连接模块
             AppCons.LogSqlExcu = bool.Parse(ConfigurationManager.AppSettings["LogSqlExcu"].ToString());
             //设置第一个数据库
-            AppCons.SetSecondConnect(new MsSqlHelper(), ConfigurationManager.AppSettings["ConnectionString"]);
-            AppCons.IsParmes = bool.Parse(ConfigurationManager.AppSettings["SqlParms"].ToString());
+            AppCons.SetDefaultConnect(new MySqlHelper(), ConfigurationManager.AppSettings["ConnectionString"]);
+            AppCons.IsParmes = bool.Parse(ConfigurationManager.AppSettings["SqlParms"]);
             Logger.CurrentLog.Info("Service_STARTING");
-            AppCons.IsOpenCache = bool.Parse(ConfigurationManager.AppSettings["OpenCache"].ToString());
+            AppCons.IsOpenCache = bool.Parse(ConfigurationManager.AppSettings["OpenCache"]);
             AppCons.CurrentCache = new WebCache();
 
             //注册发送的信道
-            ServicesFactory.RegisterApp(new HZService());
-            ServicesFactory.RegisterApp(new WJXService());
+            ServicesFactory.RegisterApp(new DemoService());
             ServicesFactory.RegisterApp(new YMService());
 
+            AppContent.ReadBatch = int.Parse(ConfigurationManager.AppSettings["ReadBatch"]) ;
+            AppContent.ReadTask = int.Parse(ConfigurationManager.AppSettings["ReadTask"])  ;
+
+            AppContent.ReadSender = int.Parse(ConfigurationManager.AppSettings["ReadSender"])  ;
+            AppContent.ReadBatchCount = int.Parse(ConfigurationManager.AppSettings["ReadBatchCount"])  ;
+
+            AppContent.SendPackCount = int.Parse(ConfigurationManager.AppSettings["SendPackCount"])  ;
+
+            AppContent.SendMtCount = int.Parse(ConfigurationManager.AppSettings["SendMtCount"]) ;
 
             if (!debugLog)
             {
@@ -61,18 +69,21 @@ namespace SMSServer.WcfHost
             }
             else
             {
-               
-                Logger.CurrentLog.Info("WCF_STARTING");
-                ServiceHost host = new ServiceHost(typeof(SMSServerWcf));
-                if (host.Description.Behaviors.Find<System.ServiceModel.Description.ServiceMetadataBehavior>() == null)
-                {
-                    BindingElement metaElement = new TcpTransportBindingElement();
-                    CustomBinding metaBind = new CustomBinding(metaElement);
-                    host.Description.Behaviors.Add(new System.ServiceModel.Description.ServiceMetadataBehavior());
-                    host.AddServiceEndpoint(typeof(System.ServiceModel.Description.IMetadataExchange), metaBind, "MEX");
-                }
-                host.Open();
-                Logger.CurrentLog.Info("wcf状态" + host.State.ToString());
+                BatchReadService readService = new BatchReadService();
+                BatchSendService sendService = new BatchSendService();
+                readService.Star();
+                sendService.Star();
+                //Logger.CurrentLog.Info("WCF_STARTING");
+                //ServiceHost host = new ServiceHost(typeof(SMSServerWcf));
+                //if (host.Description.Behaviors.Find<System.ServiceModel.Description.ServiceMetadataBehavior>() == null)
+                //{
+                //    BindingElement metaElement = new TcpTransportBindingElement();
+                //    CustomBinding metaBind = new CustomBinding(metaElement);
+                //    host.Description.Behaviors.Add(new System.ServiceModel.Description.ServiceMetadataBehavior());
+                //    host.AddServiceEndpoint(typeof(System.ServiceModel.Description.IMetadataExchange), metaBind, "MEX");
+                //}
+                //host.Open();
+                Logger.CurrentLog.Info("状态normal");
 
                 Console.ReadLine();
             }
