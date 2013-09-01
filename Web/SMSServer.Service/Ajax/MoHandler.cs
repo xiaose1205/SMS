@@ -46,7 +46,7 @@ namespace SMSServer.Service.Ajax
             string starttime = Request.Params["starttime"];
             string endtime = Request.Params["endtime"];
             PageList<SmsMoInfo> infos = SmsMOManage.Instance.GetList(PageIndex, PageSize
-                ,phone,content,starttime,endtime);
+                ,phone,content,starttime,endtime,AppContent.Current.GetCurrentUser().EnterpriseID);
 
             JsonFlexiGridData data = new JsonFlexiGridData();
             data.rows = new List<FlexiGridRow>();

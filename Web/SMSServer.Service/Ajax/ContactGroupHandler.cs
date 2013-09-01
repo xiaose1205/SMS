@@ -48,7 +48,7 @@ namespace SMSServer.Service.Ajax
             string parentid = Request.Params["id"];
             int pid = 0;
             int.TryParse(parentid, out pid);
-            List<SmsContactgroupInfo> infos = SmsContactGroupManage.Instance.getList(pid);
+            List<SmsContactgroupInfo> infos = SmsContactGroupManage.Instance.getList(pid,AppContent.Current.GetCurrentUser().EnterpriseID);
             List<Tree> trees = new List<Tree>();
             foreach (SmsContactgroupInfo smsContactgroupInfo in infos)
             {

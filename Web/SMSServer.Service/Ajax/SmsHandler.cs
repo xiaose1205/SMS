@@ -241,6 +241,9 @@ namespace SMSServer.Service.Ajax
                             if (filterContent(content, contentfilterkeyInfos))
                                 continue;
                         }
+                        if (info.FRepeat && allPhones.Contains(dt.Rows[i][0].ToString()))
+                            continue;
+                        allPhones.Add(dt.Rows[i][0].ToString());
                         int phonetel = getPhone(dt.Rows[i][0].ToString(), telesegInfos);
                         groupInfo[phonetel].groupInfos.Add(new GroupInfo()
                         {
@@ -299,6 +302,9 @@ namespace SMSServer.Service.Ajax
                                 if (filterBlack(dt.Rows[i][0].ToString(), blackphoneInfos))
                                     continue;
                             }
+                            if (info.FRepeat && allPhones.Contains(dt.Rows[i][0].ToString()))
+                                continue;
+                            allPhones.Add(dt.Rows[i][0].ToString());
                             int phonetel = getPhone(dt.Rows[i][0].ToString(), telesegInfos);
                             massInfo[phonetel].Phones.Add(
                                 dt.Rows[i][0].ToString()
@@ -393,6 +399,9 @@ namespace SMSServer.Service.Ajax
                             if (filterContent(content, contentfilterkeyInfos))
                                 continue;
                         }
+                        if (info.FRepeat && allPhones.Contains(contactInfo.Mobile))
+                            continue;
+                        allPhones.Add(contactInfo.Mobile);
                         int phonetel = getPhone(contactInfo.Mobile, telesegInfos);
                         groupInfo[phonetel].groupInfos.Add(new GroupInfo()
                         {
@@ -452,6 +461,9 @@ namespace SMSServer.Service.Ajax
                                 if (filterBlack(contactInfo.Mobile, blackphoneInfos))
                                     continue;
                             }
+                            if (info.FRepeat && allPhones.Contains(contactInfo.Mobile))
+                                continue;
+                            allPhones.Add(contactInfo.Mobile);
                             int phonetel = getPhone(contactInfo.Mobile, telesegInfos);
                             massInfo[phonetel].Phones.Add(
                                 contactInfo.Mobile

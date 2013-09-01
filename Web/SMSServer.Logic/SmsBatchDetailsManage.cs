@@ -10,7 +10,7 @@ namespace SMSServer.Logic
 {
     public class SmsBatchDetailsManage : BaseManager<SmsBatchDetailsManage, SmsBatchDetailsInfo>
     {
-        public PageList<SmsBatchDetailsMoreInfo> GetList(int PageIndex, int PageSize, string phone, string state, string starttime, string endtime)
+        public PageList<SmsBatchDetailsMoreInfo> GetList(int PageIndex, int PageSize, string phone, string state, string starttime, string endtime,int eid)
         {
             using (SelectAction action = new SelectAction(""))
             {
@@ -26,8 +26,10 @@ namespace SMSServer.Logic
                     });
                     action.AddJoin(ViewJoinEnum.innerjoin, "sms_batch", "sms_batch_details", field);
                 }
+                if(eid!=1)
+                    action.SqlWhere("_sms_batch."+SmsBatchInfo.Columns.EnterPriseID, eid);
                 if (!string.IsNullOrEmpty(phone))
-                    action.SqlWhere(SmsBatchDetailsInfo.Columns.Phone, phone);
+                    action.SqlWhere(SmsBatchDetailsInfo.Columns.Phone, phone,RelationEnum.Like);
                 if (!string.IsNullOrEmpty(state) && int.Parse(state) > 0)
                     action.SqlWhere(SmsBatchDetailsInfo.Columns.State, state);
                 if (!string.IsNullOrEmpty(starttime) && string.IsNullOrEmpty(endtime))

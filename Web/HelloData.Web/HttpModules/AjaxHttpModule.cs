@@ -18,13 +18,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.SessionState;
 using HelloData.AppHandlers;
 using HelloData.FWCommon;
 
 
 namespace HelloData.Web.HttpModules
 {
-    public class AjaxHttpModule : IHttpModule
+    public class AjaxHttpModule : IHttpModule, IRequiresSessionState
     {
         public void Dispose()
         {
@@ -39,12 +40,13 @@ namespace HelloData.Web.HttpModules
 
         public void Init(HttpApplication context)
         {
-            context.BeginRequest += AjaxUrl_BeginRequest;
+            // context.BeginRequest += AjaxUrl_BeginRequest;
+            context.AcquireRequestState += AcquireRequestState;
 
         }
-
-        private void AjaxUrl_BeginRequest(object sender, EventArgs e)
+        private void AcquireRequestState(object sender, EventArgs e)
         {
+
             HttpContext context = ((HttpApplication)sender).Context;
             string requestPath = context.Request.Path.Trim('/').ToLower();
             if (requestPath.Contains("ajax/"))
@@ -75,6 +77,7 @@ namespace HelloData.Web.HttpModules
                 context.ApplicationInstance.CompleteRequest();
             }
         }
+
 
     }
 }

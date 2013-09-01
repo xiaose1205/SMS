@@ -33,10 +33,11 @@ namespace SMSServer.Logic
             }
         }
 
-        public PageList<SmsMoInfo> GetList(int PageIndex, int PageSize, string phone, string content, string starttime, string endtime)
+        public PageList<SmsMoInfo> GetList(int PageIndex, int PageSize, string phone, string content, string starttime, string endtime,int eid)
         {
             using (SelectAction action = new SelectAction(this.Entity))
             {
+               
                 if (!string.IsNullOrEmpty(phone))
                     action.SqlWhere(SmsMoInfo.Columns.Phone, phone, ConditionEnum.And, RelationEnum.Like);
                 if (!string.IsNullOrEmpty(content))

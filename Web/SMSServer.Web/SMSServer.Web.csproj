@@ -67,6 +67,7 @@
     <Content Include="Account\AddEnterprise.aspx" />
     <Content Include="Account\EditAccount.aspx" />
     <Content Include="Account\EditEnterprise.aspx" />
+    <Content Include="Account\EditMyPwd.aspx" />
     <Content Include="Account\EditPassword.aspx" />
     <Content Include="Account\Enterprise.aspx" />
     <Content Include="Account\EnterpriseCfg.aspx" />
@@ -766,6 +767,13 @@
     <Compile Include="Account\EditEnterprise.aspx.designer.cs">
       <DependentUpon>EditEnterprise.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\EditMyPwd.aspx.cs">
+      <DependentUpon>EditMyPwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\EditMyPwd.aspx.designer.cs">
+      <DependentUpon>EditMyPwd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\EditPassword.aspx.cs">
       <DependentUpon>EditPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1025,6 +1033,7 @@
     <Content Include="demo\ajax.ashx" />
     <Content Include="log4net.config" />
     <Content Include="Master\AjaxFile.ashx" />
+    <None Include="Properties\PublishProfiles\sms.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

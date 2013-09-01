@@ -47,7 +47,7 @@ namespace SMSServer.Service.Ajax
             string starttime = Request.Params["starttime"];
             string endtime = Request.Params["endtime"];
             PageList<BatchMoreInfo> infos = SmsBatchManage.Instance.GetList(PageIndex, PageSize
-                , batchname, state, starttime, endtime);
+                , batchname, state, starttime, endtime,AppContent.Current.GetCurrentUser().EnterpriseID);
 
             JsonFlexiGridData data = new JsonFlexiGridData();
             data.rows = new List<FlexiGridRow>();

@@ -41,6 +41,29 @@
             });
 
         });
+
+        function repwd() {
+            art.dialog.open("account/EditMyPwd.aspx?id=<%=AppContent.Current.GetCurrentUser().ID%>",
+   {
+       title: "修改密码", width: 450, height: 190, close: function () {
+
+       },
+       lock: true,
+       resize: false
+   });
+
+
+        }
+
+        function loginout() {
+            $.post("../ajax/user/logout", {}, function (data) {
+                if (data.Result == 1) {
+                    window.location.href = "login.aspx";
+                } else {
+                    $.showError(data.Message);
+                }
+            }, "json");
+        }
         // loadPage("master/sysinfo.aspx");
     </script>
 </head>
@@ -51,13 +74,13 @@
                 <img src="Images/logo.png" />版本号：V1.0
             </div>
             <ul class="quicklink">
-                <li>用户：<a href="#">admin</a>
+                <li>用户：<a href="#" onclick="loadPage('master/sysinfo.aspx');" runat="server" id="myname"></a>
                 </li>
                 <li>
-                    <a href="#">修改密码</a>
+                    <a href="#" onclick="repwd();">修改密码</a>
                 </li>
                 <li class="last">
-                    <a href="#">退出</a>
+                    <a href="#" onclick="loginout()">退出</a>
                 </li>
             </ul>
         </div>
@@ -99,7 +122,7 @@
         <div id="container" class="container">
             <div id="sidebar" class="sidebar">
 
-                <h3 class="selected"><a href="javascript:void(0)">
+                <h3 ><a href="javascript:void(0)">
                     <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icon_sms.png" />短信管理</a></h3>
                 <ul>
                     <li>
@@ -114,7 +137,7 @@
                         <a href="#" page="sms/phonehistory.aspx" title="号码历史">
                             <img src="Images/icons/email_valid.gif" />号码历史</a>
                     </li>
-                    <li class="selected">
+                    <li >
 
                         <a href="#" page="sms/batchhistory.aspx" title="批次历史">
                             <img src="Images/icons/album_option.gif" />批次历史</a>
@@ -149,7 +172,7 @@
                             <img src="Images/icons/topic.gif " />常用短语</a>
                     </li>
                 </ul>
-                <h3><a href="javascript:void(0)">
+                <h3 class="selected"><a href="javascript:void(0)">
                     <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icons/setting.gif" />账号管理</a></h3>
                 <ul>
                     <% if (AppContent.Current.GetCurrentUser().ID == 1)
@@ -163,7 +186,7 @@
                             <img src="Images/icons/fortune_1.gif " />企业信息</a>
                     </li>
                     <% } %>
-                    <li>
+                    <li class="selected">
                         <a href="#" page="master/sysinfo.aspx" title="基本信息">
                             <img src="Images/icons/vcard.gif " />基本信息</a>
                     </li>
@@ -171,7 +194,7 @@
                 </ul>
                 <ul>
                     <li>
-                        <a href="#" page="aspxTest.aspx" title="退出登录">
+                        <a href="#" onclick="loginout()" title="退出登录">
                             <img src="Images/icons/Btn.Close.gif " />退出登录</a>
                     </li>
 

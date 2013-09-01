@@ -10,10 +10,12 @@ namespace HelloData.Util
     /// </summary>
     public static class Session
     {
-      
+
         public static void SetSession(string strSessionName, object strValue)
         {
-            HttpContext.Current.Session[strSessionName] = strValue;         
+            if (HttpContext.Current.Session == null)
+                return;
+            HttpContext.Current.Session[strSessionName] = strValue;
         }
 
         /// <summary>
@@ -24,10 +26,12 @@ namespace HelloData.Util
         /// <param name="iExpires">调动有效期（分钟）</param>
         public static void SetSession(string strSessionName, string strValue, int iExpires)
         {
+            if (HttpContext.Current.Session == null)
+                return;
             HttpContext.Current.Session[strSessionName] = strValue;
             HttpContext.Current.Session.Timeout = iExpires;
         }
-      
+
         /// <summary>
         /// 读取某个Session对象值
         /// </summary>
@@ -35,6 +39,8 @@ namespace HelloData.Util
         /// <returns>Session对象值</returns>
         public static object GetSession(string strSessionName)
         {
+            if (HttpContext.Current.Session == null)
+                return null;
             if (HttpContext.Current.Session[strSessionName] == null)
             {
                 return null;
@@ -51,6 +57,8 @@ namespace HelloData.Util
         /// <param name="strSessionName">Session对象名称</param>
         public static void DelSession(string strSessionName)
         {
+            if (HttpContext.Current.Session == null)
+                return;
             HttpContext.Current.Session[strSessionName] = null;
         }
     }
@@ -73,7 +81,7 @@ namespace HelloData.Util
         /// <param name="iExpires">调动有效期（分钟）</param>
         public static void SetApplication(string strApplicationName, string strValue, int iExpires)
         {
-            HttpContext.Current.Application[strApplicationName] = strValue; 
+            HttpContext.Current.Application[strApplicationName] = strValue;
         }
 
         /// <summary>

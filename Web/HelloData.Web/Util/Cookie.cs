@@ -70,8 +70,10 @@ namespace HelloData.Util
             DateTime now = DateTime.Now;
 
             myCookie.Expires = now.AddYears(-2);
-
-            HttpContext.Current.Response.Cookies.Add(myCookie);
+          
+            HttpContext.Current.Response.Cookies[CookieName].Expires = now.AddYears(-2);
+            HttpContext.Current.Response.Cookies[CookieName].Value = null; 
+          
         }
 
     }

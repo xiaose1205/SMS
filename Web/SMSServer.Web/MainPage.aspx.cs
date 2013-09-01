@@ -19,6 +19,7 @@ namespace SMSServer.Web
                 new EnterpriseService().GetEnterpriseInfo(AppContent.Current.GetCurrentUser().EnterpriseID);
             enterprise.InnerHtml = inf.EnterpriseName;
             smsprice.InnerHtml = inf.Capital.ToString()+"元";
+            myname.InnerHtml = AppContent.Current.GetCurrentUser().Account;
             state.InnerHtml = AppContent.Current.GetCurrentUser().State == 0 ? "禁用" : "正常";
 
         }

@@ -96,5 +96,15 @@ namespace SMSServer.Logic
                 return action.QueryEntity<SmsAccountInfo>();
             }
         }
+
+        public bool UpdateMyPwd(string pwd, string accountid, string oldpwd)
+        {
+            using (TradAction action = new TradAction())
+            {
+                string sql = "update sms_account set `PASSWORD`='" + md5.Encrypt(pwd) + "' where id=" + accountid + " and `PASSWORD`='" + md5.Encrypt(oldpwd) + "'";
+                 action.Excute(sql);
+                 return action.ReturnCode > 0;
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ $(document).ready(function () {
                 { display: '手机号码', name: 'phone', width: 100, align: 'center' },
                 { display: '短信内容', name: 'content', width: 250, align: 'center' },
                 { display: '状态', name: 'state', width: 80, align: 'center' },
-               
+
                 { display: '发送时间', name: 'posttime', width: 100, align: 'center' }
             ],
             minColToggle: 1,
@@ -23,13 +23,32 @@ $(document).ready(function () {
             resizable: false,
             width: 'auto',
             height: 'auto',
-            autoload: true,
+            autoload: false,
             singleSelect: true,
             specify: true,
             striped: true,
             showcheckbox: true,
             mutliSelect: true,
             showToggleBtn: true
-        });
+        }); doQuery();
     }
+    function doQuery() {
+        var contactQuery = {
+            "batchname": $("#phone").val(),
+            "state": $("#state").val(),
+            "starttime": $("#starttime").val(),
+            "endtime": $("#endtime").val()
+        };
+        var params = {
+            extParam: contactQuery
+        };
+        if ($('#grid')[0] != undefined) {
+            $('#grid')[0].p.newp = 1;
+            $('#grid').flexOptions(params).flexReload();
+        }
+    }
+
+    $("#search").click(function () {
+        doQuery();
+    });
 });

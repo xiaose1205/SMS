@@ -8,9 +8,13 @@ namespace SMSServer.Logic
 {
     public class SmsEnterpriseManage : BaseManager<SmsEnterpriseManage, SmsEnterpriseInfo>
     {
-        public void AddEnterprise(SmsEnterpriseInfo info)
+        public int AddEnterprise(SmsEnterpriseInfo info)
         {
-            base.Add(info);
+            using (InserAction insert = new InserAction(info))
+            {
+                 insert.ExcuteIdentity();
+                return insert.ReturnCode;
+            }
         }
 
         public void EditEnterprise(SmsEnterpriseInfo info)

@@ -34,7 +34,7 @@ namespace SMSServer.Logic
             return models;
         }
 
-        public PageList<BatchMoreInfo> GetList(int PageIndex, int PageSize, string batchname, string state, string starttime, string endtime)
+        public PageList<BatchMoreInfo> GetList(int PageIndex, int PageSize, string batchname, string state, string starttime, string endtime, int eid)
         {
             using (SelectAction action = new SelectAction(""))
             {
@@ -50,6 +50,8 @@ namespace SMSServer.Logic
                     });
                     action.AddJoin(ViewJoinEnum.leftjoin, "sms_batch", "sms_batch_amount", field);
                 }
+                if (eid != 1)
+                    action.SqlWhere("_sms_batch."+SmsBatchInfo.Columns.EnterPriseID, eid);
                 if (!string.IsNullOrEmpty(batchname))
                     action.SqlWhere(SmsBatchInfo.Columns.BatchName, batchname, ConditionEnum.And, RelationEnum.Like);
                 if (!string.IsNullOrEmpty(state) && int.Parse(state) > 0)
@@ -102,13 +104,13 @@ namespace SMSServer.Logic
         public void UpdateState(int batchId, BatchState batchState, int waitCount)
         {
             string sql = "";
-            if(waitCount>-1) 
-             sql = "update sms_batch set batchstate=" + (int)batchState + ",mtcount=" + waitCount + " where id=" + batchId + "";
+            if (waitCount > -1)
+                sql = "update sms_batch set batchstate=" + (int)batchState + ",mtcount=" + waitCount + " where id=" + batchId + "";
 
             else
             {
-                sql = "update sms_batch set batchstate=" + (int)batchState + "  where id=" + batchId + ""; 
-                
+                sql = "update sms_batch set batchstate=" + (int)batchState + "  where id=" + batchId + "";
+
             }
             using (TradAction acion = new TradAction())
             {

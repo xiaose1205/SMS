@@ -20,6 +20,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using HelloData.Util;
+using SMSServer.Service.Ajax;
 using SMSService.Entity;
 
 namespace SMSServer.Service
@@ -106,6 +107,7 @@ namespace SMSServer.Service
         {
             get { return Currentset.Instance; }
         }
+        public const string USER_KEY = "user";
         /// <summary>
         /// 用户的登录处理
         /// </summary>
@@ -115,6 +117,7 @@ namespace SMSServer.Service
         {
             Cookie.SaveCookie("userid", user.ID.ToString(), 20);
             Cookie.SaveCookie("account", user.Account, 20);
+            Session.SetSession(AppContent.USER_KEY, user);
 
         }
         /// <summary>
@@ -133,7 +136,22 @@ namespace SMSServer.Service
                 var cookie = Cookie.GetCookie("account");
                 if (cookie != null)
                     user.Account = cookie;
-                user.EnterpriseID = 1;
+                if (Session.GetSession(AppContent.USER_KEY) == null)
+                {
+                    AccountHandler handler = new AccountHandler();
+                    user = handler.GetAccount(user.ID);
+                    Session.SetSession(AppContent.USER_KEY, user);
+                }
+                else
+                {
+                    user = Session.GetSession(AppContent.USER_KEY) as SmsAccountInfo;
+                    if (user.ID != int.Parse(httpCookie))
+                    {
+                        AccountHandler handler = new AccountHandler();
+                        user = handler.GetAccount(int.Parse(httpCookie));
+                        Session.SetSession(AppContent.USER_KEY, user);
+                    }
+                }
                 return user;
             }
             return null;
@@ -145,8 +163,9 @@ namespace SMSServer.Service
         /// <param name="user"></param>
         public void LogoutUser()
         {
-            HttpContext.Current.Request.Cookies.Remove("userID");
-            HttpContext.Current.Request.Cookies.Remove("userName");
+            Session.DelSession(AppContent.USER_KEY);
+            Cookie.ClearCookie("userid");
+            Cookie.ClearCookie("account");
         }
 
         public static bool isPhone(string phone)

@@ -24,10 +24,12 @@ namespace SMSService.Logic
 {
     public class SmsTemplateManage : BaseManager<SmsTemplateManage, SmsTemplateInfo>
     {
-        public PageList<SmsTemplateInfo> GetList(int PageIndex, int PageSize)
+        public PageList<SmsTemplateInfo> GetList(int PageIndex, int PageSize, int eid)
         {
             using (SelectAction action = new SelectAction(this.Entity))
             {
+                if (eid > 0)
+                    action.SqlWhere(SmsTemplateInfo.Columns.EnterpriseID, eid);
                 action.SqlPageParms(PageSize);
                 return action.QueryPage<SmsTemplateInfo>(PageIndex);
             }

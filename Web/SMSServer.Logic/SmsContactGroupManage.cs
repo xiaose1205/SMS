@@ -25,10 +25,12 @@ namespace SMSService.Logic
     public class SmsContactGroupManage : BaseManager<SmsContactGroupManage, SmsContactgroupInfo>
     {
 
-        public List<SmsContactgroupInfo> getList(int parentId)
+        public List<SmsContactgroupInfo> getList(int parentId, int eid)
         {
             using (SelectAction action = new SelectAction(this.Entity))
             {
+                if (eid > 0)
+                    action.SqlWhere(SmsContactgroupInfo.Columns.EnterPriseID, eid);
                 action.SqlWhere(SmsContactgroupInfo.Columns.ParentGroupID, parentId);
                 action.SqlPageParms(-1);
                 return action.QueryPage<SmsContactgroupInfo>(0);

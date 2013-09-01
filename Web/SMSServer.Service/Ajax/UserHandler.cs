@@ -17,13 +17,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.SessionState;
 using HelloData.FWCommon;
 using HelloData.Web.AppHandlers;
 using SMSServer.Logic;
 
 namespace SMSServer.Service.Ajax
 {
-    public class UserHandler : BaseHandler
+    public class UserHandler : BaseHandler, IRequiresSessionState
     {
         public override HelloData.AppHandlers.IAppHandler CreateInstance()
         {
@@ -46,6 +47,12 @@ namespace SMSServer.Service.Ajax
                 return CreateHandler(0, "用户名或密码错误");
             AppContent.Current.LoginUser(info,DateTime.Now.AddDays(10));
             return CreateHandler(1, "登录成功");
+        }
+
+        public HandlerResponse logout()
+        {
+            AppContent.Current.LogoutUser();
+            return CreateHandler(1, "退出登录");
         }
     }
 }
