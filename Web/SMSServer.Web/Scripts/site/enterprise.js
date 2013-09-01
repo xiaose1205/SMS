@@ -8,11 +8,12 @@ $(document).ready(function () {
                 { display: 'id', name: 'id', width: 30, align: 'center', hide: false },
                 { display: '企业名称', name: 'name', width: 100, align: 'center' },
                 { display: '企业描述', name: 'introduction', width: 150, align: 'center' },
-                { display: '短信单价', name: 'smsprice', width: 100, align: 'center' },
-                 { display: '移动通道', name: 'chinamobile', width: 100, align: 'center' },
-                  { display: '联通通道', name: 'union', width: 100, align: 'center' },
-                  { display: '电信通道', name: 'cdma', width: 100, align: 'center' },
-                   { display: '短信长度', name: 'smslength', width: 100, align: 'center' },
+                  { display: '当前余额（元）', name: 'capital', width: 100, align: 'center' },
+                { display: '短信单价', name: 'smsprice', width: 80, align: 'center' },
+                 { display: '移动通道', name: 'chinamobile', width: 80, align: 'center' },
+                  { display: '联通通道', name: 'union', width: 80, align: 'center' },
+                  { display: '电信通道', name: 'cdma', width: 80, align: 'center' },
+                   { display: '短信长度', name: 'smslength', width: 80, align: 'center' },
                 { display: '创建时间', name: 'createtime', width: 150, align: 'center' }
             ],
             minColToggle: 1,
@@ -49,10 +50,10 @@ $(document).ready(function () {
     }
 
     $("#add").click(function () {
-        $.AddAction(450, 130, '添加企业', "account/addenterprise.aspx", doQuery);;
+        $.AddAction(450, 200, '添加企业', "account/addenterprise.aspx", doQuery);;
     });
     $("#edit").click(function () {
-        $.EditAction(450, 130, '修改企业', "account/editenterprise.aspx?id={0}", doQuery);;
+        $.EditAction(450, 200, '修改企业', "account/editenterprise.aspx?id={0}", doQuery);;
     });
     $("#delete").click(function () {
         $.DeleteAction("black", doQuery, "是否确认删除所选的数据？");

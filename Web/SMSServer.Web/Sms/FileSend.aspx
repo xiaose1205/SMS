@@ -229,6 +229,13 @@
             vertical-align: middle;
             *zoom: 1;
         }
+
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 72px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -242,35 +249,50 @@
             </div>
             <div style="margin-left: 20px; margin-top: 10px;">
 
-                <div class="form-inline" style="margin-bottom: 10px;">
-                    <label class="checkbox" style="margin-right: 10px;">
-                        <input type="checkbox" id="isheader" checked="checked">
-                        是否包含列头
-                    </label>
+                <table class="auto-style1">
+                    <tr>
+                        <td class="auto-style2">第一步： </td>
+                        <td><a id="fileupload" class="btn btn-link"></a><i class="icon-info-sign"></i><span style="margin-top: 14px;margin-left:10px" class="red">第一列必须为手机号码</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style2">第二步：</td>
+                        <td style="vertical-align:bottom;">
+                            <div class="form-inline" style="margin-bottom: 10px;margin-top:5px;">
 
-                    <i class="icon-th-large"></i>分隔符:  
+                                <label class="checkbox" style="margin-right: 10px;">
+                                    <input type="checkbox" id="isheader" checked="checked">
+                                    是否包含列头
+                                </label>
+
+                                <i class="icon-th-large"></i>分隔符:  
                   <label>
                       <input type="radio" name="splter" value="|" checked="checked" style="margin-right: 5px; margin-left: 5px;">|
                   </label>
-                    <label>
-                        <input type="radio" name="splter" style="margin-right: 5px; margin-left: 5px;" value="tap">tap
-                    </label>
-                    <label>
-                        <input type="radio" name="splter" style="margin-right: 5px; margin-left: 5px;" value="blank">空格
-                    </label>
-                    <label>
-                        <input type="radio" name="splter" style="margin-right: 5px; margin-left: 5px;">
-                    </label>
-                    <label>
-                        <input type="text" value="" style="width: 50px; height: 16px; line-height: 16px;" class="input-small" id="mysplter" />
-                    </label>
+                                <label>
+                                    <input type="radio" name="splter" style="margin-right: 5px; margin-left: 5px;" value="tap">tap
+                                </label>
+                                <label>
+                                    <input type="radio" name="splter" style="margin-right: 5px; margin-left: 5px;" value="blank">空格
+                                </label>
+                                <label>
+                                    <input type="radio" name="splter" style="margin-right: 5px; margin-left: 5px;">
+                                </label>
+                                <label>
+                                    <input type="text" value="" style="width: 50px; height: 16px; line-height: 16px;" class="input-small" id="mysplter" />
+                                </label>
 
-                </div>
-                <div>
-                    <a id="fileupload" class="btn btn-link"></a>
-                    <a href="#" id="inport" class="button button-rounded button-tiny   button-action" style="margin-left: 10px;">点击上传</a>
-                    <i class="icon-info-sign"></i><span style="margin-top: 14px;">第一列必须为手机号码</span>
-                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style2">第三步：</td>
+                        <td><a href="#" id="inport" class="button button-rounded button-tiny   button-action" style="margin-left: 0px;">点击上传</a>
+                        </td>
+                    </tr>
+                </table>
+
+
             </div>
         </div>
         <div class="  formPanel">

@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="SMSServer.Web.MainPage" %>
 
+<%@ Import Namespace="SMSServer.Service" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -106,7 +108,7 @@
                     </li>
                     <li>
                         <a href="#" page="sms/filesend.aspx" title="文件发送">
-                            <img src="Images/icons/email_send.gif" />文件发送</a>
+                            <img src="Images/icons/file_up.gif" />文件发送</a>
                     </li>
                     <li>
                         <a href="#" page="sms/phonehistory.aspx" title="号码历史">
@@ -150,17 +152,20 @@
                 <h3><a href="javascript:void(0)">
                     <img class="meunStatus" src="Images/icon_menu_show.png" /><img src="Images/icons/setting.gif" />账号管理</a></h3>
                 <ul>
-                     <li>
+                    <% if (AppContent.Current.GetCurrentUser().ID == 1)
+                       { %>
+                    <li>
                         <a href="#" page="account/account.aspx" title="企业账号">
-                            <img src="Images/icons/vcard.gif " />企业账号</a>
-                    </li>
-                     <li>
-                        <a href="#" page="account/enterprise.aspx" title="企业信息">
-                            <img src="Images/icons/vcard.gif " />企业信息</a>
+                            <img src="Images/icons/people_famale.gif " />企业账号</a>
                     </li>
                     <li>
-                        <a href="#" page="aspxTest.aspx" title="修改信息">
-                            <img src="Images/icons/vcard.gif " />修改信息</a>
+                        <a href="#" page="account/enterprise.aspx" title="企业信息">
+                            <img src="Images/icons/fortune_1.gif " />企业信息</a>
+                    </li>
+                    <% } %>
+                    <li>
+                        <a href="#" page="master/sysinfo.aspx" title="基本信息">
+                            <img src="Images/icons/vcard.gif " />基本信息</a>
                     </li>
 
                 </ul>
@@ -177,33 +182,32 @@
                 <div class="contentbody">
                     <div class="form">
                         <div class="title">
-                            <h3>表单</h3>
+                            <h3>基本资料</h3>
                         </div>
                         <div class="body">
                             <div class="formPanel">
 
-                                <h4>基本资料</h4>
                                 <form class="form-horizontal">
                                     <ul class="form">
                                         <li>
                                             <label>用户账号：</label>
-                                            <label runat="server" id="account"></label>
+                                            <label runat="server" id="account" style="float: none; padding-left: 100px;"></label>
                                         </li>
                                         <li>
                                             <label>所属企业：</label>
-                                            <label runat="server" id="enterprise"></label>
+                                            <label runat="server" id="enterprise" style="float: none; padding-left: 100px;"></label>
                                         </li>
                                         <li>
-                                            <label>短信单价：</label>
-                                            <label runat="server" id="smsprice"></label>
+                                            <label>当前余额：</label>
+                                            <label runat="server" id="smsprice" style="float: none; padding-left: 100px;"></label>
                                         </li>
                                         <li>
                                             <label>状态：</label>
-                                            <label runat="server" id="state"></label>
+                                            <label runat="server" id="state" style="float: none; padding-left: 100px;"></label>
                                         </li>
 
                                     </ul>
-                                 
+
                                 </form>
                             </div>
 

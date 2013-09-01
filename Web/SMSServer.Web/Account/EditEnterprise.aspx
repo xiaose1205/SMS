@@ -8,17 +8,23 @@
         <div class="z-legend">
             <strong>企业</strong>
         </div>
-
+          <input type="hidden" value="<% =Request.QueryString["id"]%>" name="id" />
         <div class="control-group">
             <label class="control-label" for="name">企业名称</label>
             <div class="controls">
-                <input type="text" id="name" name="name" />
+                <input type="text" id="name" name="name" value="<%=name %>" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="introduction">企业描述</label>
             <div class="controls">
-                <input type="text" id="introduction" name="introduction" />
+                <input type="text" id="introduction" name="introduction"  value="<%=introduction %>" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="introduction">资金</label>
+            <div class="controls">
+                <input type="text" id="capital" name="capital"  value="<%=capital %>" />
             </div>
         </div>
         <%---将button,input 放在这个容器里面就会自动处理 ----%>

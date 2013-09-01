@@ -48,6 +48,7 @@ namespace SMSServer.Logic
                 if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
                     action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
                 action.PageSize = PageSize;
+                action.SqlOrderBy(SmsMoInfo.Columns.CreateTime, OrderByEnum.Desc);
                 return action.QueryPage<SmsMoInfo>(PageIndex); 
             }
         }

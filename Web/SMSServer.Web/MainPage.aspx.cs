@@ -12,8 +12,15 @@ namespace SMSServer.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (AppContent.Current.GetCurrentUser()== null)
+            if (AppContent.Current.GetCurrentUser() == null)
                 Response.Redirect("Login.aspx");
+            account.InnerHtml = AppContent.Current.GetCurrentUser().Account;
+            SmsEnterpriseInfo inf =
+                new EnterpriseService().GetEnterpriseInfo(AppContent.Current.GetCurrentUser().EnterpriseID);
+            enterprise.InnerHtml = inf.EnterpriseName;
+            smsprice.InnerHtml = inf.Capital.ToString()+"元";
+            state.InnerHtml = AppContent.Current.GetCurrentUser().State == 0 ? "禁用" : "正常";
+
         }
     }
 }

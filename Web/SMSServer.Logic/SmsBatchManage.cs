@@ -134,5 +134,15 @@ namespace SMSServer.Logic
                 return action.QueryPage<SmsBatchWaitInfo>(0);
             }
         }
+
+        public void UpdateSuccessCount(int batchid, int count)
+        {
+            if (count > 0)
+                using (TradAction action = new TradAction())
+                {
+                    string sql = "update sms_batch_amount set SuccessAmount=SuccessAmount+" + count + " where BatchID=" + batchid + "";
+                    action.Excute(sql);
+                }
+        }
     }
 }

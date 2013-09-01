@@ -36,7 +36,10 @@ namespace SMSServer.Service
         {
             return SmsEnterpriseManage.Instance.GetList(0, -1);
         }
-
+        public  SmsEnterpriseInfo  GetEnterpriseInfo(int enterpriseID)
+        {
+            return SmsEnterpriseManage.Instance.FindById(enterpriseID);
+        }
         public int[] GetChannels(SmsEnterpriseCfgInfo cfg)
         {
             if (cfg == null)

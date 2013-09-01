@@ -48,12 +48,18 @@ namespace SMSServer.WcfHost.Batch
             {
                 if (model.Channels.Length == 0)
                 {
-                    CompleteMt(model);
+                    CompleteMt(model, 0, 0);
                     return;
                 }
+                SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("smsprice", model.EnterPriseID);
+                SmsEnterpriseInfo info = config.GetEnterpriseInfo(model.EnterPriseID);
+                float smsprice = float.Parse(configmodel.CfgValue);
+                int result = 3;
+                int sendCount = 0;
                 if ((SMSEnum)model.MsgType == SMSEnum.Group)
                 {//群发
                     SMSGroupInfo gGroup = JsonConvert.DeserializeObject<SMSGroupInfo>(model.MsgPack);
+                    bool hasMoney = !(info.Capital * 1000 - smsprice * 10 * gGroup.groupInfos.Count < 0);
                     foreach (string chanelid in model.Channels)
                     {
                         BaseService service = ServicesFactory.Execute(int.Parse(chanelid));
@@ -87,7 +93,11 @@ namespace SMSServer.WcfHost.Batch
                                 }
                             }
 
-                            int result = service.SendSMS(service.GetUser(), readyphones);
+                            if (hasMoney)
+                            {
+                                result = service.SendSMS(service.GetUser(), readyphones);
+                                if (result == 1) sendCount += readyphones.Count;
+                            }
                             WriteBatchDetial(readyphones, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);
 
                         }
@@ -96,6 +106,7 @@ namespace SMSServer.WcfHost.Batch
                 else
                 {//组发
                     SMSMassInfo mMass = JsonConvert.DeserializeObject<SMSMassInfo>(model.MsgPack);
+                    bool hasMoney = !(info.Capital * 1000 - smsprice * 10 * mMass.Phones.Count < 0);
                     foreach (string chanelid in model.Channels)
                     {
                         BaseService service = ServicesFactory.Execute(int.Parse(chanelid));
@@ -108,14 +119,18 @@ namespace SMSServer.WcfHost.Batch
                             else
                                 readyphones = mMass.Phones.GetRange(i * count, mMass.Phones.Count - i * count);
 
-                            int result = service.SendSMS(service.GetUser(), GetFromDetails(readyphones, mMass.Content));
+                            if (hasMoney)
+                            {
+                                result = service.SendSMS(service.GetUser(), GetFromDetails(readyphones, mMass.Content));
+                                if (result == 1) sendCount += readyphones.Count;
+                            }
                             WriteBatchDetial(readyphones, mMass.Content, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);
 
                         }
-                    } 
+                    }
 
                 }
-                CompleteMt(model);
+                CompleteMt(model, smsprice, sendCount);
                 lock (lockobj)
                     SendingMtCount--;
             }
@@ -183,8 +198,10 @@ namespace SMSServer.WcfHost.Batch
         /// 处理已经发送过的wait_mt
         /// </summary>
         /// <param name="model"></param>
-        public void CompleteMt(SmsBatchWaitInfo model)
+        public void CompleteMt(SmsBatchWaitInfo model, float sendPrice, int count)
         {
+            mrg.UpdatePrice(model.EnterPriseID, sendPrice * count);
+            mrg.UpdateSuccessCount(model.BatchID.Value, count);
             foreach (SendingBatchModel batchmodel in AppContent.SendingBatchs)
             {
                 if (batchmodel.ID == model.BatchID)

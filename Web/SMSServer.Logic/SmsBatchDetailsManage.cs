@@ -36,7 +36,7 @@ namespace SMSServer.Logic
                     action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, endtime, ConditionEnum.And, RelationEnum.LessThen);
                 if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
                     action.SqlWhere(SmsBatchDetailsInfo.Columns.SubmitTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
-
+                action.SqlOrderBy("_sms_batch_details.SubmitTime", OrderByEnum.Desc);
                 action.PageSize = PageSize;
                 return action.QueryPage<SmsBatchDetailsMoreInfo>(PageIndex);
             }

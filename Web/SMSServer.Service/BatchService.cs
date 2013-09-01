@@ -65,5 +65,16 @@ namespace SMSServer.Service
         {
             SmsBatchDetailsManage.Instance.AddList(infos);
         }
+
+        public void UpdatePrice(int enterpriseid, float prices)
+        {
+            SmsEnterpriseManage.Instance.UpdatePrice(enterpriseid,prices);
+        }
+
+
+        public void UpdateSuccessCount(int batchid, int count)
+        {
+            SmsBatchManage.Instance.UpdateSuccessCount(batchid, count);
+        }
     }
 }

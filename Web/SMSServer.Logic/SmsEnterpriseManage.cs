@@ -41,5 +41,15 @@ namespace SMSServer.Logic
                 return action.QueryPage<SmsEnterpriseInfo>(PageIndex);
             }
         }
+
+        public void UpdatePrice(int enterpriseid, float prices)
+        {
+            if (prices > 0)
+                using (TradAction action = new TradAction())
+                {
+                    string sql = "update sms_enterprise set Capital=Capital-" + prices + " where id=" + enterpriseid + "";
+                    action.Excute(sql);
+                }
+        }
     }
 }

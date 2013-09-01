@@ -10,7 +10,7 @@ $(document).ready(function () {
                 { display: '手机号码', name: 'phone', width: 100, align: 'center' },
                 { display: '短信内容', name: 'content', width: 250, align: 'center' },
                 { display: '状态', name: 'state', width: 80, align: 'center' },
-                { display: '状态描述', name: 'stateremark', width: 150, align: 'center' },
+               
                 { display: '发送时间', name: 'posttime', width: 100, align: 'center' }
             ],
             minColToggle: 1,

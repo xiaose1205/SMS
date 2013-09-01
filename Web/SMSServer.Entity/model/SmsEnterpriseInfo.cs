@@ -47,27 +47,36 @@ public partial class SmsEnterpriseInfo : BaseEntity
     /// <summary>
     ///    
     /// </summary>
+    [Column(NoSqlProperty = true)]
     public string SmsPrice { get; set; }
 
     /// <summary>
     ///    
     /// </summary>
+    [Column(NoSqlProperty = true)]
     public string ChinaMobile { get; set; }
 
     /// <summary>
     ///    
     /// </summary>
+    [Column(NoSqlProperty = true)]
     public string Union { get; set; }
 
     /// <summary>
     ///    
     /// </summary>
+    [Column(NoSqlProperty = true)]
     public string Cdma { get; set; }
 
     /// <summary>
     ///    
     /// </summary>
+    [Column(NoSqlProperty = true)]
     public string SmsLength { get; set; }
+    /// <summary>
+    /// 资金账户
+    /// </summary>
+    public float Capital { get; set; }
 
     public static class Columns
     {
@@ -80,5 +89,6 @@ public partial class SmsEnterpriseInfo : BaseEntity
         public const string ChinaMobile = "ChinaMobile";
         public const string Union = "Union";
         public const string Cdma = "Cdma";
+        public const string Capital = "Capital";
     }
 }
