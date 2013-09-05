@@ -77,6 +77,10 @@ public partial class SmsEnterpriseInfo : BaseEntity
     /// 资金账户
     /// </summary>
     public float Capital { get; set; }
+    /// <summary>
+    /// 扩展号
+    /// </summary>
+    public string ExtendNum { get; set; }
 
     public static class Columns
     {
@@ -90,5 +94,6 @@ public partial class SmsEnterpriseInfo : BaseEntity
         public const string Union = "Union";
         public const string Cdma = "Cdma";
         public const string Capital = "Capital";
+        public const string ExtendNum = "ExtendNum";
     }
 }

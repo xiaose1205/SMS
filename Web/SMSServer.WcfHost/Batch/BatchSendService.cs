@@ -53,6 +53,7 @@ namespace SMSServer.WcfHost.Batch
                 }
                 SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("smsprice", model.EnterPriseID);
                 SmsEnterpriseInfo info = config.GetEnterpriseInfo(model.EnterPriseID);
+                model.ExtendNum = info.ExtendNum;
                 float smsprice = float.Parse(configmodel.CfgValue);
                 int result = 3;
                 int sendCount = 0;
@@ -66,13 +67,15 @@ namespace SMSServer.WcfHost.Batch
                         int count = service.MassCount();
                         for (int i = 0; i < (gGroup.groupInfos.Count / count + (gGroup.groupInfos.Count % count > 0 ? 1 : 0)); i++)
                         {
-                            List<SDKGroupInfo> readyphones = new List<SDKGroupInfo>();
+                            SMSSDKGroupInfo smssdkGroupInfo = new SMSSDKGroupInfo();
+                            smssdkGroupInfo.groupInfos = new List<SDKGroupInfo>();
+
                             if (gGroup.groupInfos.Count - i * count >= count)
                             {
                                 List<GroupInfo> groupInfos = gGroup.groupInfos.GetRange(i * count, count);
                                 foreach (GroupInfo smsDetial in groupInfos)
                                 {
-                                    readyphones.Add(new SDKGroupInfo()
+                                    smssdkGroupInfo.groupInfos.Add(new SDKGroupInfo()
                                         {
                                             Phone = smsDetial.Phone,
                                             Content = smsDetial.Content
@@ -85,7 +88,7 @@ namespace SMSServer.WcfHost.Batch
                                 List<GroupInfo> groupInfos = gGroup.groupInfos.GetRange(i * count, gGroup.groupInfos.Count - i * count);
                                 foreach (GroupInfo smsDetial in groupInfos)
                                 {
-                                    readyphones.Add(new SDKGroupInfo()
+                                    smssdkGroupInfo.groupInfos.Add(new SDKGroupInfo()
                                   {
                                       Phone = smsDetial.Phone,
                                       Content = smsDetial.Content
@@ -95,10 +98,10 @@ namespace SMSServer.WcfHost.Batch
 
                             if (hasMoney)
                             {
-                                result = service.SendSMS(service.GetUser(), readyphones);
-                                if (result == 1) sendCount += readyphones.Count;
+                                result = service.SendSMS(smssdkGroupInfo.groupInfos, model.ExtendNum);
+                                if (result == 1) sendCount += smssdkGroupInfo.groupInfos.Count;
                             }
-                            WriteBatchDetial(readyphones, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);
+                            WriteBatchDetial(smssdkGroupInfo.groupInfos, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);
 
                         }
                     }
@@ -121,7 +124,7 @@ namespace SMSServer.WcfHost.Batch
 
                             if (hasMoney)
                             {
-                                result = service.SendSMS(service.GetUser(), GetFromDetails(readyphones, mMass.Content));
+                                result = service.SendSMS(GetFromDetails(readyphones, mMass.Content), model.ExtendNum);
                                 if (result == 1) sendCount += readyphones.Count;
                             }
                             WriteBatchDetial(readyphones, mMass.Content, (SendResultEnum)Enum.ToObject(typeof(SendResultEnum), result), model, chanelid);

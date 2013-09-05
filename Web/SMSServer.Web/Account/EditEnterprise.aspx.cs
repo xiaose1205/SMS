@@ -13,6 +13,7 @@ namespace SMSServer.Web.Account
         public string name;
         public string introduction;
         public string capital;
+        public string extendnum;
         protected void Page_Load(object sender, EventArgs e)
         {
             EnterpriseService service = new EnterpriseService();
@@ -20,6 +21,7 @@ namespace SMSServer.Web.Account
             name = info.EnterpriseName;
             introduction = info.Introduction;
             capital = info.Capital.ToString();
+            extendnum = info.ExtendNum;
             Page.DataBind();
         }
     }

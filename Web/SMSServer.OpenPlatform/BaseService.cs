@@ -11,32 +11,32 @@ namespace SMSServer.OpenPlatform
         /// 发送短信
         /// </summary>
         /// <returns></returns>
-        public abstract int SendSMS(SendUser us, SMSSDKMassInfo smsInfos);
+        public abstract int SendSMS( SMSSDKMassInfo smsInfos, string extendNub);
         /// <summary>
         /// 发送短信
         /// </summary>
         /// <returns></returns>
-        public abstract int SendSMS(SendUser us, List<SDKGroupInfo> smsInfos);
+        public abstract int SendSMS( List<SDKGroupInfo> smsInfos, string extendNub);
         /// <summary>
         /// 获取状态报告
         /// </summary>
         /// <returns></returns>
-        public abstract string GetStatusreport(SendUser us);
+        public abstract string GetStatusreport();
         /// <summary>
         /// 获取余额
         /// </summary>
         /// <returns></returns>
-        public abstract string Getbalance(SendUser us);
+        public abstract string Getbalance();
 
         /// <summary>
         /// 获取上行
         /// </summary>
         /// <returns></returns>
-        public abstract string Getascending(SendUser us);
+        public abstract string Getascending();
 
 
 
-        public abstract SendUser GetUser();
+        public abstract SendUser SendUser { get; set; }
 
         public abstract int GetSignNum();
 

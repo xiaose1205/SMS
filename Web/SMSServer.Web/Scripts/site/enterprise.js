@@ -50,10 +50,10 @@ $(document).ready(function () {
     }
 
     $("#add").click(function () {
-        $.AddAction(450, 200, '添加企业', "account/addenterprise.aspx", doQuery);;
+        $.AddAction(450, 250, '添加企业', "account/addenterprise.aspx", doQuery);;
     });
     $("#edit").click(function () {
-        $.EditAction(450, 200, '修改企业', "account/editenterprise.aspx?id={0}", doQuery);;
+        $.EditAction(450, 250, '修改企业', "account/editenterprise.aspx?id={0}", doQuery);;
     });
     $("#delete").click(function () {
         $.DeleteAction("black", doQuery, "是否确认删除所选的数据？");

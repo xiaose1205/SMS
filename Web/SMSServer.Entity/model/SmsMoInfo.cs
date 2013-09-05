@@ -62,7 +62,7 @@ public partial class SmsMoInfo: BaseEntity
     ///    
     /// </summary>
     public DateTime? CreateTime {get; set;}
-
+ 
     public static class Columns 
     { 
         public const string ID = "ID";
@@ -74,5 +74,6 @@ public partial class SmsMoInfo: BaseEntity
         public const string Readed = "Readed";
         public const string Responsed = "Responsed";
         public const string CreateTime = "CreateTime";
+        public const string EnterpriseID = "EnterpriseID";
     }
 }

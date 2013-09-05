@@ -25,5 +25,9 @@ namespace SMSServer.OpenPlatform
         public string Phone { get; set; }
         public string Content { get; set; }
         public DateTime MoTime { get; set; }
+
+        public string ExtraNub { get; set; }
+    
+
     }
 }

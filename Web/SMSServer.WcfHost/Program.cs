@@ -10,6 +10,7 @@ using System.Configuration;
 using SMSServer.OpenPlatform;
 using SMSServer.Service;
 using SMSServer.WcfHost.Batch;
+using SMSServer.WcfHost.Mo;
 
 namespace SMSServer.WcfHost
 {
@@ -46,18 +47,36 @@ namespace SMSServer.WcfHost
 
             //注册发送的信道
             ServicesFactory.RegisterApp(new DemoService());
-            ServicesFactory.RegisterApp(new YMService());
+            YMService ym = new YMService();
+            ym.SendUser = new SendUser();
+            ym.SendUser.serialNumber = ConfigurationManager.AppSettings["ymsn"];
+            ym.SendUser.passwd = ConfigurationManager.AppSettings["ympwd"];
+            ym.SendUser.sdkKey = ConfigurationManager.AppSettings["ymsdkkey"];
+            ym.SendUser.tefuhao = ConfigurationManager.AppSettings["ymtefuhao"];
 
-            AppContent.ReadBatch = int.Parse(ConfigurationManager.AppSettings["ReadBatch"]) ;
-            AppContent.ReadTask = int.Parse(ConfigurationManager.AppSettings["ReadTask"])  ;
+            ServicesFactory.RegisterApp(ym);
 
-            AppContent.ReadSender = int.Parse(ConfigurationManager.AppSettings["ReadSender"])  ;
-            AppContent.ReadBatchCount = int.Parse(ConfigurationManager.AppSettings["ReadBatchCount"])  ;
 
-            AppContent.SendPackCount = int.Parse(ConfigurationManager.AppSettings["SendPackCount"])  ;
+            DemoService demo = new DemoService();
+            demo.SendUser = new SendUser();
+            demo.SendUser.serialNumber = ConfigurationManager.AppSettings["ymsn"];
+            demo.SendUser.passwd = ConfigurationManager.AppSettings["ympwd"];
+            demo.SendUser.sdkKey = ConfigurationManager.AppSettings["ymsdkkey"];
+            demo.SendUser.tefuhao = ConfigurationManager.AppSettings["ymtefuhao"];
 
-            AppContent.SendMtCount = int.Parse(ConfigurationManager.AppSettings["SendMtCount"]) ;
+            ServicesFactory.RegisterApp(demo);
 
+            AppContent.ReadBatch = int.Parse(ConfigurationManager.AppSettings["ReadBatch"]);
+            AppContent.ReadTask = int.Parse(ConfigurationManager.AppSettings["ReadTask"]);
+
+            AppContent.ReadSender = int.Parse(ConfigurationManager.AppSettings["ReadSender"]);
+            AppContent.ReadBatchCount = int.Parse(ConfigurationManager.AppSettings["ReadBatchCount"]);
+
+            AppContent.SendPackCount = int.Parse(ConfigurationManager.AppSettings["SendPackCount"]);
+
+            AppContent.SendMtCount = int.Parse(ConfigurationManager.AppSettings["SendMtCount"]);
+            AppContent.IsMoReceive = int.Parse(ConfigurationManager.AppSettings["isMo"]) == 1;
+            AppContent.MoReceive = int.Parse(ConfigurationManager.AppSettings["MoRev"]);
             if (!debugLog)
             {
                 ServiceBase[] ServicesToRun;
@@ -71,6 +90,8 @@ namespace SMSServer.WcfHost
             {
                 BatchReadService readService = new BatchReadService();
                 BatchSendService sendService = new BatchSendService();
+                ReadMoService moService = new ReadMoService();
+                moService.Star();
                 readService.Star();
                 sendService.Star();
                 //Logger.CurrentLog.Info("WCF_STARTING");

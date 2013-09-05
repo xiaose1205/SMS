@@ -69,6 +69,7 @@ namespace SMSServer.WcfHost.Batch
                             Print("加入队列：" + item.BatchID + "");
                             item.Channels = channels; 
                         }
+                      
                         AppContent.SendingMts.Enqueue(item);
                         #endregion
                     }

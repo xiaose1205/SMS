@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SMSServer.Logic;
 
 namespace SMSServer.Service
 {
@@ -24,7 +25,7 @@ namespace SMSServer.Service
     {
         public void AddMos(List<SmsMoInfo> molists)
         {
-            throw new NotImplementedException();
+            SmsMOManage.Instance.AddList(molists);
         }
     }
 }

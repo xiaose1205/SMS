@@ -49,8 +49,25 @@ namespace SMSServer.Logic
                 if (!string.IsNullOrEmpty(endtime) && !string.IsNullOrEmpty(starttime))
                     action.SqlWhere(SmsMoInfo.Columns.ReceiveTime, starttime, endtime, ConditionEnum.And, RelationEnum.Between);
                 action.PageSize = PageSize;
+                action.SqlWhere(SmsMoInfo.Columns.EnterpriseID, eid);
                 action.SqlOrderBy(SmsMoInfo.Columns.CreateTime, OrderByEnum.Desc);
                 return action.QueryPage<SmsMoInfo>(PageIndex); 
+            }
+        }
+
+        public void AddList(List<SmsMoInfo> molists)
+        {
+            using (TradAction action = new TradAction())
+            {
+                List<string> sqls = new List<string>();
+                foreach (var mo in molists)
+                {
+                    InserAction inserAction = new InserAction(mo);
+                    sqls.Add(inserAction.CreateSql(OperateEnum.Insert));
+
+                }
+                action.ExecuteSqlTran(sqls);
+
             }
         }
     }

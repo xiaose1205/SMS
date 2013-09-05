@@ -2,8 +2,9 @@
 using System.ServiceProcess;
 using System.ServiceModel.Channels;
 using HelloData.FWCommon.Logging;
- 
+
 using SMSServer.WcfHost.Batch;
+using SMSServer.WcfHost.Mo;
 
 namespace SMSServer.WcfHost
 {
@@ -16,11 +17,12 @@ namespace SMSServer.WcfHost
 
         BatchReadService readService = new BatchReadService();
         BatchSendService sendService = new BatchSendService();
+        ReadMoService moService = new ReadMoService();
         protected override void OnStart(string[] args)
         {
-        
+            moService.Star();
             readService.Star();
-           
+
             sendService.Star();
             Logger.CurrentLog.Info("ServiceHost Opening!");
         }

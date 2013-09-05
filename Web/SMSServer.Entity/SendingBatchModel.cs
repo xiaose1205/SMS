@@ -25,5 +25,6 @@ namespace SMSService.Entity
         public bool IsRead { get; set; }
 
         public int SendCount { get; set; }
+
     }
 }

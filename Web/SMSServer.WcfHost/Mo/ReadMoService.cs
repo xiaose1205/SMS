@@ -29,13 +29,33 @@ namespace SMSServer.WcfHost.Mo
                     foreach (var item in users)
                     {
                         List<SmsMoInfo> smsMoInfos = new List<SmsMoInfo>();
-                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("channels", item.ID);
+                        SmsEnterpriseCfgInfo configmodel = config.GetModelWithKey("chinamobile", item.ID);
+                        string keyvalue = configmodel.CfgValue;
                         foreach (int i in config.GetChannels(configmodel))
                         {
-                            smsMoInfos.AddRange(changeMos(ServicesFactory.Execute(i).GetMo(), item.ID));
+                            smsMoInfos.AddRange(changeMos(ServicesFactory.Execute(i).GetMo(), users));
                         }
-                        Thread.Sleep(1000);
+                        configmodel = config.GetModelWithKey("union", item.ID);
+                        string ukeyvalue = configmodel.CfgValue;
+                        if (keyvalue != configmodel.CfgValue)
+                        {
+                            foreach (int i in config.GetChannels(configmodel))
+                            {
+                                smsMoInfos.AddRange(changeMos(ServicesFactory.Execute(i).GetMo(), users));
+                            }
+                        }
+                        configmodel = config.GetModelWithKey("cdma", item.ID);
+                        if (keyvalue != configmodel.CfgValue && ukeyvalue != configmodel.CfgValue)
+                        {
+                            foreach (int i in config.GetChannels(configmodel))
+                            {
+                                smsMoInfos.AddRange(changeMos(ServicesFactory.Execute(i).GetMo(), users));
+                            }
+                        }
+                        InsertMo(smsMoInfos);
+                        Thread.Sleep(AppContent.MoReceive);
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -44,13 +64,19 @@ namespace SMSServer.WcfHost.Mo
             }
         }
 
-        public List<SmsMoInfo> changeMos(List<MoInfo> infos, int enterpriseId)
+        public List<SmsMoInfo> changeMos(List<MoInfo> infos, List<SmsEnterpriseInfo> enterpriseInfos)
         {
             List<SmsMoInfo> smsMoInfos = new List<SmsMoInfo>();
             foreach (var moInfo in infos)
             {
                 SmsMoInfo info = new SmsMoInfo();
-                info.EnterpriseID = enterpriseId;
+                SmsEnterpriseInfo smsEnterpriseInfo = enterpriseInfos.Find(n => n.ExtendNum == moInfo.ExtraNub);
+                if (smsEnterpriseInfo != null)
+                    info.EnterpriseID = smsEnterpriseInfo.ID;
+                else
+                {
+                    info.EnterpriseID = 1;
+                }
                 info.Content = moInfo.Content;
                 info.Phone = moInfo.Phone;
                 info.ReceiveTime = moInfo.MoTime;
@@ -72,6 +98,6 @@ namespace SMSServer.WcfHost.Mo
             }
         }
 
-       
+
     }
 }

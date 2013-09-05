@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SMSService.WcfHost</RootNamespace>
     <AssemblyName>SMSService.WcfHost</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -98,12 +98,6 @@
     <Compile Include="Batch\BatchReadService.cs" />
     <Compile Include="Batch\BatchSendService.cs" />
     <Compile Include="Mo\ReadMoService.cs" />
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
     <Compile Include="Task\TaskService.cs" />
     <Compile Include="WcfService.cs">
       <SubType>Component</SubType>
@@ -119,7 +113,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="log4net.config" />
-    <None Include="SMSServer.WcfHost_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HelloData.FrameWork\HelloData.FrameWork.csproj">
@@ -142,11 +135,6 @@
       <Project>{d59ab992-2bc3-414d-997c-51a687bd1983}</Project>
       <Name>SMSServer.Service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

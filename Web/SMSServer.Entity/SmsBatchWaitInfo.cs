@@ -23,5 +23,8 @@ using HelloData.FrameWork.Data;
 public partial class SmsBatchWaitInfo
 {
     [Column(NoSqlProperty = true)]
-    public string[] Channels { get; set; } 
+    public string[] Channels { get; set; }
+
+    [Column(NoSqlProperty = true)]
+    public string ExtendNum { get; set; }
 }
