@@ -25,7 +25,7 @@ namespace SMSServer.WcfHost
             if (debugLog)
             {
                 //启动日志模块
-                Logger.Current.SetLogger = new LogNet();
+                Logger.Current.SetLogger = new ConsoleLog();
                 Logger.Current.IsOpenLog = true;
                 Logger.CurrentLog.Info("INSTALLING");
             }
@@ -47,14 +47,14 @@ namespace SMSServer.WcfHost
 
             //注册发送的信道
             ServicesFactory.RegisterApp(new DemoService());
-            YMService ym = new YMService();
-            ym.SendUser = new SendUser();
-            ym.SendUser.serialNumber = ConfigurationManager.AppSettings["ymsn"];
-            ym.SendUser.passwd = ConfigurationManager.AppSettings["ympwd"];
-            ym.SendUser.sdkKey = ConfigurationManager.AppSettings["ymsdkkey"];
-            ym.SendUser.tefuhao = ConfigurationManager.AppSettings["ymtefuhao"];
+            //YMService ym = new YMService();
+            //ym.SendUser = new SendUser();
+            //ym.SendUser.serialNumber = ConfigurationManager.AppSettings["ymsn"];
+            //ym.SendUser.passwd = ConfigurationManager.AppSettings["ympwd"];
+            //ym.SendUser.sdkKey = ConfigurationManager.AppSettings["ymsdkkey"];
+            //ym.SendUser.tefuhao = ConfigurationManager.AppSettings["ymtefuhao"];
 
-            ServicesFactory.RegisterApp(ym);
+            //ServicesFactory.RegisterApp(ym);
 
 
             DemoService demo = new DemoService();
